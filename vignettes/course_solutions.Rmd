@@ -1,0 +1,17 @@
+---
+title: "Solutions"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Solutions}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Solutions to exercises are listed here.

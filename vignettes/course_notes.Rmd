@@ -1,0 +1,17 @@
+---
+title: "Course Notes"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Course Notes}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Chapters of course notes are linked below.

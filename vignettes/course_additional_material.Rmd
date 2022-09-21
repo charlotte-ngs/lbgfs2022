@@ -1,0 +1,17 @@
+---
+title: "Additional Material"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Additional Material}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Additional material for the course is shown below.

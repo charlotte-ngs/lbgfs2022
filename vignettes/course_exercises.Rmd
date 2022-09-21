@@ -1,0 +1,17 @@
+---
+title: "Exercises"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Exercises}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Exercises are linked here.
