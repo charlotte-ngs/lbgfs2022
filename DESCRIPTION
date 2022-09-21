@@ -2,9 +2,9 @@ Package: lbgfs2022
 Title: Livestock Breeding and Genomics (ETH Zurich) - Fall Semester 2022
 Version: 0.0.0.9000
 Authors@R: 
-    person("Peter", 
-           "von Rohr", 
-           "peter.vonrohr@usys.ethz.ch", 
+    person(given = "Peter", 
+           family = "von Rohr", 
+           email = "peter.vonrohr@usys.ethz.ch", 
            role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-0078-707X"))
 Description: Livestock Breeding and Genomics is a master level course in the 
