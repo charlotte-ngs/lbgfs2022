@@ -1,3 +1,7 @@
+# lbgfs2022 0.1.0
+
+* First two chapters of course notes and appendix
+
 # lbgfs2022 0.0.1
 
 * Prepare website for first lecture
