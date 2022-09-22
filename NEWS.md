@@ -1,3 +1,7 @@
+# lbgfs2022 0.1.1
+
+* Added slides for l01 and l02
+
 # lbgfs2022 0.1.0
 
 * First two chapters of course notes and appendix

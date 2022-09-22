@@ -15,3 +15,26 @@ knitr::opts_chunk$set(
 ```
 
 Additional material for the course is shown below.
+
+
+# Slides
+
+```{r slide-table, echo=FALSE, message=FALSE, warning=FALSE}
+root_url <- "https://charlotte-ngs.github.io/lbgfs2022" 
+sl_url <- paste0(root_url, "/sl/")
+misc_url <- paste0(root_url, "/misc/")
+tbl_sl <- tibble::tibble(Nr = c(1, 2),
+                         Date = c("2022-09-23",
+                                  "2022-09-30"),
+                         Topic = c(
+                           paste0("[Introduction to Livestock Breeding and Genomics](", 
+                                  sl_url, 
+                                  "lbgfs2021_slides_l01_intro_lbg.pdf)", 
+                                  collapse = ""),
+                           paste0("[Basics of Quantitative Genetics](", 
+                                  sl_url, 
+                                  "lbgfs2021_slides_l02_basics_qg.pdf)", 
+                                  collapse = "")
+                         ))
+knitr::kable(tbl_sl)
+```                         
