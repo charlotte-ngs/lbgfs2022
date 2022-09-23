@@ -24,7 +24,8 @@ material will be illustrated via exercises and assignments.
 
 ## Information
 
--   Form: Hybrid, virtual participation via zoom possible.
+-   Form: Hybrid, virtual participation via zoom possible. Zoom link:
+    <https://ethz.zoom.us/j/68262986875>
 -   Lecturer: Peter von Rohr
 -   Date: Friday 9-12
 -   Room: [LFW C
