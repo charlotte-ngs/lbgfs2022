@@ -1,3 +1,7 @@
+# lbgfs2022 0.1.3
+
+* Exercise 1: Questionnaire
+
 # lbgfs2022 0.1.2
 
 * Added zoom link
