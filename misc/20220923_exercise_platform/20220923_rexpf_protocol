@@ -1,0 +1,16 @@
+
+
+
+# 2-htz
+$ sq2h
+
+# docker
+mkdir lbgfs2022
+cd lbgfs2022
+cp -r ../asmss2022/docker .
+
+
+# Creation of student lists according to description worked
+
+# Upload student lists
+

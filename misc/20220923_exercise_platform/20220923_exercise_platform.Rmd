@@ -79,7 +79,11 @@ vec_pkg <- c('openxlsx', 'dplyr', 'tidyr')
 if (!all(is.element(vec_pkg, installed.packages())))
   install.packages(vec_pkg, dependencies = TRUE)
 
-s_bl_path <- '~/Downloads/BelegungenLerneinheit_751630500L_Herbstsemester_2021.xlsx'
+# find the name of the xlsx student list
+s_xlsx_student_list <- list.files(path = "~/Downloads", pattern = "BelegungenLerneinheit")
+
+# read student list
+s_bl_path <- file.path('~/Downloads', s_xlsx_student_list)
 wb <- openxlsx::read.xlsx(xlsxFile = s_bl_path)
 ```
 
