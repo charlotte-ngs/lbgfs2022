@@ -13,9 +13,9 @@ navbar:
   - text: Course Notes
     href: articles/course_notes.html
   - text: Exercises
-    href: articles/course_exercise.html
+    href: articles/course_exercises.html
   - text: Solutions
-    href: articles/course_solution.html
+    href: articles/course_solutions.html
   - text: Additional Material
     href: articles/course_additional_material.html
   - text: News
