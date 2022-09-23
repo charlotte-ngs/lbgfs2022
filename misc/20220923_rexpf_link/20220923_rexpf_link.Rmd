@@ -1,0 +1,20 @@
+---
+title: "Exercise Platform Links"
+author: "Peter von Rohr"
+date: "2022-09-23"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+The following list relates users to links on the exercise platform
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+s_link_path <- file.path(here::here(), "students", "students_rexpf_links.csv")
+tbl_lnk <- readr::read_csv2(file = s_link_path, col_names = FALSE)
+colnames(tbl_lnk) <- c("Username", "Link")
+knitr::kable(tbl_lnk)
+```
+

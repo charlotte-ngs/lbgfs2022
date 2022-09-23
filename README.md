@@ -37,8 +37,9 @@ material will be illustrated via exercises and assignments.
 
 ### Exercise Platform
 
--   The exercise platform can be found at:
--   The username is:
+-   Information about the exercise platform can be found at:
+    <https://charlotte-ngs.github.io/lbgfs2022/misc/20220923_rexpf_link.html>
+-   The username is: rstudio
 
 ## Questions
 
