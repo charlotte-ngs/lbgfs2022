@@ -159,7 +159,7 @@ $ scp -r bash quagadmin@2-htz.quagzws.com:/home/quagadmin/courses/lbgfs2022
 ```
 cd /home/quagadmin/courses/lbgfs2022/bash
 # test 604RcuhD
-./docker_student_start.sh -f ../students/test_students_lbgfs2022.txt -c /home/quagadmin/courses/lbgfs2022/home -p 10187 -i "rocker/verse"
+./docker_student_start.sh -f ../students/test_students_lbgfs2022.txt -c /home/quagadmin/courses/lbgfs2022/home -p 10187
 # real
 ./docker_student_start.sh -f ../students/students_lbgfs2022.txt -c /home/quagadmin/courses/lbgfs2022/home
 ```
@@ -180,6 +180,17 @@ do
   fi
   sleep 2
 done
+
+cat students/student_usernames_lbgfs2022.txt | while read s
+do 
+  echo " * Processing student $s ..."
+  if [ -f "$COURSEDIR/bash/${s}_email.txt" ]
+  then
+    grep -i password $COURSEDIR/bash/${s}_email.txt | cut -d' ' -f2 > $CREATEDIR/.${s}.pwd
+  fi
+  sleep 2
+done
+
 ```
 
 
@@ -192,9 +203,12 @@ cd /Users/pvr/Data/Projects/Github/charlotte-ngs/lbgfs2022_gh-root
 mkdir -p rexpf
 cd rexpf
 git clone https://github.com/charlotte-ngs/lbgfs2022.git
-cd rexpf
+cd lbgfs2022
 git branch rexpf
 git checkout rexpf
+# check
+git branch
+# delete unneeded material from rexpf
 ls -1 | while read d
 do
   echo " * Checking element: $d ..."
@@ -205,9 +219,15 @@ do
   fi
   sleep 2
 done
-545  git add .
-546  git commit -m"Deleted all unneeded material"
-547  git push origin rexpf
+git add .
+git commit -m"Deleted all unneeded material"
+git push origin rexpf
+
+# remove BuildType and WebsitePath from .Rproj file
+cat ../../main/lbgfs2022/lbgfs2022.Rproj | grep -v BuildType | grep -v WebsitePath > lbgfs2022.Rproj
+git add .
+git commit -m"Added Rproj file"
+git push origin rexpf
 ```
 
 Cloning the material
@@ -268,6 +288,36 @@ do
 done
 
 ```
+
+Create table with student links
+
+```bash
+cat students/test_students_lbgfs2022.txt  | while read s
+do
+  user=$(echo "$s" | cut -d ',' -f1)
+  port=$(cat email_sent/${user}_email.txt | grep Port | cut -d ' ' -f2)
+  echo "${user};2-htz.quagzws.com:${port}" >> test_students_rexpf_links.csv
+  sleep 2
+done  
+
+cat students/students_lbgfs2022.txt  | while read s
+do
+  user=$(echo "$s" | cut -d ',' -f1)
+  port=$(cat email_sent/${user}_email.txt | grep Port | cut -d ' ' -f2)
+  echo "${user};2-htz.quagzws.com:${port}" >> students_rexpf_links.csv
+  sleep 2
+done  
+
+```
+
+Download the file and create the table
+
+```bash
+scp quagadmin@2-htz.quagzws.com:/home/quagadmin/courses/lbgfs2022/test_students_rexpf_links.csv students
+scp quagadmin@2-htz.quagzws.com:/home/quagadmin/courses/lbgfs2022/students_rexpf_links.csv students
+
+```
+
 
 
 # Restart Containers
