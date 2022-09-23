@@ -43,12 +43,25 @@ knitr::kable(tbl_sl)
 # Videos
 
 ```{r video-table, echo=FALSE, message=FALSE, warning=FALSE}
-tbl_video <- tibble::tibble(N = c(1),
+tbl_video <- tibble::tibble(Nr = c(1),
                             Date = c("2022-09-23"),
                             Topic = c(
                               "[Introduction to Livestock Breeding](https://youtu.be/tp09u8Z5lOM)"
                             ))
 knitr::kable(tbl_video)
+```
+
+
+## Overhead Picture
+
+```{r, ohp-table, echo=FALSE, message=FALSE, warning=FALSE}
+s_ohp_url <- file.path(root_url, "ohp/")
+tbl_ohp <- tibble::tibble(Nr = c(1),
+                          Date = c("2022-09-23"),
+                          Topic = c(
+                              paste0("[Introduction to Livestock Breeding](", s_ohp_url, "20220923_ohp_l01.pdf)", collapse = "")
+                            ))
+knitr::kable(tbl_ohp)
 ```
 
 
