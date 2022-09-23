@@ -1,3 +1,8 @@
+# lbgfs2022 0.1.4
+
+* Fixed broken links for exercises and solutions
+* Added OHP for l01
+
 # lbgfs2022 0.1.3
 
 * Exercise 1: Questionnaire
