@@ -1,0 +1,96 @@
+---
+title: "Master Thesis Topics with Qualitas AG and ETHZ"
+author: "Peter von Rohr"
+date: "`r Sys.Date()`"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<style type="text/css">
+h1.title {
+  font-size: 32px;
+  color: Black;
+}
+h1 { /* Header 1 */
+  font-size: 28px;
+  color: DarkRed;
+}
+h2 { /* Header 2 */
+    font-size: 22px;
+  color: DarkRed;
+}
+h3 { /* Header 3 */
+  font-size: 18px;
+  color: DarkRed;
+}
+</style>
+
+If you are interested in any of the following topics or if you have questions, please contact Peter von Rohr (Qualitas AG) Chamerstrasse 56, 6300 Zug; peter.vonrohr@qualitasag.ch, Tel 041 768 92 21.
+
+
+### Genomic Selection in Populations With a High Rate of Natural Insemination - Long-term Development of Accuracy of Genomic Breeding Values If Sires Are Not Re-Genotyped {#project_header .emphasized}
+Routinely, selection candidates are genotyped with a Low-density chip (LD-chip, about 30000 SNPs). The prediction of SNP-effects in a training population is done with sires genotyped with a chip with a higher density. As a consequence of that sires which are selected for artificial insemination are usually re-genotyped. In populations like __Original Braunvieh__ and __Simmental__ the amount of natural insemination is high. In breeding schemes without artificial insemination, selected sires are not re-genotyped with the denser chip. The influence of this fact on the accuracy of the predicted genomic breeding values in the population of Original Braunvieh is to be investigated with a real-world dataset. The project contains imputation of the LD-Chip genotypes onto the denser chip by predicting the missing genotypes and the prediction of genomic breeding values
+
+
+### New Breeding Programs {#project_header .emphasized}
+Swiss Dairy Cattle breeding organisations have traditionally been collecting the same type of data from a large number of farms. Recently the breeding organisations have diversified their services and now offer different type of memberships. Depending on the type of membership that a farmer is committing to different types of data are collected. Some of these newly collected data offer the possibility to use the information from this data as selection tools. To the best of our knowledge there has not been any scientific investigation about the benefits of collecting the new types of data for the breeding program as a whole.
+
+
+### Connectedness Between Herds In Different Populations {#project_header .emphasized}
+In populations with a low rate of artificial insemination, it is often a problem that effects of herds cannot be compared or estimated. There are different measures that indicate such problems. These measures are all contained in the general concept of connectedness.
+
+
+### Resilience Traits Based on Milk Yields From Robotic Milking Systems {#project_header .emphasized}
+More than 100 farms with robotic milking systems are connected to the service of automated data exchange. For those farms, the milk yield per cow is collected on a daily basis. This allows to describe the trajectory of the trait milk yield over time with much more accuracy. This new type of automated data collection is expected to deliver a lot more information about different traits of a cow that are related to health and resilience. This project aims at discovering such new traits which can ultimately be used as new traits for selection in dairy populations. 
+
+
+### Evaluation of Fertalys Data
+Fertalys is a pregnancy testing service offered by the Swiss Dairy Cattle Breeding Organisations together with Swisslab. Results from Fertalys tests might contain information about different relevant fertility traits. The goals of this project is to find possible connections between test results and other traits.
+
+
+### First steps towards a genetic evaluation for conception rate
+An analysis comparable to https://doi.org/10.3168/jds.2018-15858 is to be developed.
+
+
+### Early Maturity in Swiss Beef Cattle
+Early maturity is an important trait in beef cattle. But this trait is not easy to integrate into a breeding program. Different solutions to this problem should be proposed and evaluated.
+
+
+### Application of Generalized Linear Mixed Effect Models
+Based on the results of a previous master thesis, different comparison studies should be undertaken where conventional linear mixed models are compared with the generalized linear mixed model based on the same data set. 
+
+
+### Relationship between Myostatin-Status with Calving Traits
+Some beef cattle breeds (Charolais, Limousin, ...) are looking into the genetic basis of the myostatin-gene (double-muscle). Recent developments in genomic selection of beef cattle in Switzerland give the possibility to analyse the status of the myostatin-gene in the Swiss beef cattle breeds. A specific emphasis is to be put to the relationship with other important characteristics of the animals such as calving traits.
+
+
+### Early first calving evaluation
+This trait is associated with efficiency and with environmental footprint of animals. A number of publications already exist on this topic. Tasks would consist of 
+
+* descriptive statistics in Swiss cattle populations
+* estimation of genetic parameters
+* characterisation of different populations at the genomic level (GWAS, ...)
+
+
+### PSB-Measures
+The Swiss Federal government has decided on measures to reduce the amount of phosphoros (P) and nitrogen (N) that is released to the environment due to livestock production. The possible impact of such measures is to be investigated. 
+
+
+### Feed Efficiency
+In the more recent past huge efforts are undertaken to improve feed efficiency of dairy cows. Thies is due to the fact that the economic pressure for dairy farms have dramatically increased during the past few years and also because of the higher awareness of the impact of livestock production on the environment. In this project the possibilities to improve feed efficiency at the genetic level are to be researched, discussed and if possible evaluated.
+
+
+---
+
+If you are interested in any of the following topics or if you have questions, please contact Peter von Rohr (Qualitas AG) Chamerstrasse 56, 6300 Zug; peter.vonrohr@qualitasag.ch, Tel 041 768 92 21.
+
+
+```{r echo=FALSE, results='asis'}
+cat(rmdhelp::get_latest_change())
+```
+

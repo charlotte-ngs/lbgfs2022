@@ -1,0 +1,293 @@
+---
+title: "Prepare Docker Container"
+author: "Peter von Rohr"
+date: "09/23/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Disclaimer
+The preparation of the docker container for the R exercise platform is documented here.
+
+
+## Dockerfile
+The docker container that is built is based on the container `rocker/verse`. To have all packages available, we build a `Dockerfile` that installs all packages directly into the image. The content of the `Dockerfile` is shown below
+
+```bash
+$ cd /home/quagadmin/courses/lbgfs2022/docker
+quagadmin@2-htz:~/courses/lbgfs2022/docker$ cat Dockerfile 
+FROM rocker/verse
+
+LABEL maintainer="peter.vonrohr@usys.ethz.ch"
+
+RUN R -e "install.packages(c('pedigreemm', 'kableExtra', 'AlphaSimR', dependencies = TRUE))" && \
+    R -e "remotes::install_github(repo = 'charlotte-ngs/rmdhelp')" && \
+    R -e "remotes::install_github(repo = 'pvrqualitasag/rvcetools')"
+
+```
+
+From that `Dockerfile`, a docker image is built by the following command
+
+```bash
+cd;cd courses/lbgfs2022/docker
+# remove old version rocker/verse
+docker rmi rocker/verse
+# build
+docker build -t lbgfs2022 .
+# check 
+docker images
+```
+
+
+## Testing The Image
+The following command is used to test the command
+
+```bash
+STUDENTHOME=/home/quagadmin/courses/lbgfs2022/home/pvr
+if [ ! -d "$STUDENTHOME" ];then mkdir -p ${STUDENTHOME};chmod 777 ${STUDENTHOME};fi
+docker run -d -p 10187:8787 -e PASSWORD=pvrpass -v /home/quagadmin/courses/lbgfs2022/home/pvr:/home/rstudio --name pvr_rstudio lbgfs2022
+# check
+docker ps -a
+```
+
+Open the firewall to test it from outside
+
+```bash
+sudo ufw allow 10187/tcp
+sudo ufw status
+```
+
+Open the link http://2-htz.quagzws.com:10187
+
+
+## Stopping the Test Container
+
+```
+docker stop pvr_rstudio
+docker rm $(docker ps --filter "status=exited" -q)
+```
+
+
+## Creating Student Lists
+Start with a download of the `BelegungLerneinheit*.xlsx` file from `eDoz` under `https://www.lehrbetrieb.ethz.ch/edoz` . We assume that this file is saved to the `Downloads` folder. From there, we extract the usernamens of the students.
+
+```{r}
+vec_pkg <- c('openxlsx', 'dplyr', 'tidyr')
+if (!all(is.element(vec_pkg, installed.packages())))
+  install.packages(vec_pkg, dependencies = TRUE)
+
+s_bl_path <- '~/Downloads/BelegungenLerneinheit_751630500L_Herbstsemester_2021.xlsx'
+wb <- openxlsx::read.xlsx(xlsxFile = s_bl_path)
+```
+
+First create a list of students with their names, firstnames and e-mail addresses
+
+```{r}
+library(dplyr)
+(tbl_student_info <- wb %>% 
+    select(Familienname, Rufname, Nummer, `E-Mail`) %>%
+    mutate(UDName = `E-Mail`) %>%
+    tidyr::separate(UDName, c("Username", NA), sep = '@') %>%
+    select(Username, Familienname, Rufname, Nummer, `E-Mail`))
+```
+
+The student information is written to a file. 
+
+```{r}
+student_dir <- file.path(here::here(), 'students')
+if (!dir.exists(student_dir)) fs::dir_create(path = student_dir)
+student_file_path <- file.path(student_dir, "students_lbgfs2022.txt")
+readr::write_csv(tbl_student_info, file = student_file_path, col_names = FALSE)
+```
+
+A test-student is created manually. 
+
+```{r}
+tbl_test_student_info <- tibble::tibble(Username     = c('vrohrp'),
+                                        Familienname = c('von Rohr'), 
+                                        Rufname      = c('Peter'), 
+                                        Nummer       = c('00-000-000') , 
+                                        `E-Mail`     = c('peter.vonrohr@usys.ethz.ch'))
+test_student_file_path <- file.path(student_dir, "test_students_lbgfs2022.txt")
+readr::write_csv(tbl_test_student_info, file = test_student_file_path, col_names = FALSE)
+```
+
+
+
+## Student Usernames
+From the e-mail addresses, we extract usernames as follows
+
+```{r}
+(tbl_student_username <- tbl_student_info %>% select(Username))
+```
+
+Write the usernames to a file
+
+```{r}
+user_file_path <- file.path(student_dir, "student_usernames_lbgfs2022.txt")
+readr::write_csv(tbl_student_username, file = user_file_path, col_names = FALSE)
+```
+
+The username for the test-student is specified manually and is not extracted from the e-mail. 
+
+```{r}
+test_user_file_path <- file.path(student_dir, "test_student_usernames_lbgfs2022.txt")
+tbl_test_student_username <- tbl_test_student_info %>% select(Username)
+readr::write_csv(tbl_test_student_username, file = test_user_file_path, col_names = FALSE)
+```
+
+
+## File Upload
+Upload the created files to the server
+
+```
+$ cd /Users/peter/Data/Projects/GitHub/charlotte-ngs/lbgfs2022_ghroot/master/lbgfs2022
+$ scp -r students quagadmin@2-htz.quagzws.com:/home/quagadmin/courses/lbgfs2022
+$ scp -r bash quagadmin@2-htz.quagzws.com:/home/quagadmin/courses/lbgfs2022
+```
+
+
+## Start Containers
+
+```
+cd /home/quagadmin/courses/lbgfs2022/bash
+# test 604RcuhD
+./docker_student_start.sh -f ../students/test_students_lbgfs2022.txt -c /home/quagadmin/courses/lbgfs2022/home -p 10187 -i "rocker/verse"
+# real
+./docker_student_start.sh -f ../students/students_lbgfs2022.txt -c /home/quagadmin/courses/lbgfs2022/home
+```
+
+## Move Passwords to created folder
+
+```
+COURSEDIR=/home/quagadmin/courses/lbgfs2022
+cd $COURSEDIR
+CREATEDIR=$COURSEDIR/created
+if [ ! -d "$CREATEDIR" ];then mkdir -p $CREATEDIR;fi
+cat students/test_student_usernames_lbgfs2022.txt | while read s
+do 
+  echo " * Processing student $s ..."
+  if [ -f "$COURSEDIR/bash/${s}_email.txt" ]
+  then
+    grep -i password $COURSEDIR/bash/${s}_email.txt | cut -d' ' -f2 > $CREATEDIR/.${s}.pwd
+  fi
+  sleep 2
+done
+```
+
+
+## Cloning Material
+The exercise material must be cloned to the directories of the students. First start with preparing the branch.
+
+```
+# on mac
+cd /Users/pvr/Data/Projects/Github/charlotte-ngs/lbgfs2022_gh-root
+mkdir -p rexpf
+cd rexpf
+git clone https://github.com/charlotte-ngs/lbgfs2022.git
+cd rexpf
+git branch rexpf
+git checkout rexpf
+ls -1 | while read d
+do
+  echo " * Checking element: $d ..."
+  if [ "$d" != "ex" ] 
+  then
+    echo " ** Deleting $d ..."
+    rm -rf $d
+  fi
+  sleep 2
+done
+545  git add .
+546  git commit -m"Deleted all unneeded material"
+547  git push origin rexpf
+```
+
+Cloning the material
+
+```
+# on 2-htz
+export GITURI=https://github.com/charlotte-ngs/lbgfs2022.git
+export GELSRC=/home/quagadmin/courses/lbgfs2022
+export GELHOME=${GELSRC}/home
+cd $GELSRC
+# test student
+cat students/test_student_usernames_lbgfs2022.txt | while read s
+do
+  cd $GELHOME/$s
+  echo " * Cloning repo for $s ..."
+  git clone $GITURI -b rexpf
+  sleep 2
+done
+
+# students
+cd $GELSRC
+# real student
+cat students/student_usernames_lbgfs2022.txt | while read s
+do
+  cd $GELHOME/$s
+  echo " * Cloning repo for $s ..."
+  git clone $GITURI -b rexpf
+  sleep 2
+done
+```
+
+## Sending E-Mails
+The following commands are used to send e-mails to students
+
+```
+export GELSRC=/home/quagadmin/courses/lbgfs2022
+cd $GELSRC
+if [ ! -d "email_sent" ]; then mkdir -p email_sent;fi
+cat students/test_students_lbgfs2022.txt  | while read s
+do
+  user=$(echo "$s" | cut -d ',' -f1)
+  email=$(echo "$s" | cut -d ',' -f5)
+  echo " * Sending ${user}_mail.txt to $email ..."
+  cat bash/${user}_email.txt | ssmtp $email
+  sleep 2
+  mv bash/${user}_email.txt email_sent
+done
+
+# real students
+cat students/students_lbgfs2022.txt  | while read s
+do
+  user=$(echo "$s" | cut -d ',' -f1)
+  email=$(echo "$s" | cut -d ',' -f5)
+  echo " * Sending ${user}_mail.txt to $email ..."
+  cat bash/${user}_email.txt | ssmtp $email
+  sleep 2
+  mv bash/${user}_email.txt email_sent
+done
+
+```
+
+
+# Restart Containers
+For an update of the docker image, we have to restart the docker container. First the running container are stopped. 
+
+```
+# test
+cd /home/quagadmin/courses/lbgfs2022/bash
+# stop
+./docker_student_stop.sh -f ../students/test_students_lbgfs2022.txt
+# restart
+./docker_student_start.sh -f ../students/test_students_lbgfs2022.txt -c /home/quagadmin/courses/lbgfs2022/home -p 10187 -w /home/quagadmin/courses/lbgfs2022/created -i lbgfs2022
+```
+
+The same can be done for all other students
+
+```
+# real
+cd /home/quagadmin/courses/lbgfs2022/bash
+# stop
+./docker_student_stop.sh -f ../students/students_lbgfs2022.txt
+# restart
+./docker_student_start.sh -f ../students/students_lbgfs2022.txt -c /home/quagadmin/courses/lbgfs2022/home -w /home/quagadmin/courses/lbgfs2022/created -i lbgfs2022
+```
+
+
+
