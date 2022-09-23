@@ -15,3 +15,19 @@ knitr::opts_chunk$set(
 ```
 
 Exercises are linked here.
+
+```{r, echo=FALSE, results='asis'}
+s_ex_url <- "https://charlotte-ngs.github.io/lbgfs2022/ex/"
+tbl_ex <- tibble::tibble(Nr = c(1),
+                         Date = c("2022-09-23"),
+                         Topic = c(
+                           paste0("[Questionnaire](", s_ex_url, "lbg_ex01.pdf)", collapse = "")
+                         ))
+knitr::kable(tbl_ex)
+```
+
+```{r latest-change, echo=FALSE, results='asis'}
+cat(rmdhelp::get_latest_change())
+```
+
+
