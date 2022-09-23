@@ -1,3 +1,7 @@
+# lbgfs2022 0.1.2
+
+* Added zoom link
+
 # lbgfs2022 0.1.1
 
 * Added slides for l01 and l02
