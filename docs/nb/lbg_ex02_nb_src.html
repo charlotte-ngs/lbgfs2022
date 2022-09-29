@@ -9,11 +9,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Peter von Rohr" />
 
-<meta name="date" content="2022-09-23" />
 
-<title>Exercise Platform Links</title>
+<title>lbg_ex02_nb_src.knit</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -363,69 +361,179 @@ pre code {
 
 
 
-<h1 class="title toc-ignore">Exercise Platform Links</h1>
-<h4 class="author">Peter von Rohr</h4>
-<h4 class="date">2022-09-23</h4>
 
 </div>
 
 
-<p>The following list relates users to links on the exercise
-platform</p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Username</th>
-<th align="left">Link</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">maffentra</td>
-<td align="left">2-htz.quagzws.com:10087</td>
-</tr>
-<tr class="even">
-<td align="left">jdowse</td>
-<td align="left">2-htz.quagzws.com:10088</td>
-</tr>
-<tr class="odd">
-<td align="left">flleyvra</td>
-<td align="left">2-htz.quagzws.com:10089</td>
-</tr>
-<tr class="even">
-<td align="left">lrealini</td>
-<td align="left">2-htz.quagzws.com:10090</td>
-</tr>
-<tr class="odd">
-<td align="left">simoschl</td>
-<td align="left">2-htz.quagzws.com:10091</td>
-</tr>
-<tr class="even">
-<td align="left">alschude</td>
-<td align="left">2-htz.quagzws.com:10092</td>
-</tr>
-<tr class="odd">
-<td align="left">stefan.vasiljevic</td>
-<td align="left">2-htz.quagzws.com:10093</td>
-</tr>
-<tr class="even">
-<td align="left">ramon.winterberg</td>
-<td align="left">2-htz.quagzws.com:10094</td>
-</tr>
-<tr class="odd">
-<td align="left">bzandona</td>
-<td align="left">2-htz.quagzws.com:10095</td>
-</tr>
-<tr class="even">
-<td align="left">nazimmermann</td>
-<td align="left">2-htz.quagzws.com:10096</td>
-</tr>
-<tr class="odd">
-<td align="left">vrohrp</td>
-<td align="left">2-htz.quagzws.com:10187</td>
-</tr>
-</tbody>
-</table>
+<div id="problem-1-vectors-in-r" class="section level2">
+<h2>Problem 1: Vectors in R</h2>
+<div id="vector-definition" class="section level3">
+<h3>Vector Definition</h3>
+<p>Although there exists a function called <code>vector()</code> in R,
+vectors are always defined in R using the function <code>c()</code>
+which stands for “concatenation”.</p>
+</div>
+<div id="vector-assignment" class="section level3">
+<h3>Vector Assignment</h3>
+<p>Let us assume we want to assign the following vector <span class="math inline">\(a\)</span></p>
+<p><span class="math display">\[a = \left[\begin{array}{c}
+10 \\
+7 \\
+43
+\end{array}\right]\]</span> to the variable named <code>a</code> in R,
+then this can be done with the following statement</p>
+<pre class="r"><code>a &lt;- c(10,7,43)</code></pre>
+</div>
+<div id="access-of-single-vector-element" class="section level3">
+<h3>Access of single Vector Element</h3>
+<p>A single vector element can be accessed using the variable name
+followed by the element index in brackets. Hence, if we want to know the
+first element of vector <code>a</code>, we have to write</p>
+<pre class="r"><code>a[1]</code></pre>
+<pre><code>## [1] 10</code></pre>
+</div>
+<div id="computations-with-vector-elements" class="section level3">
+<h3>Computations with Vector Elements</h3>
+<p>Vector elements can be used in arithmetic operations such as
+summation, subtraction and multiplication as shown below</p>
+<pre class="r"><code>a[1] + a[3]</code></pre>
+<pre><code>## [1] 53</code></pre>
+<pre class="r"><code>a[2] * a[3]</code></pre>
+<pre><code>## [1] 301</code></pre>
+<pre class="r"><code>a[3] - a[1]</code></pre>
+<pre><code>## [1] 33</code></pre>
+<p>The function <code>sum()</code> can be used to compute the sum of all
+vector elements. The function <code>mean()</code> computes the mean of
+all vector elements.</p>
+<pre class="r"><code>sum(a)</code></pre>
+<pre><code>## [1] 60</code></pre>
+<pre class="r"><code>mean(a)</code></pre>
+<pre><code>## [1] 20</code></pre>
+</div>
+<div id="vector-computations" class="section level3">
+<h3>Vector Computations</h3>
+<p>Arithmetic operations can also be performed not only on elements of
+vectors but also on complete vectors. Hence, we can add the vector
+<code>a</code> to itself or we can multiply it by a factor of 3.5 which
+is shown in the following code-chunk</p>
+<pre class="r"><code>a + a</code></pre>
+<pre><code>## [1] 20 14 86</code></pre>
+<pre class="r"><code>3.5 * a</code></pre>
+<pre><code>## [1]  35.0  24.5 150.5</code></pre>
+</div>
+<div id="more-computations-on-vectors" class="section level3">
+<h3>More Computations on Vectors</h3>
+<p>Given are the following two vectors <span class="math inline">\(v\)</span> and <span class="math inline">\(w\)</span>.</p>
+<p><span class="math display">\[v = \left[\begin{array}{c}
+   3  \\
+  -5  \\
+   1  \\
+   9  \\
+  \end{array}\right]\]</span></p>
+<p><span class="math display">\[w = \left[\begin{array}{c}
+    1  \\
+    9  \\
+  -12  \\
+   27  \\
+  \end{array}\right]\]</span></p>
+<p>Compute</p>
+<ul>
+<li>the sum <span class="math inline">\(v+w\)</span>,</li>
+<li>the difference <span class="math inline">\(v-w\)</span> and</li>
+<li>the dot product <span class="math inline">\(v\cdot w\)</span>.</li>
+</ul>
+</div>
+<div id="your-solution" class="section level3">
+<h3>Your Solution</h3>
+<p>The following steps could be helpful for the solution</p>
+<ul>
+<li>Start by assigning the vectors to variables</li>
+<li>Perform the arithmetic operations with the variables</li>
+<li>Compute the dot-product either with <code>crossprod()</code> or with
+the operator <code>%*%</code></li>
+</ul>
+</div>
+</div>
+<div id="problem-2-matrices-in-r" class="section level2">
+<h2>Problem 2: Matrices in R</h2>
+<p>Matrices in R are defined using the function <code>matrix()</code>.
+The function <code>matrix()</code> takes as first arguments all the
+elements of the matrix as a vector and as further arguments the number
+of rows and the number of columns. The following statment generates a
+matrix with <span class="math inline">\(4\)</span> rows and <span class="math inline">\(3\)</span> columns containing all integer numbers
+from <span class="math inline">\(1\)</span> to <span class="math inline">\(12\)</span>.</p>
+<pre class="r"><code>mat_by_col &lt;- matrix(1:12, nrow = 4, ncol = 3)
+mat_by_col</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    5    9
+## [2,]    2    6   10
+## [3,]    3    7   11
+## [4,]    4    8   12</code></pre>
+<p>As can be seen, the matrix elements are ordered by columns. Often, we
+want to define a matrix where elements are filled by rows. This can by
+done using the option <code>byrow=TRUE</code></p>
+<pre class="r"><code>mat_by_row &lt;- matrix(1:12, nrow = 4, ncol = 3, byrow = TRUE)
+mat_by_row</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]    4    5    6
+## [3,]    7    8    9
+## [4,]   10   11   12</code></pre>
+<div id="access-of-matrix-elements" class="section level3">
+<h3>Access of Matrix Elements</h3>
+<p>Matrix elements can be accessed similarly to what was shown for
+vectors. But to access a single element, we need two indices, one for
+rows and one for columns. Hence the matrix element in the second row and
+third column can be accessed by</p>
+<pre class="r"><code>mat_by_row[2,3]</code></pre>
+<pre><code>## [1] 6</code></pre>
+</div>
+<div id="arithmetic-computations-with-matrices" class="section level3">
+<h3>Arithmetic Computations with Matrices</h3>
+<p>Arithmetic computations with matrices can be done with the well-known
+operators as long as the matrices are compatible. For summation and
+subtraction matrices must have the same number of rows and columns. For
+matrix-multiplication, the number of columns of the first matrix must be
+equal to the number of rows of the second matrix.</p>
+<p>In R the arithmetic operators <code>+</code>, <code>-</code> and
+<code>*</code> all perform element-wise operations. The matrix
+multiplication can either be done using the operator <code>%*%</code> or
+the function <code>crossprod()</code>. It has to be noted that the
+statement</p>
+<pre><code>crossprod(A, B)</code></pre>
+<p>computes the matrix-product <span class="math inline">\(A^T \cdot
+B\)</span> where <span class="math inline">\(A^T\)</span> stands for the
+transpose of matrix <span class="math inline">\(A\)</span>. Hence the
+matrix product <span class="math inline">\(A \cdot B\)</span> would have
+to be computed as</p>
+<pre><code>crossprod(t(A), B)</code></pre>
+</div>
+<div id="more-examples" class="section level3">
+<h3>More Examples</h3>
+<p>Given the matrices X and Y</p>
+<pre class="r"><code>X &lt;- matrix(1:15, nrow = 5, ncol = 3)
+Y &lt;- matrix(16:30, nrow = 5, ncol = 3)</code></pre>
+<p>Compute</p>
+<ul>
+<li><span class="math inline">\(X + Y\)</span></li>
+<li><span class="math inline">\(Y - X\)</span></li>
+<li>multiplication of elements between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span></li>
+<li>matrix-product <span class="math inline">\(X^T \cdot Y\)</span></li>
+<li>matrix-product <span class="math inline">\(X^T \cdot X\)</span></li>
+<li>matrix-product <span class="math inline">\(Y^T \cdot Y\)</span></li>
+</ul>
+</div>
+<div id="your-solution-1" class="section level3">
+<h3>Your Solution</h3>
+<ul>
+<li>Matrices must be assigned to variables as shown above</li>
+<li>Arithmethic operations are performed</li>
+<li>Matrix muliplications can be done with <code>crossprod</code></li>
+</ul>
+<hr />
+<p><em>Latest Changes: 2022-09-29 06:54:58 (pvr)</em></p>
+</div>
+</div>
 
 
 

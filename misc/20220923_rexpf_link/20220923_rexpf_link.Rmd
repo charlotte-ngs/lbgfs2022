@@ -14,7 +14,17 @@ The following list relates users to links on the exercise platform
 ```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
 s_link_path <- file.path(here::here(), "students", "students_rexpf_links.csv")
 tbl_lnk <- readr::read_csv2(file = s_link_path, col_names = FALSE)
-colnames(tbl_lnk) <- c("Username", "Link")
+vec_tbl_col_names <- c("Username", "Link")
+colnames(tbl_lnk) <- vec_tbl_col_names
+
+# Adding test student to the list
+s_test_student_path <- file.path(here::here(), "students", "test_students_rexpf_links.csv")
+tbl_test_student_lnk <- readr::read_csv2(file = s_test_student_path, col_names = FALSE)
+colnames(tbl_test_student_lnk) <- vec_tbl_col_names
+tbl_lnk <- dplyr::bind_rows(tbl_lnk, tbl_test_student_lnk)
+
+# show the table
 knitr::kable(tbl_lnk)
 ```
+
 
