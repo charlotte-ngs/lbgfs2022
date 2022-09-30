@@ -1,3 +1,7 @@
+# lbgfs2022 0.2.1
+
+* Marker data
+
 # lbgfs2022 0.2.0
 
 * Released exercise lbg_ex02
