@@ -14,6 +14,7 @@ echo " *** Start fetching with $SCRIPT ..."
 ### # define a few constants
 BRANCH=rexpf
 PROJDIR=lbgfs2022
+PROJROOT=/home/quagadmin/courses/${PROJDIR}
 GITHUBURL=https://github.com/charlotte-ngs/${PROJDIR}.git
 ADMIN=`whoami`
 CURWD=/home/${ADMIN}
@@ -52,7 +53,7 @@ while getopts :s:d: FLAG; do
   case $FLAG in
     s) # set option "s"
     STUDENT=$OPTARG
-    PROJPATH=/home/quagadmin/lbgfs2020/home/${STUDENT}/${PROJDIR}
+    PROJPATH=${PROJROOT}/home/${STUDENT}/${PROJDIR}
     [ -d "${PROJPATH}" ] || usage "Cannot find student project path: $PROJPATH"
 	  ;;
 	  d) # setting option "d"

@@ -289,6 +289,32 @@ done
 
 ```
 
+Sending e-mails the first time did not work, but e-mail message were moved to e-mail_sent folder, hence second attempt to sending
+
+```bash
+export GELSRC=/home/quagadmin/courses/lbgfs2022
+cd $GELSRC
+cat students/test_students_lbgfs2022.txt  | while read s
+do
+  user=$(echo "$s" | cut -d ',' -f1)
+  email=$(echo "$s" | cut -d ',' -f5)
+  echo " * Sending ${user}_mail.txt to $email ..."
+  cat email_sent/${user}_email.txt | ssmtp $email
+  sleep 2
+done
+
+# real students
+cat students/students_lbgfs2022.txt  | while read s
+do
+  user=$(echo "$s" | cut -d ',' -f1)
+  email=$(echo "$s" | cut -d ',' -f5)
+  echo " * Sending ${user}_mail.txt to $email ..."
+  cat email_sent/${user}_email.txt | ssmtp $email
+  sleep 2
+done
+```
+
+
 Create table with student links
 
 ```bash
