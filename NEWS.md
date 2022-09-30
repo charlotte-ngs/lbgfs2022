@@ -1,3 +1,7 @@
+# lbgfs2022 0.2.0
+
+* Released exercise lbg_ex02
+
 # lbgfs2022 0.1.4
 
 * Fixed broken links for exercises and solutions
