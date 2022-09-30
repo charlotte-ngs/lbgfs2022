@@ -1,3 +1,23 @@
+---
+title: Livestock Breeding and Genomics - Notebook 2
+author: Peter von Rohr
+date: '2022-09-29'
+output: html_notebook
+params:
+  doctype:
+    label: Document Type
+    value: solution
+    choices:
+    - exercise
+    - solution
+    - notebook
+  isonline:
+    label: Online (y/n)
+    value: true
+    choices:
+    - true
+    - false
+---
 
 
 
