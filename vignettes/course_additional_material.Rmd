@@ -43,10 +43,12 @@ knitr::kable(tbl_sl)
 # Videos
 
 ```{r video-table, echo=FALSE, message=FALSE, warning=FALSE}
-tbl_video <- tibble::tibble(Nr = c(1),
-                            Date = c("2022-09-23"),
+tbl_video <- tibble::tibble(Nr = c(1, 2),
+                            Date = c("2022-09-23",
+                                     "2022-09-30"),
                             Topic = c(
-                              "[Introduction to Livestock Breeding](https://youtu.be/tp09u8Z5lOM)"
+                              "[Introduction to Livestock Breeding](https://youtu.be/tp09u8Z5lOM)",
+                              "[Quantiative Genetics](https://youtu.be/wBj1ZwkMyR4)"
                             ))
 knitr::kable(tbl_video)
 ```
@@ -56,10 +58,12 @@ knitr::kable(tbl_video)
 
 ```{r, ohp-table, echo=FALSE, message=FALSE, warning=FALSE}
 s_ohp_url <- file.path(root_url, "ohp/")
-tbl_ohp <- tibble::tibble(Nr = c(1),
-                          Date = c("2022-09-23"),
+tbl_ohp <- tibble::tibble(Nr = c(1, 2),
+                          Date = c("2022-09-23",
+                                   "2022-09-30"),
                           Topic = c(
-                              paste0("[Introduction to Livestock Breeding](", s_ohp_url, "20220923_ohp_l01.pdf)", collapse = "")
+                              paste0("[Introduction to Livestock Breeding](", s_ohp_url, "20220923_ohp_l01.pdf)", collapse = ""),
+                              paste0("[Quantitative Genetics](", s_ohp_url, "20220930_ohp_l02.pdf)", collapse = "")
                             ))
 knitr::kable(tbl_ohp)
 ```
