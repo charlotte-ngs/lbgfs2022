@@ -82,6 +82,19 @@ tbl_data <- tibble::tibble(Nr = c(1,2),
 knitr::kable(tbl_data)
 ```
 
+
+## Notebooks
+
+```{r}
+tbl_nb <- tibble::tibble(Nr = c(1),
+                         Date = c("2022-09-30"),
+                         Topic = c(
+                           paste0("[Quantiative Genetics](", misc_url, "qg_data_demo.nb.html)", collapse = "")
+                         ))
+knitr::kable(tbl_nb)
+```
+
+
 ```{r, echo=FALSE, results='asis'}
 cat(rmdhelp::get_latest_change())
 ```
