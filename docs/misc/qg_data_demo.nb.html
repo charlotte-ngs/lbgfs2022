@@ -1760,52 +1760,44 @@ display: none;
 
 
 <!-- rnb-text-begin -->
+<p>This is the notebook developed in class. It shows how genotype
+frequencies can be determined using R.</p>
 <p>We want to read a dataset with genotype and phenotype
 information.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6NiwibmNvbCI6Mywic3VtbWFyeSI6eyJBIHRpYmJsZSI6WyI2IMOXIDMiXX19LCJyZGYiOiJVa1JZTXdwWUNnQUFBQU1BQkFJQkFBTUZBQUFBQUFWVlZFWXRPQUFBQkFJQUFBQUJBQVFBQ1FBQUFBRjRBQUFERXdBQUFBTUFBQUFPQUFBQUJrQkhBQUFBQUFBQVFFZUFBQUFBQUFCQVNBQUFBQUFBQUVCSWdBQUFBQUFBUUVrQUFBQUFBQUJBU1lBQUFBQUFBQUFBQUE0QUFBQUdRQUFBQUFBQUFBQkFFQUFBQUFBQUFFQUFBQUFBQUFBQVFCQUFBQUFBQUFCQUFBQUFBQUFBQUVBQUFBQUFBQUFBQUFBQUVBQUFBQVlBQkFBSkFBQUFDUzB4TGpFMk1UZ3dNd0FFQUFrQUFBQUpMVEF1TnpjNU9EZzRBQVFBQ1FBQUFBa3JNQzR6TkRRMU5Ea0FCQUFKQUFBQUNTMHhMamcyTXpJNU5RQUVBQWtBQUFBSkt6QXVOVE01TWpneUFBUUFDUUFBQUFrdE1TNHhOVGcyT1RnQUFBUUNBQUFBQVFBRUFBa0FBQUFGYm1GdFpYTUFBQUFRQUFBQUF3QUVBQWtBQUFBQ1NVUUFCQUFKQUFBQUNFZGxibTkwZVhCbEFBUUFDUUFBQUFsUWFHVnViM1I1Y0dVQUFBUUNBQUFBQVFBRUFBa0FBQUFKY205M0xtNWhiV1Z6QUFBQURRQUFBQUtBQUFBQS8vLy8rZ0FBQkFJQUFBQUJBQVFBQ1FBQUFBVmpiR0Z6Y3dBQUFCQUFBQUFCQUFRQUNRQUFBQXBrWVhSaExtWnlZVzFsQUFBQS9nQUFCQUlBQUFBQkFBUUFDUUFBQUFkdmNIUnBiMjV6QUFBQ0V3QUFBQVVBQUFBUUFBQUFBUUFFQUFrQUFBQUJjZ0FBQUJBQUFBQUJBQVFBQ1FBQUFBOTFibTVoYldWa0xXTm9kVzVyTFRVQUFBQUtBQUFBQVFBQUFBQUFBQUFOQUFBQUFRQUFBQVlBQUFBTkFBQUFBUUFBQUFNQUFBUUNBQUFDL3dBQUFCQUFBQUFGQUFRQUNRQUFBQVpsYm1kcGJtVUFCQUFKQUFBQUJXeGhZbVZzQUFRQUNRQUFBQTV5YjNkdVlXMWxjeTV3Y21sdWRBQUVBQWtBQUFBS2NtOTNjeTUwYjNSaGJBQUVBQWtBQUFBS1kyOXNjeTUwYjNSaGJBQUFBUDRBQUFEKyJ9 -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["ID"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Genotype"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Phenotype"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"46","2":"2","3":"-1.161803"},{"1":"47","2":"4","3":"-0.779888"},{"1":"48","2":"2","3":"+0.344549"},{"1":"49","2":"4","3":"-1.863295"},{"1":"50","2":"2","3":"+0.539282"},{"1":"51","2":"2","3":"-1.158698"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeSh0YmxfZ2VuX3BoZW4kUGhlbm90eXBlKVxuXG5gYGAifQ== -->
-<pre class="r"><code>summary(tbl_gen_phen$Phenotype)
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc19nZW5fcGhlbl9kYXRhIDwtIFwiaHR0cHM6Ly9jaGFybG90dGUtbmdzLmdpdGh1Yi5pby9sYmdmczIwMjIvZGF0YS9wMV9tcmtfb25lX2xvY3VzLmNzdlwiXG50YmxfZ2VuX3BoZW4gPC0gcmVhZHI6OnJlYWRfY3N2MihmaWxlID0gc19nZW5fcGhlbl9kYXRhKVxuaGVhZCh0YmxfZ2VuX3BoZW4pXG5gYGAifQ== -->
+<pre class="r"><code>s_gen_phen_data &lt;- &quot;https://charlotte-ngs.github.io/lbgfs2022/data/p1_mrk_one_locus.csv&quot;
+tbl_gen_phen &lt;- readr::read_csv2(file = s_gen_phen_data)
+head(tbl_gen_phen)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiICAgTGVuZ3RoICAgICBDbGFzcyAgICAgIE1vZGUgXG4gICAgIDI3MTQgY2hhcmFjdGVyIGNoYXJhY3RlciBcbiJ9 -->
-<pre><code>   Length     Class      Mode 
-     2714 character character </code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+<p>The summary of the phenotype column is given by</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6NiwibmNvbCI6Mywic3VtbWFyeSI6eyJBIHRpYmJsZSI6WyI2IMOXIDMiXX19LCJyZGYiOiJVa1JZTXdwWUNnQUFBQU1BQkFJQkFBTUZBQUFBQUFWVlZFWXRPQUFBQkFJQUFBQUJBQVFBQ1FBQUFBRjRBQUFERXdBQUFBTUFBQUFPQUFBQUJrQkhBQUFBQUFBQVFFZUFBQUFBQUFCQVNBQUFBQUFBQUVCSWdBQUFBQUFBUUVrQUFBQUFBQUJBU1lBQUFBQUFBQUFBQUE0QUFBQUdRQUFBQUFBQUFBQkFFQUFBQUFBQUFFQUFBQUFBQUFBQVFCQUFBQUFBQUFCQUFBQUFBQUFBQUVBQUFBQUFBQUFBQUFBQURnQUFBQWEvOHBhK3ZoWlFwTC9vOU5ldDBWOERQOVlORnorM3BmUy8vZEFPYXZ6T0hEL2hRY3hUS2ttQXYvS0tCdW4vRExzQUFBUUNBQUFBQVFBRUFBa0FBQUFGYm1GdFpYTUFBQUFRQUFBQUF3QUVBQWtBQUFBQ1NVUUFCQUFKQUFBQUNFZGxibTkwZVhCbEFBUUFDUUFBQUFsUWFHVnViM1I1Y0dVQUFBUUNBQUFBQVFBRUFBa0FBQUFKY205M0xtNWhiV1Z6QUFBQURRQUFBQUtBQUFBQS8vLy8rZ0FBQkFJQUFBQUJBQVFBQ1FBQUFBVmpiR0Z6Y3dBQUFCQUFBQUFCQUFRQUNRQUFBQXBrWVhSaExtWnlZVzFsQUFBQS9nQUFCQUlBQUFBQkFBUUFDUUFBQUFkdmNIUnBiMjV6QUFBQ0V3QUFBQVVBQUFBUUFBQUFBUUFFQUFrQUFBQUJjZ0FBQUJBQUFBQUJBQVFBQ1FBQUFBOTFibTVoYldWa0xXTm9kVzVyTFRrQUFBQUtBQUFBQVFBQUFBQUFBQUFOQUFBQUFRQUFBQVlBQUFBTkFBQUFBUUFBQUFNQUFBUUNBQUFDL3dBQUFCQUFBQUFGQUFRQUNRQUFBQVpsYm1kcGJtVUFCQUFKQUFBQUJXeGhZbVZzQUFRQUNRQUFBQTV5YjNkdVlXMWxjeTV3Y21sdWRBQUVBQWtBQUFBS2NtOTNjeTUwYjNSaGJBQUVBQWtBQUFBS1kyOXNjeTUwYjNSaGJBQUFBUDRBQUFEKyJ9 -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["ID"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Genotype"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Phenotype"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"46","2":"2","3":"-1.161803"},{"1":"47","2":"4","3":"-0.779888"},{"1":"48","2":"2","3":"0.344549"},{"1":"49","2":"4","3":"-1.863295"},{"1":"50","2":"2","3":"0.539282"},{"1":"51","2":"2","3":"-1.158698"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeSh0YmxfZ2VuX3BoZW4kUGhlbm90eXBlKVxuXG5gYGAifQ== -->
-<pre class="r"><code>summary(tbl_gen_phen$Phenotype)
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeSh0YmxfZ2VuX3BoZW4kUGhlbm90eXBlKVxuYGBgIn0= -->
+<pre class="r"><code>summary(tbl_gen_phen$Phenotype)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiICAgTWluLiAxc3QgUXUuICBNZWRpYW4gICAgTWVhbiAzcmQgUXUuICAgIE1heC4gXG4tMi44OTA3IC0wLjQ4MTYgIDAuMjMzNiAgMC4yMDgxICAwLjg4ODIgIDQuMDU2MyBcbiJ9 -->
-<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
--2.8907 -0.4816  0.2336  0.2081  0.8882  4.0563 </code></pre>
-<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>By default the column with phenotypes is interpreted as character
+data. With the statement below they are converted to numbers.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGJsX2dlbl9waGVuJFBoZW5vdHlwZSA8LSBhcy5udW1lcmljKHRibF9nZW5fcGhlbiRQaGVub3R5cGUpXG5oZWFkKHRibF9nZW5fcGhlbilcbmBgYCJ9 -->
+<pre class="r"><code>tbl_gen_phen$Phenotype &lt;- as.numeric(tbl_gen_phen$Phenotype)
+head(tbl_gen_phen)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Now the summary of the phenotypes yields a more meaningful
+result.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeSh0YmxfZ2VuX3BoZW4kUGhlbm90eXBlKVxuYGBgIn0= -->
+<pre class="r"><code>summary(tbl_gen_phen$Phenotype)</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <div id="genotype-frequencies" class="section level2">
@@ -1813,27 +1805,20 @@ information.</p>
 <p>Using the function <code>table</code> from the base package</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGFibGUodGJsX2dlbl9waGVuJEdlbm90eXBlKVxuXG5gYGAifQ== -->
-<pre class="r"><code>table(tbl_gen_phen$Genotype)
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGFibGUodGJsX2dlbl9waGVuJEdlbm90eXBlKVxuYGBgIn0= -->
+<pre class="r"><code>table(tbl_gen_phen$Genotype)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG4gICAwICAgIDIgICAgMyAgICA0IFxuICAzMiAyMTUyICAyMjEgIDMwOSBcbiJ9 -->
-<pre><code>
-   0    2    3    4 
-  32 2152  221  309 </code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Alternative using the package dplyr</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6NCwibmNvbCI6Mywic3VtbWFyeSI6eyJBIHRpYmJsZSI6WyI0IMOXIDMiXX19LCJyZGYiOiJVa1JZTXdwWUNnQUFBQU1BQkFJQkFBTUZBQUFBQUFWVlZFWXRPQUFBQkFJQUFBQUJBQVFBQ1FBQUFBRjRBQUFERXdBQUFBTUFBQUFPQUFBQUJBQUFBQUFBQUFBQVFBQUFBQUFBQUFCQUNBQUFBQUFBQUVBUUFBQUFBQUFBQUFBQURRQUFBQVFBQUFBZ0FBQUlhQUFBQU4wQUFBRTFBQUFBRGdBQUFBUS9pQ1c2OUIxdC9EL3BYNlZ5Z3V5U1A3VFlrbVM5Wi9JL3ZTV0txS2VGd1FBQUJBSUFBQUFCQUFRQUNRQUFBQVZ1WVcxbGN3QUFBQkFBQUFBREFBUUFDUUFBQUFoSFpXNXZkSGx3WlFBRUFBa0FBQUFLWjJWdWIxOWpiM1Z1ZEFBRUFBa0FBQUFKWjJWdWIxOW1jbVZ4QUFBRUFnQUFBQUVBQkFBSkFBQUFDWEp2ZHk1dVlXMWxjd0FBQUEwQUFBQUNnQUFBQVAvLy8vd0FBQVFDQUFBQUFRQUVBQWtBQUFBRlkyeGhjM01BQUFBUUFBQUFBUUFFQUFrQUFBQUtaR0YwWVM1bWNtRnRaUUFBQVA0QUFBUUNBQUFBQVFBRUFBa0FBQUFIYjNCMGFXOXVjd0FBQWhNQUFBQUZBQUFBRUFBQUFBRUFCQUFKQUFBQUFYSUFBQUFRQUFBQUFRQUVBQWtBQUFBUWRXNXVZVzFsWkMxamFIVnVheTB4TndBQUFBb0FBQUFCQUFBQUFBQUFBQTBBQUFBQkFBQUFCQUFBQUEwQUFBQUJBQUFBQXdBQUJBSUFBQUwvQUFBQUVBQUFBQVVBQkFBSkFBQUFCbVZ1WjJsdVpRQUVBQWtBQUFBRmJHRmlaV3dBQkFBSkFBQUFEbkp2ZDI1aGJXVnpMbkJ5YVc1MEFBUUFDUUFBQUFweWIzZHpMblJ2ZEdGc0FBUUFDUUFBQUFwamIyeHpMblJ2ZEdGc0FBQUEvZ0FBQVA0PSJ9 -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["Genotype"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["geno_count"],"name":[2],"type":["int"],"align":["right"]},{"label":["geno_freq"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"0","2":"32","3":"0.01179071"},{"1":"2","2":"2152","3":"0.79292557"},{"1":"3","2":"221","3":"0.08142962"},{"1":"4","2":"309","3":"0.11385409"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[4]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShkcGx5cilcbmdiIDwtIGdyb3VwX2J5KHRibF9nZW5fcGhlbixHZW5vdHlwZSkgXG5zZyA8LSBzdW1tYXJpemUoZ2IsIGdlbm9fY291bnQgPSBuKCkpXG5tdXRhdGUoc2csIGdlbm9fZnJlcSA9IGdlbm9fY291bnQgLyBzdW0oZ2Vub19jb3VudCkpXG5gYGAifQ== -->
+<pre class="r"><code>library(dplyr)
+gb &lt;- group_by(tbl_gen_phen,Genotype) 
+sg &lt;- summarize(gb, geno_count = n())
+mutate(sg, geno_freq = geno_count / sum(geno_count))</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Using pipes <code>%&gt;%</code> makes it shorter. Remember the
@@ -1847,19 +1832,12 @@ convention for pipes: <code>g(f(data))</code> can be written as
   summarize(geno_count = n()) %&gt;%
   mutate(geno_freq = geno_count / sum(geno_count))</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6NCwibmNvbCI6Mywic3VtbWFyeSI6eyJBIHRpYmJsZSI6WyI0IMOXIDMiXX19LCJyZGYiOiJVa1JZTXdwWUNnQUFBQU1BQkFJQkFBTUZBQUFBQUFWVlZFWXRPQUFBQkFJQUFBQUJBQVFBQ1FBQUFBRjRBQUFERXdBQUFBTUFBQUFPQUFBQUJBQUFBQUFBQUFBQVFBQUFBQUFBQUFCQUNBQUFBQUFBQUVBUUFBQUFBQUFBQUFBQURRQUFBQVFBQUFBZ0FBQUlhQUFBQU4wQUFBRTFBQUFBRGdBQUFBUS9pQ1c2OUIxdC9EL3BYNlZ5Z3V5U1A3VFlrbVM5Wi9JL3ZTV0txS2VGd1FBQUJBSUFBQUFCQUFRQUNRQUFBQVZ1WVcxbGN3QUFBQkFBQUFBREFBUUFDUUFBQUFoSFpXNXZkSGx3WlFBRUFBa0FBQUFLWjJWdWIxOWpiM1Z1ZEFBRUFBa0FBQUFKWjJWdWIxOW1jbVZ4QUFBRUFnQUFBQUVBQkFBSkFBQUFDWEp2ZHk1dVlXMWxjd0FBQUEwQUFBQUNnQUFBQVAvLy8vd0FBQVFDQUFBQUFRQUVBQWtBQUFBRlkyeGhjM01BQUFBUUFBQUFBUUFFQUFrQUFBQUtaR0YwWVM1bWNtRnRaUUFBQVA0QUFBUUNBQUFBQVFBRUFBa0FBQUFIYjNCMGFXOXVjd0FBQWhNQUFBQUZBQUFBRUFBQUFBRUFCQUFKQUFBQUFYSUFBQUFRQUFBQUFRQUVBQWtBQUFBUWRXNXVZVzFsWkMxamFIVnVheTB4T0FBQUFBb0FBQUFCQUFBQUFBQUFBQTBBQUFBQkFBQUFCQUFBQUEwQUFBQUJBQUFBQXdBQUJBSUFBQUwvQUFBQUVBQUFBQVVBQkFBSkFBQUFCbVZ1WjJsdVpRQUVBQWtBQUFBRmJHRmlaV3dBQkFBSkFBQUFEbkp2ZDI1aGJXVnpMbkJ5YVc1MEFBUUFDUUFBQUFweWIzZHpMblJ2ZEdGc0FBUUFDUUFBQUFwamIyeHpMblJ2ZEdGc0FBQUEvZ0FBQVA0PSJ9 -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["Genotype"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["geno_count"],"name":[2],"type":["int"],"align":["right"]},{"label":["geno_freq"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"0","2":"32","3":"0.01179071"},{"1":"2","2":"2152","3":"0.79292557"},{"1":"3","2":"221","3":"0.08142962"},{"1":"4","2":"309","3":"0.11385409"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[4]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUXVhbnRpdGF0aXZlIEdlbmV0aWNzIERhdGEgQW5hbHlzaXMiCmRhdGU6IDIwMjItMDktMzAKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKV2Ugd2FudCB0byByZWFkIGEgZGF0YXNldCB3aXRoIGdlbm90eXBlIGFuZCBwaGVub3R5cGUgaW5mb3JtYXRpb24uIAoKYGBge3J9CnNfZ2VuX3BoZW5fZGF0YSA8LSAiaHR0cHM6Ly9jaGFybG90dGUtbmdzLmdpdGh1Yi5pby9sYmdmczIwMjIvZGF0YS9wMV9tcmtfb25lX2xvY3VzLmNzdiIKdGJsX2dlbl9waGVuIDwtIHJlYWRyOjpyZWFkX2NzdjIoZmlsZSA9IHNfZ2VuX3BoZW5fZGF0YSkKaGVhZCh0YmxfZ2VuX3BoZW4pCmBgYAoKYGBge3J9CnN1bW1hcnkodGJsX2dlbl9waGVuJFBoZW5vdHlwZSkKYGBgCgoKYGBge3J9CnRibF9nZW5fcGhlbiRQaGVub3R5cGUgPC0gYXMubnVtZXJpYyh0YmxfZ2VuX3BoZW4kUGhlbm90eXBlKQpoZWFkKHRibF9nZW5fcGhlbikKYGBgCgpgYGB7cn0Kc3VtbWFyeSh0YmxfZ2VuX3BoZW4kUGhlbm90eXBlKQpgYGAKCgojIyBHZW5vdHlwZSBGcmVxdWVuY2llcwoKVXNpbmcgdGhlIGZ1bmN0aW9uIGB0YWJsZWAgZnJvbSB0aGUgYmFzZSBwYWNrYWdlCgpgYGB7cn0KdGFibGUodGJsX2dlbl9waGVuJEdlbm90eXBlKQpgYGAKCkFsdGVybmF0aXZlIHVzaW5nIHRoZSBwYWNrYWdlIGRwbHlyCgpgYGB7cn0KbGlicmFyeShkcGx5cikKZ2IgPC0gZ3JvdXBfYnkodGJsX2dlbl9waGVuLEdlbm90eXBlKSAKc2cgPC0gc3VtbWFyaXplKGdiLCBnZW5vX2NvdW50ID0gbigpKQptdXRhdGUoc2csIGdlbm9fZnJlcSA9IGdlbm9fY291bnQgLyBzdW0oZ2Vub19jb3VudCkpCmBgYAoKVXNpbmcgcGlwZXMgYCU+JWAgbWFrZXMgaXQgc2hvcnRlci4gUmVtZW1iZXIgdGhlIGNvbnZlbnRpb24gZm9yIHBpcGVzOiBgZyhmKGRhdGEpKWAgY2FuIGJlIHdyaXR0ZW4gYXMgYGRhdGEgJT4lIGYoKSAlPiUgZygpYAoKYGBge3J9CnRibF9nZW5fcGhlbiAlPiUKICBncm91cF9ieShHZW5vdHlwZSkgJT4lCiAgc3VtbWFyaXplKGdlbm9fY291bnQgPSBuKCkpICU+JQogIG11dGF0ZShnZW5vX2ZyZXEgPSBnZW5vX2NvdW50IC8gc3VtKGdlbm9fY291bnQpKQpgYGAKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUXVhbnRpdGF0aXZlIEdlbmV0aWNzIERhdGEgQW5hbHlzaXMiCmRhdGU6IDIwMjItMDktMzAKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKVGhpcyBpcyB0aGUgbm90ZWJvb2sgZGV2ZWxvcGVkIGluIGNsYXNzLiBJdCBzaG93cyBob3cgZ2Vub3R5cGUgZnJlcXVlbmNpZXMgY2FuIGJlIGRldGVybWluZWQgdXNpbmcgUi4KCldlIHdhbnQgdG8gcmVhZCBhIGRhdGFzZXQgd2l0aCBnZW5vdHlwZSBhbmQgcGhlbm90eXBlIGluZm9ybWF0aW9uLiAKCmBgYHtyfQpzX2dlbl9waGVuX2RhdGEgPC0gImh0dHBzOi8vY2hhcmxvdHRlLW5ncy5naXRodWIuaW8vbGJnZnMyMDIyL2RhdGEvcDFfbXJrX29uZV9sb2N1cy5jc3YiCnRibF9nZW5fcGhlbiA8LSByZWFkcjo6cmVhZF9jc3YyKGZpbGUgPSBzX2dlbl9waGVuX2RhdGEpCmhlYWQodGJsX2dlbl9waGVuKQpgYGAKClRoZSBzdW1tYXJ5IG9mIHRoZSBwaGVub3R5cGUgY29sdW1uIGlzIGdpdmVuIGJ5CgpgYGB7cn0Kc3VtbWFyeSh0YmxfZ2VuX3BoZW4kUGhlbm90eXBlKQpgYGAKCkJ5IGRlZmF1bHQgdGhlIGNvbHVtbiB3aXRoIHBoZW5vdHlwZXMgaXMgaW50ZXJwcmV0ZWQgYXMgY2hhcmFjdGVyIGRhdGEuIFdpdGggdGhlIHN0YXRlbWVudCBiZWxvdyB0aGV5IGFyZSBjb252ZXJ0ZWQgdG8gbnVtYmVycy4KCmBgYHtyfQp0YmxfZ2VuX3BoZW4kUGhlbm90eXBlIDwtIGFzLm51bWVyaWModGJsX2dlbl9waGVuJFBoZW5vdHlwZSkKaGVhZCh0YmxfZ2VuX3BoZW4pCmBgYAoKTm93IHRoZSBzdW1tYXJ5IG9mIHRoZSBwaGVub3R5cGVzIHlpZWxkcyBhIG1vcmUgbWVhbmluZ2Z1bCByZXN1bHQuCgpgYGB7cn0Kc3VtbWFyeSh0YmxfZ2VuX3BoZW4kUGhlbm90eXBlKQpgYGAKCgojIyBHZW5vdHlwZSBGcmVxdWVuY2llcwoKVXNpbmcgdGhlIGZ1bmN0aW9uIGB0YWJsZWAgZnJvbSB0aGUgYmFzZSBwYWNrYWdlCgpgYGB7cn0KdGFibGUodGJsX2dlbl9waGVuJEdlbm90eXBlKQpgYGAKCkFsdGVybmF0aXZlIHVzaW5nIHRoZSBwYWNrYWdlIGRwbHlyCgpgYGB7cn0KbGlicmFyeShkcGx5cikKZ2IgPC0gZ3JvdXBfYnkodGJsX2dlbl9waGVuLEdlbm90eXBlKSAKc2cgPC0gc3VtbWFyaXplKGdiLCBnZW5vX2NvdW50ID0gbigpKQptdXRhdGUoc2csIGdlbm9fZnJlcSA9IGdlbm9fY291bnQgLyBzdW0oZ2Vub19jb3VudCkpCmBgYAoKVXNpbmcgcGlwZXMgYCU+JWAgbWFrZXMgaXQgc2hvcnRlci4gUmVtZW1iZXIgdGhlIGNvbnZlbnRpb24gZm9yIHBpcGVzOiBgZyhmKGRhdGEpKWAgY2FuIGJlIHdyaXR0ZW4gYXMgYGRhdGEgJT4lIGYoKSAlPiUgZygpYAoKYGBge3J9CnRibF9nZW5fcGhlbiAlPiUKICBncm91cF9ieShHZW5vdHlwZSkgJT4lCiAgc3VtbWFyaXplKGdlbm9fY291bnQgPSBuKCkpICU+JQogIG11dGF0ZShnZW5vX2ZyZXEgPSBnZW5vX2NvdW50IC8gc3VtKGdlbm9fY291bnQpKQpgYGAKCg==</div>
 
 
 

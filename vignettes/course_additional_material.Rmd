@@ -85,7 +85,7 @@ knitr::kable(tbl_data)
 
 ## Notebooks
 
-```{r}
+```{r, nb-table, echo=FALSE, message=FALSE, warning=FALSE}
 tbl_nb <- tibble::tibble(Nr = c(1),
                          Date = c("2022-09-30"),
                          Topic = c(
