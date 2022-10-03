@@ -1,3 +1,7 @@
+# lbgfs2022 0.2.3
+
+* Notebook on Quantitative Genetics
+
 # lbgfs2022 0.2.2
 
 * OHP and video
