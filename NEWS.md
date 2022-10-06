@@ -1,3 +1,7 @@
+# lbgfs2022 0.3.0
+
+* Exercise lbg_ex03
+
 # lbgfs2022 0.2.3
 
 * Notebook on Quantitative Genetics
