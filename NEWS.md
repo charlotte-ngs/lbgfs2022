@@ -1,3 +1,7 @@
+# lbgfs2022 0.3.1
+
+* Chapter 3 of course notes
+
 # lbgfs2022 0.3.0
 
 * Exercise lbg_ex03
