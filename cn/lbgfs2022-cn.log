@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.9.22)  22 SEP 2022 06:14
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.9.22)  6 OCT 2022 17:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -879,47 +879,72 @@ Overfull \vbox (75.99078pt too high) has occurred while \output is active []
 [32] [33] [34
 
 ]
+Chapter 3.
+
+LaTeX Warning: Reference `def:defbreedingvalue' on page 35 undefined on input line 939.
+
+[35]
+File: odg/basicmodelrearrterm.pdf Graphic file (type pdf)
+<use odg/basicmodelrearrterm.pdf>
+
+Overfull \hbox (81.81636pt too wide) in paragraph at lines 992--992
+[][] 
+ []
+
+[36]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[37] [38]
+File: odg/regbreedingvaluesinglerecord.pdf Graphic file (type pdf)
+<use odg/regbreedingvaluesinglerecord.pdf>
+
+Overfull \hbox (81.81636pt too wide) in paragraph at lines 1040--1040
+[][] 
+ []
+
+[39] [40] [41] [42] [43] [44] [45] [46]
 Appendix A.
-[35
+[47
+
 
 ]
 File: odg/vector-physics-perspective.pdf Graphic file (type pdf)
 <use odg/vector-physics-perspective.pdf>
 
-Overfull \hbox (81.81636pt too wide) in paragraph at lines 986--987
+Overfull \hbox (81.81636pt too wide) in paragraph at lines 1324--1325
 [][] 
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[36]
+[48]
 File: odg/vector-cs-perspecitve.pdf Graphic file (type pdf)
 <use odg/vector-cs-perspecitve.pdf>
 
-Overfull \hbox (81.81636pt too wide) in paragraph at lines 993--994
+Overfull \hbox (81.81636pt too wide) in paragraph at lines 1331--1332
 [][] 
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[37] [38]
+[49] [50]
 File: odg/coordinate-system.pdf Graphic file (type pdf)
 <use odg/coordinate-system.pdf>
-[39]
+[51]
 File: odg/vector-sum.pdf Graphic file (type pdf)
 <use odg/vector-sum.pdf>
-[40]
+[52]
 File: odg/vector-scalar-multiplication.pdf Graphic file (type pdf)
 <use odg/vector-scalar-multiplication.pdf>
-[41] [42] [43] [44] [45] [46] [47] [48
+[53] [54] [55] [56] [57] [58] [59] [60
 
 ]
 Appendix B.
-(./lbgfs2022-cn.bbl [49] [50
+(./lbgfs2022-cn.bbl [61] [62
 
-] [51] [52]) [53] (./lbgfs2022-cn.aux)
+] [63] [64]) [65] (./lbgfs2022-cn.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -927,15 +952,15 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `lbgfs2022-cn.out' has not changed.
-(rerunfilecheck)             Checksum: EF5AABCC68C4E91460474128629D4EDC;3964.
+(rerunfilecheck)             Checksum: BC348D067D7030D6A103989103583F50;4830.
  ) 
 Here is how much of TeX's memory you used:
- 18787 strings out of 477722
- 344887 string characters out of 5842134
- 850746 words of memory out of 5000000
- 39531 multiletter control sequences out of 15000+600000
+ 18843 strings out of 477722
+ 346545 string characters out of 5842134
+ 853526 words of memory out of 5000000
+ 39585 multiletter control sequences out of 15000+600000
  475856 words of font info for 87 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 86i,11n,121p,1516b,469s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 86i,11n,121p,1650b,469s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on lbgfs2022-cn.pdf (53 pages).
+Output written on lbgfs2022-cn.pdf (65 pages).
