@@ -1,3 +1,7 @@
+# lbgfs2022 0.3.3
+
+* Video, ohp and notebooks for lecture l03 
+
 # lbgfs2022 0.3.2
 
 * Slides l03
