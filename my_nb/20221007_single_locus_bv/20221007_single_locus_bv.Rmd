@@ -62,9 +62,9 @@ tbl_homozygous_gen %>%
 Whether, we need a regression with or without intercept can be determined by the average value of all animals with Genotype $0$. 
 
 ```{r}
-tbl_homozygous_gen %>%
+(tbl_hom_gen_mean <- tbl_homozygous_gen %>%
   group_by(Genotype) %>%
-  summarise(mean_phen = mean(Phenotype))
+  summarise(mean_phen = mean(Phenotype)))
 ```
 
 Because, the mean of all animals with genotype $0$ is different from $0$, we use a regression with intercept.
@@ -80,6 +80,24 @@ The genotypic value $a$ for the homozygous animals is given by the estimate of t
 
 ```{r}
 (geno_val_a <- sry_geno_val$coefficients["Genotype", "Estimate"])
+```
+
+Assigning genotypic values to the homozygous genotypes requires to subtract the intercept and the genotypic value $a$ from the current mean phenotypes for the two genoypes
+
+```{r}
+geno_val_hom0 <- tbl_hom_gen_mean$mean_phen[tbl_hom_gen_mean$Genotype == 0] - 
+  sry_geno_val$coefficients["(Intercept)", "Estimate"] -
+  geno_val_a
+geno_val_hom0
+```
+
+For genotype $2$
+
+```{r}
+geno_val_hom2 <- tbl_hom_gen_mean$mean_phen[tbl_hom_gen_mean$Genotype == 2] - 
+  sry_geno_val$coefficients["(Intercept)", "Estimate"] -
+  geno_val_a
+geno_val_hom2
 ```
 
 
@@ -105,22 +123,17 @@ n_mean_phen_het <- mean(tbl_heterozygous_gen$Phenotype)
 n_mean_phen_het
 ```
 
-The difference to the mean of the homozygous animals with Genotype $0$ is
-
-```{r}
-tbl_mean_Phen_hom0 <- tbl_homozygous_gen %>%
-  group_by(Genotype) %>%
-  summarise(mean_phen = mean(Phenotype)) %>%
-  filter(Genotype == 0)
-n_mean_Phen_hom0 <- tbl_mean_Phen_hom0$mean_phen
-n_mean_Phen_hom0
-```
+The meaan of the heterozygous animals must also corrected for the intercept and for the genotypic value $a$. 
 
 Hence the value for $d$ is
 
 ```{r}
-(gen_val_d <- n_mean_phen_het - n_mean_Phen_hom0)
+(gen_val_d <- n_mean_phen_het - - 
+  sry_geno_val$coefficients["(Intercept)", "Estimate"] -
+  geno_val_a)
 ```
+
+
 
 
 ## Plots

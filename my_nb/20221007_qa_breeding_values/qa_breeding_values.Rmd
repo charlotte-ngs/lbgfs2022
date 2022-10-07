@@ -1,0 +1,114 @@
+---
+title: "Breeding Values"
+date: "2022-10-07"
+output: html_notebook
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Disclaimer
+This notebook shows how breeding values for one single locus are computed. 
+
+
+## Input 
+Input parameters consist of the allele frequency $p$ and of the genotypic values $a$ and $d$.
+
+```{r}
+p <- 0.1
+q <- 1-p
+a <- 10
+d <- 2
+```
+
+Alpha
+
+```{r}
+alpha <- a + (q-p) * d
+alpha
+```
+
+Breeding values
+
+```{r}
+BV11 <- 2*q*alpha
+BV12 <- (q-p) * alpha
+BV22 <- -2*p*alpha
+```
+
+Table
+
+```{r}
+tbl_bv <- tibble::tibble(Genotype = c("G1G1", "G1G2", "G2G2"),
+                         BreedingVAlue = c(BV11, BV12,BV22))
+tbl_bv
+```
+
+
+Function for computing breeding values
+
+```{r}
+compute_bv <- function(pn_af, pn_geno_a, pn_geno_d){
+  n_freq_q <- 1-pn_af
+  alpa <- pn_geno_a + (n_freq_q-pn_af)*pn_geno_d
+  BV11 <- 2*n_freq_q*alpha
+  BV12 <- (n_freq_q-pn_af)*alpha
+  BV22 <- -2*pn_af*alpha
+  tbl_bv_result <- tibble::tibble(Genotype = c("G1G1", "G1G2", "G2G2"),
+                         BreedingVAlue = c(BV11, BV12,BV22))
+  return(tbl_bv_result)
+}
+```
+
+Call the function
+
+```{r}
+tbl_bv <- compute_bv(pn_af = 0.1, pn_geno_a = 10, pn_geno_d = 2)
+tbl_bv
+```
+
+## Difference between Breeding values
+The pairwise difference between the breeding values in the above table can be computed as follows.
+
+```{r}
+tbl_bv$BreedingVAlue[1] - tbl_bv$BreedingVAlue[2]
+```
+
+```{r}
+tbl_bv$BreedingVAlue[2] - tbl_bv$BreedingVAlue[3]
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

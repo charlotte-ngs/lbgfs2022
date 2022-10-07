@@ -1,0 +1,196 @@
+---
+title: "Estimate Single Locus Breeding Values from Data"
+date: "2022-10-07"
+output: html_notebook
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Disclaimer
+Breeding values are estimated from data
+
+
+## Read Data
+This is the notebook developed in class. It shows how genotype frequencies can be determined using R.
+
+We want to read a dataset with genotype and phenotype information. 
+
+```{r}
+s_gen_phen_data <- "https://charlotte-ngs.github.io/lbgfs2022/data/p1_mrk_one_locus.csv"
+library(readr)
+tbl_gen_phen <- read_delim(file = s_gen_phen_data,
+                           delim = ";",
+                           col_types = cols(
+                             ID = col_integer(),
+                             Genotype = col_integer(),
+                             Phenotype = col_double()
+                           ))
+head(tbl_gen_phen)
+```
+
+
+Descriptive statistics
+
+```{r}
+library(dplyr)
+tbl_gen_phen %>%
+  group_by(Genotype) %>%
+  summarise(geno_count = n()) %>%
+  summarise(geno_freq = geno_count / sum(geno_count))
+
+```
+
+
+## Genotypic Values
+Regression of phenotypes on Genotypes using homozygous genotypes
+
+```{r}
+tbl_hom_gen <- tbl_gen_phen %>%
+  filter(Genotype < 3)
+head(tbl_hom_gen)
+```
+
+```{r}
+tbl_hom_gen %>%
+  group_by(Genotype) %>%
+  summarise(geno_count = n())
+```
+
+Regression model, with or without intercept? Compute the mean phenotypic value for all animals with Genotype $0$
+
+```{r}
+tbl_hom_gen0 <- tbl_hom_gen %>%
+  filter(Genotype < 1)
+mean(tbl_hom_gen0$Phenotype)
+```
+
+Plot the data
+
+```{r}
+library(ggplot2)
+p_g0 <- ggplot(data = tbl_hom_gen, mapping = aes(x = Genotype, y = Phenotype)) +
+  geom_point()
+p_g0
+```
+
+
+Regression with intercept
+
+```{r}
+lm_geno_val <- lm(Phenotype ~ Genotype, data = tbl_hom_gen)
+(sry_geno_val <- summary(lm_geno_val))
+```
+
+Add the regression line to the plot
+
+```{r}
+p_g0_line <- p_g0 + 
+  geom_abline(slope = sry_geno_val$coefficients["Genotype", "Estimate"],
+              intercept = sry_geno_val$coefficients["(Intercept)", "Estimate"])
+p_g0_line
+```
+
+The genotypic value $a$ is
+
+```{r}
+(n_geno_a <- sry_geno_val$coefficients["Genotype", "Estimate"])
+```
+
+The genotypic values for heterozygous animals
+
+```{r}
+tbl_het_gen <- tbl_gen_phen %>%
+  filter(Genotype > 2)
+head(tbl_het_gen)
+```
+
+```{r}
+n_geno_d <- mean(tbl_het_gen$Phenotype) - sry_geno_val$coefficients["(Intercept)", "Estimate"]
+n_geno_d
+```
+
+
+```{r}
+tbl_het_gen$Genotype <- 1L
+head(tbl_het_gen)
+```
+
+```{r}
+tbl_gen_all <- bind_rows(tbl_hom_gen, tbl_het_gen)
+head(tbl_gen_all)
+```
+
+```{r}
+p_g_all <- ggplot(data = tbl_gen_all, mapping = aes(x=Genotype,  y=Phenotype))+
+  geom_point()+ 
+  geom_abline(slope = sry_geno_val$coefficients["Genotype", "Estimate"],
+              intercept = sry_geno_val$coefficients["(Intercept)", "Estimate"])
+p_g_all
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
