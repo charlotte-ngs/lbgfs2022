@@ -1,3 +1,7 @@
+# lbgfs2022 0.3.2
+
+* Slides l03
+
 # lbgfs2022 0.3.1
 
 * Chapter 3 of course notes
