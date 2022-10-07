@@ -346,7 +346,9 @@ $$V_{C_iC_j} = \mu_C + BV_{C_iC_j} + D_{C_iC_j}$$
 
 ## Collecting Terms
 
-* for a given animal $k$, $BV$ and $D$ terms are collected
+* for a given animal $k$, $\mu$, $BV$ and $D$ terms are collected
+
+$$\mu_k = \mu_A + \mu_B + \mu_C + \ldots $$
 
 $$U_k = BV_k =  BV_{A_iA_j} + BV_{B_iB_j} + BV_{C_iC_j} + \ldots $$
 
@@ -362,3 +364,21 @@ $$y = V + E$$
 where $V$ is the genotypic value and $E$ is the non-genetic or environmental rest
 
 * Insert decomposition of $V$ as shown above
+
+
+## Decomposition of Phenotype
+
+* Insert $V = V_A + V_B + V_C + \ldots + I_{ABC...}$ into $y = V + E$
+
+$$y = V + E =  V_A + V_B + V_C + \ldots + I_{ABC...} + E$$
+
+$$  = (\mu_A + BV_{A_iA_j} + D_{A_iA_j}) + (\mu_B + BV_{B_iB_j} + D_{B_iB_j}) $$
+
+$$+ (\mu_C + BV_{C_iC_j} + D_{C_iC_j}) + ... I_{ABC...} + E$$
+
+## Collecting terms
+
+$$ = (\mu_A + \mu_B + \mu_C + ...) + (BV_{A_iA_j} + BV_{B_iB_j} + BV_{C_iC_j} + ...) $$
+$$+ (D_{A_iA_j} + D_{B_iB_j} + D_{C_iC_j} ... ) + I_{ABC...} + E$$
+
+$$ = \mu + BV + D + I_{ABC...} + E = \mu + BV + E^*$$

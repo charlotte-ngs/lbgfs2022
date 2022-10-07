@@ -1,0 +1,124 @@
+---
+title: "Single Locus Breeding Values"
+date: "2022-110-07"
+output: html_notebook
+---
+
+```{r setup, include=FALSE}
+b_online <- FALSE
+```
+
+## Disclaimer
+The dataset with one locus is used to compute breeding values based on one locus. This requires to first estimate the genotypic values. 
+
+
+## Read the dataset
+The dataset is read, with an explict specification of column datatypes.
+
+```{r}
+s_gen_phen_data <- ifelse(b_online, 
+                          "https://charlotte-ngs.github.io/lbgfs2022/data/p1_mrk_one_locus.csv",
+                          file.path(here::here(), "docs", "data", "p1_mrk_one_locus.csv"))
+library(readr)
+tbl_gen_phen <- read_delim(file = s_gen_phen_data,
+                           delim = ";",
+                           col_types = cols(
+                             ID = col_integer(),
+                             Genotype = col_integer(),
+                             Phenotype = col_double()
+                           ))
+head(tbl_gen_phen)
+```
+
+
+## Descriptive Statistics for Genotypes
+What are the available genotypes
+
+```{r}
+library(dplyr)
+tbl_gen_phen %>% 
+  group_by(Genotype) %>%
+  summarize(geno_count = n())
+```
+
+
+## Genotypic Values
+The genotypic values are estimated with a regression through the homozygous genotypes. For that, we create a new tibble with only the homozygous genotypes
+
+```{r}
+tbl_homozygous_gen <- tbl_gen_phen %>%
+  filter(Genotype < 3)
+head(tbl_homozygous_gen)
+```
+
+Checking with the counts
+
+```{r}
+tbl_homozygous_gen %>%
+  group_by(Genotype) %>%
+  summarise(geno_count = n())
+```
+
+Whether, we need a regression with or without intercept can be determined by the average value of all animals with Genotype $0$. 
+
+```{r}
+tbl_homozygous_gen %>%
+  group_by(Genotype) %>%
+  summarise(mean_phen = mean(Phenotype))
+```
+
+Because, the mean of all animals with genotype $0$ is different from $0$, we use a regression with intercept.
+
+The regression is modelled via `lm()`
+
+```{r}
+lm_geno_val <- lm(Phenotype ~ Genotype, data = tbl_homozygous_gen)
+(sry_geno_val <- summary(lm_geno_val))
+```
+
+The genotypic value $a$ for the homozygous animals is given by the estimate of the regression coefficient and is 
+
+```{r}
+(geno_val_a <- sry_geno_val$coefficients["Genotype", "Estimate"])
+```
+
+
+The genotypic value $d$ is determined with the heterozygous animals. First we select them into a separate tibble
+
+```{r}
+tbl_heterozygous_gen <- tbl_gen_phen %>%
+  filter(Genotype > 2)
+head(tbl_heterozygous_gen)
+```
+
+The genotype of the heterozygous animals is re-assiged to be $1$ and no longer $3$ or $4$
+
+```{r}
+tbl_heterozygous_gen$Genotype <- 1L
+head(tbl_heterozygous_gen)
+```
+
+The mean of the heterozygous animals is 
+
+```{r}
+n_mean_phen_het <- mean(tbl_heterozygous_gen$Phenotype)
+n_mean_phen_het
+```
+
+The difference to the mean of the homozygous animals with Genotype $0$ is
+
+```{r}
+tbl_mean_Phen_hom0 <- tbl_homozygous_gen %>%
+  group_by(Genotype) %>%
+  summarise(mean_phen = mean(Phenotype)) %>%
+  filter(Genotype == 0)
+n_mean_Phen_hom0 <- tbl_mean_Phen_hom0$mean_phen
+n_mean_Phen_hom0
+```
+
+Hence the value for $d$ is
+
+```{r}
+(gen_val_d <- n_mean_phen_het - n_mean_Phen_hom0)
+```
+

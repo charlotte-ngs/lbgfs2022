@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.9.22)  22 SEP 2022 18:01
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.9.22)  7 OCT 2022 06:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -931,6 +931,10 @@ Overfull \hbox (23.2438pt too wide) in paragraph at lines 373--373
 
 ] [29
 
+] [30
+
+] [31
+
 ]
 \tf@nav=\write6
 \openout6 = `lbgfs2022_slides_l02_basics_qg.nav'.
@@ -946,18 +950,18 @@ Package rerunfilecheck Info: File `lbgfs2022_slides_l02_basics_qg.out' has not c
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 23442 strings out of 477005
- 457087 string characters out of 5826126
- 753050 words of memory out of 5000000
- 44009 multiletter control sequences out of 15000+600000
+ 23452 strings out of 477005
+ 457201 string characters out of 5826126
+ 753049 words of memory out of 5000000
+ 44013 multiletter control sequences out of 15000+600000
  531863 words of font info for 75 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  99i,11n,104p,455b,443s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/Users/pvr/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/pvr/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/Users/pvr/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/Users/pvr/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/pvr/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}</Users/pvr/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb></Users/pvr/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/pvr/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></Users/pvr/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmss10.pfb></Users/pvr/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmss12.pfb></Users/pvr/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmss8.pfb></Users/pvr/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb></Users/pvr/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsso10.pfb></Users/pvr/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsso12.pfb></Users/pvr/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsso8.pfb></Users/pvr/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/pvr/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></Users/pvr/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on lbgfs2022_slides_l02_basics_qg.pdf (29 pages, 212230 bytes).
+Output written on lbgfs2022_slides_l02_basics_qg.pdf (31 pages, 214246 bytes).
 PDF statistics:
- 309 PDF objects out of 1000 (max. 8388607)
- 234 compressed objects within 3 object streams
- 87 named destinations out of 1000 (max. 500000)
+ 323 PDF objects out of 1000 (max. 8388607)
+ 246 compressed objects within 3 object streams
+ 93 named destinations out of 1000 (max. 500000)
  53 words of extra memory for PDF output out of 10000 (max. 10000000)
 

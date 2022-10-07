@@ -23,9 +23,10 @@ Additional material for the course is shown below.
 root_url <- "https://charlotte-ngs.github.io/lbgfs2022" 
 sl_url <- paste0(root_url, "/sl/")
 misc_url <- paste0(root_url, "/misc/")
-tbl_sl <- tibble::tibble(Nr = c(1, 2),
+tbl_sl <- tibble::tibble(Nr = c(1, 2, 3),
                          Date = c("2022-09-23",
-                                  "2022-09-30"),
+                                  "2022-09-30",
+                                  "2022-10-07"),
                          Topic = c(
                            paste0("[Introduction to Livestock Breeding and Genomics](", 
                                   sl_url, 
@@ -34,6 +35,10 @@ tbl_sl <- tibble::tibble(Nr = c(1, 2),
                            paste0("[Basics of Quantitative Genetics](", 
                                   sl_url, 
                                   "lbgfs2022_slides_l02_basics_qg.pdf)", 
+                                  collapse = ""),
+                           paste0("[Genetic Evaluation](",
+                                  sl_url,
+                                  "lbgfs2022_l03_gen-eval.pdf)",
                                   collapse = "")
                          ))
 knitr::kable(tbl_sl)
