@@ -122,3 +122,32 @@ Hence the value for $d$ is
 (gen_val_d <- n_mean_phen_het - n_mean_Phen_hom0)
 ```
 
+
+## Plots
+Try some plots which might be instructive
+
+```{r}
+library(ggplot2)
+p_hom <- ggplot(data = tbl_homozygous_gen, aes(x = Genotype, y = Phenotype)) + 
+  geom_point()
+p_hom
+```
+
+All genotypes
+
+```{r}
+tbl_geno_recode <- bind_rows(tbl_homozygous_gen, tbl_heterozygous_gen)
+p_all <- ggplot(data = tbl_geno_recode, mapping = aes(x = Genotype, y = Phenotype)) +
+  geom_point()
+p_all
+```
+
+Adding the regression line to the plot
+
+```{r}
+p_all_reg <- p_all + 
+  geom_abline(intercept = sry_geno_val$coefficients["(Intercept)", "Estimate"], 
+              slope = sry_geno_val$coefficients["Genotype", "Estimate"])
+p_all_reg
+```
+
