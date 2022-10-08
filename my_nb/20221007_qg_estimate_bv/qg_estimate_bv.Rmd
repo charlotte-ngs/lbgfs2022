@@ -76,7 +76,7 @@ p_g0
 ```
 
 
-Regression with intercept
+From the plot and from the mean of the animals with genotype $0$, it becomes clear that we need to fit a regression with intercept
 
 ```{r}
 lm_geno_val <- lm(Phenotype ~ Genotype, data = tbl_hom_gen)
@@ -107,7 +107,7 @@ head(tbl_het_gen)
 ```
 
 ```{r}
-n_geno_d <- mean(tbl_het_gen$Phenotype) - sry_geno_val$coefficients["(Intercept)", "Estimate"]
+n_geno_d <- mean(tbl_het_gen$Phenotype) - sry_geno_val$coefficients["(Intercept)", "Estimate"] - n_geno_a
 n_geno_d
 ```
 
@@ -129,6 +129,22 @@ p_g_all <- ggplot(data = tbl_gen_all, mapping = aes(x=Genotype,  y=Phenotype))+
               intercept = sry_geno_val$coefficients["(Intercept)", "Estimate"])
 p_g_all
 
+```
+
+
+Now that the genotypic values $a$ and $d$ are computed, we can do the transformations of the phenotypic values such that the three genotypes have the correct genotypic value
+
+```{r}
+tbl_trans_gen <- tbl_gen_all
+tbl_trans_gen$Phenotype <- tbl_trans_gen$Phenotype - sry_geno_val$coefficients["(Intercept)", "Estimate"] - n_geno_a
+```
+
+To check the result of the transformation, we can compute the means of the transformed phenotypic values
+
+```{r}
+tbl_trans_gen %>%
+  group_by(Genotype) %>%
+  summarise(mean_phen = mean(Phenotype))
 ```
 
 
