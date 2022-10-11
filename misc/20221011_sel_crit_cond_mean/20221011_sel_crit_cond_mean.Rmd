@@ -1,0 +1,41 @@
+---
+title: "Conditional Mean as Selection Criterium"
+runningheader: "Selection Criterium Conditional Mean" # only for pdf output
+subtitle: "Selection Criterium" # only for html output
+author: "Peter von Rohr"
+date: "`r Sys.Date()`"
+output:
+  tufte::tufte_handout:
+    citation_package: natbib
+    latex_engine: xelatex
+  tufte::tufte_html: default
+  tufte::tufte_book:
+    citation_package: natbib
+    latex_engine: xelatex
+bibliography: skeleton.bib
+link-citations: yes
+---
+
+```{r setup, include=FALSE}
+library(tufte)
+# invalidate cache when the tufte version changes
+knitr::opts_chunk$set(cache.extra = packageVersion('tufte'))
+options(htmltools.dir.version = FALSE)
+# met
+met <- rmdhelp::MendeleyExportToolR6$new()
+met$set_local_bib_file("skeleton.bib")
+```
+
+# Disclaimer
+The goal of this document is to understand why the conditional expected value $E(u|y)$ of the breeding values given the phenotypes is a good selection criterion. In a first step a review of available material is described.
+
+
+# Review
+The paper of `r met$add("Gianola1986a")` is used as primary source for this document. These authors state the problem of improvement by selection as follows: 
+
+> "It is wished to elicit favorable genetic change in a merit function presumably related to economic return by retaining superior animals and by discarding inferior ones."
+
+Merit (e.g. breeding values or future performance) is generally unobservable, hence culling decisions must be based on data available from candidates or from their relatives. 
+
+The joint distribution of merit and of data depends on unknown parameters. In the case of multivariate normal distributions these parameters consists of means, variances and covariances. These parameters must be estimated from the available data, or more generally from a combination of data and prior information^[Prior information is taken into account when a Bayesian view-point is taken to look at this problem. But the approach described in this paper is considered useful, also outside of a Bayesian framework]. 
+
