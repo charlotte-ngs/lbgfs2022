@@ -1,3 +1,7 @@
+# lbgfs2022 0.4.1
+
+* Exercise lbg_ex04
+
 # lbgfs2022 0.4.0
 
 * QTL data
