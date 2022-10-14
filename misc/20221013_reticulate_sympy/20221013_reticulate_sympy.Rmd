@@ -1,0 +1,116 @@
+---
+title: "Reticulate and Sympy"
+date: "2022-10-13"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+## Disclaimer
+Tests and experiments with `reticulate` and `sympy`
+
+
+## Basic Tests
+From https://rstudio.github.io/reticulate/index.html, we check the basic functionality with the following code chunks
+
+
+```{r}
+library(reticulate)
+# use_python(Sys.which("python3"))
+```
+
+Simple usage for python
+
+```{python}
+print("Hello Python!")
+```
+
+Installing pandas, to then be able to read data with pandas
+
+```{r}
+# create virtual env
+virtualenv_create("r-reticulate")
+# install pandas
+virtualenv_install("r-reticulate", "pandas")
+```
+
+Use virtual env
+
+```{r}
+use_virtualenv("r-reticulate")
+```
+
+
+Checking
+
+```{r}
+py_available()
+```
+
+Module pandas
+
+```{r}
+py_module_available("pandas")
+```
+
+Now use pandas to import data
+
+```{python}
+import pandas
+geno = pandas.read_csv("/Users/pvr/Data/Projects/Github/charlotte-ngs/lbgfs2022_gh-root/main/lbgfs2022/docs/data/p1_mrk_one_locus.csv")
+print(geno.head())
+```
+
+
+## Installation of 'sympy'
+The python package 'sympy' is installed with
+
+```{r, eval=TRUE}
+virtualenv_install("r-reticulate", "sympy")
+```
+
+Checking whether the module sympy was installed can be done with
+
+```{r}
+py_module_available("sympy")
+```
+
+
+
+## Testing sympy
+According to https://cerebralmastication.com/2020/07/27/using-python-sympy-in-a-python-code-chunk-in-rmarkdown/, the following test for sympy should work.
+
+```{python, eval=TRUE, results='asis'}
+from sympy import *
+x = symbols('x')
+a = Integral(cos(x)*exp(x), x)
+output = Eq(a, a.doit())
+latex_output = latex(output)
+print('$$' + latex_output + '$$\n')
+```
+
+An alternative way to show the output with an R-code chunk is
+
+```{r}
+knitr::asis_output(sprintf("$$%s$$\n", py$latex_output))
+```
+
+
+## Use sympy for Derivations in Quantitative Genetics
+
+```{python, results='asis'}
+# import
+from sympy import *
+# symbol definition
+a, d, p, q, mu, mu_res = symbols('a, d, p, q, mu, mu_res')
+# allele frequencies
+q = 1-p
+# compute population mean
+mu = a * p**2 + d * 2 * p * q + (-a) * q**2
+mu_res = simplify(collect(expand(mu), [a, d]))
+print('$$' + latex(mu) + '$$\n')
+print('$$' + latex(mu_res) + '$$\n')
+
+```
+
+

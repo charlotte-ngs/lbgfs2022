@@ -339,9 +339,9 @@ where $I_{ABC...}$ is a generic Interaction term which we do not specify further
 
 * Genotypic value of single loci
 
-$$V_{A_iA_j} = \mu_A + BV_{A_iA_j} + D_{A_iA_j} $$
-$$V_{B_iB_j} = \mu_B + BV_{B_iB_j} + D_{B_iB_j} $$
-$$V_{C_iC_j} = \mu_C + BV_{C_iC_j} + D_{C_iC_j}$$
+$$V_A = V_{A_iA_j} = \mu_A + BV_{A_iA_j} + D_{A_iA_j} $$
+$$V_B = V_{B_iB_j} = \mu_B + BV_{B_iB_j} + D_{B_iB_j} $$
+$$V_C = V_{C_iC_j} = \mu_C + BV_{C_iC_j} + D_{C_iC_j}$$
 
 
 ## Collecting Terms
@@ -354,6 +354,17 @@ $$U_k = BV_k =  BV_{A_iA_j} + BV_{B_iB_j} + BV_{C_iC_j} + \ldots $$
 
 $$D_k = D_{A_iA_j} + D_{B_iB_j} + D_{C_iC_j} + \ldots$$
 
+
+## Interactions
+
+Interaction effects ($I_{ABC...}$) can occur between different genetic components
+
+```{r interaction-types, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg", out.width="100%"}
+#rmdhelp::use_odg_graphic(ps_path = "odg/interaction-types.odg")
+knitr::include_graphics(path = "odg/interaction-types.png")
+```
+
+
 ## Phenotype
 
 * Including phenotypic observations $y$
@@ -361,7 +372,7 @@ $$D_k = D_{A_iA_j} + D_{B_iB_j} + D_{C_iC_j} + \ldots$$
 * Decomposition 
 
 $$y = V + E$$
-where $V$ is the genotypic value and $E$ is the non-genetic or environmental rest
+where $V$ is the genotypic value and $E$ is the non-genetic or environmental effect. (Before: $P = G + E$)
 
 * Insert decomposition of $V$ as shown above
 
@@ -381,4 +392,4 @@ $$+ (\mu_C + BV_{C_iC_j} + D_{C_iC_j}) + ... I_{ABC...} + E$$
 $$ = (\mu_A + \mu_B + \mu_C + ...) + (BV_{A_iA_j} + BV_{B_iB_j} + BV_{C_iC_j} + ...) $$
 $$+ (D_{A_iA_j} + D_{B_iB_j} + D_{C_iC_j} ... ) + I_{ABC...} + E$$
 
-$$ = \mu + BV + D + I_{ABC...} + E = \mu + BV + E^*$$
+$$ = \mu + BV + D + I_{ABC...} + E = \mu + BV + E^* = \mu + U + E^*$$ 

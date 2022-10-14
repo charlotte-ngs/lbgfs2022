@@ -118,7 +118,22 @@ Breeding values are predicted according to the following two steps.
 2. The corrected observations are weighted by a certain factor 
     + factor reflects the amount of information available for prediction
     
-    
+
+## Statistical Perspective
+
+From a statistical point of view: 
+
+* Given phenotypic observation $y$ as source of information
+* Use best linear predictor ($\hat{u}$) for breeding value $u$
+* Hence
+
+$$\hat{u} = E(u) + b(y - E(y))= E(u | y)$$
+
+* with $E(u) = 0 \rightarrow \hat{u} = b(y - E(y))$
+* $b$ depends on the relationship between $y$ and $u$
+* examples will follow ...
+
+
 ## Animal's Own Performance - Single Record    
  
 * one phenotypic observation per animal
