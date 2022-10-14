@@ -1,3 +1,7 @@
+# lbgfs2022 0.4.2
+
+* Link to video and OHP for lecture 04
+
 # lbgfs2022 0.4.1
 
 * Exercise lbg_ex04
