@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SCRIPTDIR=/home/quagadmin/courses/lbgfs2022/bash
-DIRTOFETCH=ex/lbg_ex03
+DIRTOFETCH=ex/lbg_ex04
 # DIRTOFETCH=sol/gel_ex04
 TESTSTUDENT=/home/quagadmin/courses/lbgfs2022/students/test_student_usernames_lbgfs2022.txt
 STUDENTUSER=/home/quagadmin/courses/lbgfs2022/students/student_usernames_lbgfs2022.txt
