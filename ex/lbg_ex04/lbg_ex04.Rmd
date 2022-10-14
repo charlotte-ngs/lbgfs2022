@@ -1,0 +1,51 @@
+---
+title: Livestock Breeding and Genomics - `r tools::toTitleCase(params$doctype)` 4
+author: Peter von Rohr
+date: 2022-10-14
+output:
+  bookdown::pdf_document2:
+    toc: false
+    number_sections: false
+    keep_md: false
+    keep_tex: false
+header-includes:
+ \usepackage{longtable}
+ \usepackage{float}
+params:
+  doctype:
+    label: 'Document Type'
+    value: 'solution'
+    choices: ['exercise', 'solution', 'notebook']
+  isonline:
+    label: 'Online (y/n)'
+    value: TRUE
+    choices: [TRUE, FALSE]
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Problem 1: QTL Data
+Estimate genotypic values $a$ and $d$ and predict breeding values for all animals using the QTL-data given under:
+
+https://charlotte-ngs.github.io/lbgfs2022/data/p1_qtl_1_loci.csv.  
+
+<!-- your-solution-start
+### Your Solution
+
+* Start by re-formatting the paternal and maternal alleles into a genotype
+* Use a linear regression to estimate genotypic values
+* Predict breeding values for all animals
+
+---  your-solution-end -->
+
+
+<!-- master-solution-start -->
+
+### Solution
+
+<!-- master-solution-end -->
+ 
