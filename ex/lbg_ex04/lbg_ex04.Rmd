@@ -29,9 +29,20 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 ## Problem 1: QTL Data
+```{r problem1-setup, echo=FALSE}
+if (params$isonline){
+  s_data_path <- "https://charlotte-ngs.github.io/lbgfs2022/data/p1_qtl_1_loci.csv"  
+} else {
+  s_data_path <- file.path(here::here(), "docs", "data", "p1_qtl_1_loci.csv")
+}
+```
+
 Estimate genotypic values $a$ and $d$ and predict breeding values for all animals using the QTL-data given under:
 
-https://charlotte-ngs.github.io/lbgfs2022/data/p1_qtl_1_loci.csv.  
+```{r, echo=FALSE, results='asis'}
+cat(s_data_path, "\n")
+```
+
 
 <!-- your-solution-start
 ### Your Solution
@@ -46,6 +57,31 @@ https://charlotte-ngs.github.io/lbgfs2022/data/p1_qtl_1_loci.csv.
 <!-- master-solution-start -->
 
 ### Solution
+
+<!-- master-solution-end -->
+ 
+
+## Problem 2: 
+Change the phenotypic records in the above given dataset such that the QTL explains $50%$ of the genetic variation when a heritability of $0.45$ is assumed. It is assumed that the QTL acts purely additively, hence the genotypic value of the heterozygotes can be set to $d=0$. 
+
+Show the results as a scatter plot of all phenotypic values for the QTL genotypes.
+
+<!-- your-solution-start
+### Your Solution
+
+
+---  your-solution-end -->
+
+
+<!-- master-solution-start -->
+
+### Solution
+In a first step the phenotypic variance, the genetic variance and the QTL-variance must be determined from the data and the given information.
+
+```{r}
+tbl_qtl <- readr::read_delim(file = s_data_path, delim = ";")
+head(tbl_qtl)
+```
 
 <!-- master-solution-end -->
  
