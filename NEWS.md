@@ -1,3 +1,7 @@
+# lbgfs2022 0.5.0
+
+* Chpt 4 of course notes and lbg_ex05
+
 # lbgfs2022 0.4.2
 
 * Link to video and OHP for lecture 04
