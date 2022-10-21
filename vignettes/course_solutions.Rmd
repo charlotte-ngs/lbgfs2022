@@ -15,3 +15,20 @@ knitr::opts_chunk$set(
 ```
 
 Solutions to exercises are listed here.
+
+```{r, echo=FALSE, results='asis'}
+s_sol_url <- "https://charlotte-ngs.github.io/lbgfs2022/sol/"
+tbl_sol <- tibble::tibble(Nr = c(1, 2),
+                          Date = c("2022-09-23",
+                                  "2022-09-30"),
+                          Topic = c(
+                           paste0("[Linear Algebra](", s_sol_url, "lbg_ex02_sol.pdf)", collapse = ""),
+                           paste0("[Quantitative Genetics](", s_sol_url, "lbg_ex03_sol.pdf)", collapse = "")
+                          ))
+knitr::kable(tbl_sol)
+```
+
+
+```{r latest-change, echo=FALSE, results='asis'}
+cat(rmdhelp::get_latest_change())
+```

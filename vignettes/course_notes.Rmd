@@ -20,14 +20,16 @@ Chapters of course notes are linked below.
 
 ```{r chapter-table, echo=FALSE, message=FALSE, warning=FALSE}
 s_cn_url <- "https://charlotte-ngs.github.io/lbgfs2022/cn/"
-tbl_chpt <- tibble::tibble(Nr      = c(1, 2, 3),
+tbl_chpt <- tibble::tibble(Nr      = c(1, 2, 3, 4),
                            Date    = c("2022-09-23",
                                        "2022-09-30",
-                                       "2022-10-07"),
+                                       "2022-10-07",
+                                       "2022-10-21"),
                            Topic   = c(
                              paste0("[Introduction to Livestock Breeding and Genomics](", s_cn_url, "01_intro.pdf)", collapse = ""),
                              paste0("[Basics of Quantitative Genetics](", s_cn_url, "02_qg_basics.pdf)", collapse = ""),
-                             paste0("[Genetic Evaluation](", s_cn_url, "03_gen_eval.pdf)", collapse = "")
+                             paste0("[Genetic Evaluation](", s_cn_url, "03_gen_eval.pdf)", collapse = ""),
+                             paste0("[BLUP](", s_cn_url, "04_blup.pdf)", collapse = "")
                              ))
 knitr::kable(tbl_chpt)
 ```
