@@ -41,7 +41,7 @@ tbl_sl <- tibble::tibble(Nr = c(1, 2, 3, 4),
                                   sl_url,
                                   "lbgfs2022_l03_gen-eval.pdf)",
                                   collapse = ""),
-                           pasate0("[BLUP](",
+                           paste0("[BLUP](",
                                    sl_url,
                                    "lbgfs2022_slides_l04_blup.pdf)",
                                    collapse = "")
