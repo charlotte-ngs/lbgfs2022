@@ -1,5 +1,7 @@
 # lbgfs2022 0.5.1
 
+* Updated slides
+
 # lbgfs2022 0.5.0
 
 * Chpt 4 of course notes and lbg_ex05
