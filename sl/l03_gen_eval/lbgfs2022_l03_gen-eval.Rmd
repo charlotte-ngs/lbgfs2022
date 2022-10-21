@@ -278,11 +278,17 @@ where
 b = \frac{cov(u_i, \bar{y_i})}{var(\bar{y_i})} \notag
 \end{equation}
 
+Note
+
+$$\bar{y_i} = {1\over n}\sum_{k=1}^n y_k$$
+where $y_k$ is the phenotypic record of progeny $k$ of parent $i$
+
+
 ## Covariance and Variance
 
 \begin{align}
 cov(u_i, \bar{y_i}) &= cov(u_i, {1\over 2}u_i 
-                       + {1\over 2}{1\over n}\sum_{k=1}^n u_{d,i} 
+                       + {1\over 2}{1\over n}\sum_{k=1}^n u_{d,k} 
                        + {1\over n}\sum_{k=1}^n m_k 
                        + {1\over n}\sum_{k=1}^n e_k) \notag \\
                 &= cov(u_i, {1\over 2}u_i) \notag \\
@@ -299,11 +305,11 @@ with $t = h^2 / 4$
 
 * Progeny mean
 \begin{align}
-\bar{y_i} &= {1 \over n} \sum_{k=1}^ny_k = {1 \over n} \sum_{k=1}^n u_k 
+\bar{y_i} &= {1 \over n} \sum_{k=1}^ny_k = {1 \over n} \sum_{k=1}^n  \mu + {1 \over n} \sum_{k=1}^n u_k 
+                                         + {1 \over n} \sum_{k=1}^n e_k  \notag \\
+          &= \mu + {1 \over n} \sum_{k=1}^n (1/2 u_i + 1/2 u_{d,k} + m_k) 
              + {1 \over n} \sum_{k=1}^n e_k  \notag \\
-          &= {1 \over n} \sum_{k=1}^n (1/2 u_i + 1/2 u_{d,k}) 
-             + {1 \over n} \sum_{k=1}^n e_k  \notag \\
-          &= {1 \over 2} u_i + {1 \over n} \sum_{k=1}^n 1/2 u_{d,k} 
+          &= \mu + {1 \over 2} u_i + {1 \over n} \sum_{k=1}^n 1/2 u_{d,k} + {1 \over n} \sum_{k=1}^n m_k
              + {1 \over n} \sum_{k=1}^n e_k  \notag
 \end{align}
 
