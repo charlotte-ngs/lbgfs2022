@@ -1,3 +1,7 @@
+# lbgfs2022 0.5.2
+
+* Video and ohp
+
 # lbgfs2022 0.5.1
 
 * Updated slides
