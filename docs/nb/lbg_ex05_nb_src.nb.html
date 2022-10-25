@@ -1780,111 +1780,59 @@ assumed to be the mean of the weights in the table below.</p>
 <!-- rnb-chunk-begin -->
 <table>
 <thead>
-<tr>
-<th style="text-align:right;">
-Animal
-</th>
-<th style="text-align:right;">
-Weight
-</th>
+<tr class="header">
+<th align="right">Animal</th>
+<th align="right">Weight</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-285
-</td>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">285</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-282
-</td>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">282</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-278
-</td>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">278</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-280
-</td>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">280</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-281
-</td>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">281</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-282
-</td>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">282</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-285
-</td>
+<tr class="odd">
+<td align="right">7</td>
+<td align="right">285</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-282
-</td>
+<tr class="even">
+<td align="right">8</td>
+<td align="right">282</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:right;">
-281
-</td>
+<tr class="odd">
+<td align="right">9</td>
+<td align="right">281</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-287
-</td>
+<tr class="even">
+<td align="right">10</td>
+<td align="right">287</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-11
-</td>
-<td style="text-align:right;">
-281
-</td>
+<tr class="odd">
+<td align="right">11</td>
+<td align="right">281</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-12
-</td>
-<td style="text-align:right;">
-282
-</td>
+<tr class="even">
+<td align="right">12</td>
+<td align="right">282</td>
 </tr>
 </tbody>
 </table>
@@ -1915,14 +1863,6 @@ own-performance records</li>
 Observations</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjpbImdlYl9nZXcgPC0gNTIiLCJtdTIgPC0gMTcwIiwicmVwIDwtIDAuNjUiLCJoMiA8LSAwLjQ1IiwieSA8LSAzMjAiLCJtdSA8LSAyNTAiXX0= -->
-<pre class="r"><code>geb_gew &lt;- 52
-mu2 &lt;- 170
-rep &lt;- 0.65
-h2 &lt;- 0.45
-y &lt;- 320
-mu &lt;- 250</code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Elsa has observations for her birth weight (<span class="math inline">\(52\)</span> kg) and some more repeated measures
@@ -1932,107 +1872,53 @@ measurements is <span class="math inline">\(t = 0.65\)</span>.</p>
 <p>The following tables contains all observed values for the weight.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjpbIm5yX21lYXN1cmUgPC0gMTAiLCJ3ZWFuX3dlaWdodCA8LSB5Iiwic2xvcGUgPC0gKHdlYW5fd2VpZ2h0LWdlYl9nZXcpLyhucl9tZWFzdXJlLTEpIiwibWVhc3VyZSA8LSBjKDE6bnJfbWVhc3VyZSkiLCJ3ZWlnaHQgPC0gcm91bmQoc2xvcGUqKG1lYXN1cmUtMSkgKyBnZWJfZ2V3LCBkaWdpdHMgPSAwKSIsIm1lYW5fd2VpZ2h0IDwtIG1lYW4od2VpZ2h0KSIsImRmV2VpZ2h0VGFibGUgPC0gZGF0YS5mcmFtZShNZWFzdXJlbWVudCA9IG1lYXN1cmUsIFdlaWdodCA9IHdlaWdodCkiLCJrbml0cjo6a2FibGUoZGZXZWlnaHRUYWJsZSwgYm9va3RhYnMgPSBUUlVFLCBsb25ndGFibGUgPSBUUlVFKSJdfQ== -->
-<pre class="r"><code>nr_measure &lt;- 10
-wean_weight &lt;- y
-slope &lt;- (wean_weight-geb_gew)/(nr_measure-1)
-measure &lt;- c(1:nr_measure)
-weight &lt;- round(slope*(measure-1) + geb_gew, digits = 0)
-mean_weight &lt;- mean(weight)
-dfWeightTable &lt;- data.frame(Measurement = measure, Weight = weight)
-knitr::kable(dfWeightTable, booktabs = TRUE, longtable = TRUE)</code></pre>
-<!-- rnb-source-end -->
 <table>
 <thead>
-<tr>
-<th style="text-align:right;">
-Measurement
-</th>
-<th style="text-align:right;">
-Weight
-</th>
+<tr class="header">
+<th align="right">Measurement</th>
+<th align="right">Weight</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-52
-</td>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">52</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-82
-</td>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">82</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-112
-</td>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">112</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-141
-</td>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">141</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-171
-</td>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">171</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-201
-</td>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">201</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-231
-</td>
+<tr class="odd">
+<td align="right">7</td>
+<td align="right">231</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-260
-</td>
+<tr class="even">
+<td align="right">8</td>
+<td align="right">260</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:right;">
-290
-</td>
+<tr class="odd">
+<td align="right">9</td>
+<td align="right">290</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-320
-</td>
+<tr class="even">
+<td align="right">10</td>
+<td align="right">320</td>
 </tr>
 </tbody>
 </table>
@@ -2064,9 +1950,6 @@ have the following meaning</p>
 <h2>Problem 3: Predict Breeding Values Based on Progeny Records</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoibl9ucl9wcm9nZW55IDwtIDUifQ== -->
-<pre class="r"><code>n_nr_progeny &lt;- 5</code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>A few years later Elsa was the dam of 5 offspring. Each of the
@@ -2077,55 +1960,31 @@ following table.</p>
 <!-- rnb-chunk-begin -->
 <table>
 <thead>
-<tr>
-<th style="text-align:right;">
-Offspring
-</th>
-<th style="text-align:right;">
-Weaning Weight
-</th>
+<tr class="header">
+<th align="right">Offspring</th>
+<th align="right">Weaning Weight</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-320
-</td>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">320</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-319
-</td>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">319</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-320
-</td>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">320</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-320
-</td>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">320</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-321
-</td>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">321</td>
 </tr>
 </tbody>
 </table>
@@ -2141,14 +2000,14 @@ taking into account that the information now comes from offspring.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <hr />
-<p><em>Latest Changes: 2022-10-21 06:42:02 (pvr)</em></p>
+<p><em>Latest Changes: 2022-10-25 06:14:07 (pvr)</em></p>
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiBMaXZlc3RvY2sgQnJlZWRpbmcgYW5kIEdlbm9taWNzIC0gTm90ZWJvb2sgNQphdXRob3I6IFBldGVyIHZvbiBSb2hyCmRhdGU6ICcyMDIyLTEwLTIxJwpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKcGFyYW1zOgogIGRvY3R5cGU6CiAgICBsYWJlbDogRG9jdW1lbnQgVHlwZQogICAgdmFsdWU6IHNvbHV0aW9uCiAgICBjaG9pY2VzOgogICAgLSBleGVyY2lzZQogICAgLSBzb2x1dGlvbgogICAgLSBub3RlYm9vawogIGlzb25saW5lOgogICAgbGFiZWw6IE9ubGluZSAoeS9uKQogICAgdmFsdWU6IHRydWUKICAgIGNob2ljZXM6CiAgICAtIHRydWUKICAgIC0gZmFsc2UKLS0tCgoKCmBgYHtyIHNldHVwLCBpbmNsdWRlPUZBTFNFfQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUpCmBgYAoKCiMjIFByb2JsZW0gMTogT3duIFBlcmZvcm1hbmNlCmBgYHtyIHByb2IxLXNldHVwLCBlY2hvPUZBTFNFLCBtZXNzYWdlPUZBTFNFLCB3YXJuaW5nPUZBTFNFfQpzZXQuc2VlZCg0MjA2KQpuX25yX2FuaW1hbCA8LSAxMgpuX3dlaWdodF9tZWFuIDwtIDI4MwpuX3dlaWdodF9zZCA8LSAzCnZlY193ZWlnaHQgPC0gcm91bmQocm5vcm0obl9ucl9hbmltYWwsIG1lYW4gPSBuX3dlaWdodF9tZWFuLCBuX3dlaWdodF9zZCksIGRpZ2l0cyA9IDApCnRibF93ZWlnaHQgPC0gdGliYmxlOjp0aWJibGUoQW5pbWFsID0gYygxOm5fbnJfYW5pbWFsKSwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICBXZWlnaHQgPSB2ZWNfd2VpZ2h0KQpuX3dlaWdodF9oMiA8LSAwLjIwMjUKYGBgCgpHaXZlbiBpcyB0aGUgZGF0YXNldCB3aXRoIHdlaWdodCBvYnNlcnZhdGlvbnMgZm9yIGByIG5fbnJfYW5pbWFsYCBhbmltYWxzLiBUaGUgaGVyaXRhYmlsaXR5ICgkaF4yJCkgZm9yIHRoZSB0cmFpdCBpcyBgciBuX3dlaWdodF9oMmAuIFRoZSBwb3B1bGF0aW9uIG1lYW4gJFxtdSQgY2FuIGFzc3VtZWQgdG8gYmUgdGhlIG1lYW4gb2YgdGhlIHdlaWdodHMgaW4gdGhlIHRhYmxlIGJlbG93LiAKCmAKYGBge3IgdGJsLXdlaWdodCwgZWNobz1GQUxTRX0Ka25pdHI6OmthYmxlKHRibF93ZWlnaHQsIGJvb2t0YWJzID0gVFJVRSwgbG9uZ3RhYmxlID0gVFJVRSkKYGBgCgojIyMgWW91ciBUYXNrcwoKKiBDb21wdXRlIHRoZSBicmVlZGluZyB2YWx1ZXMgZm9yIGFsbCBhbmltYWxzIGdpdmVuIGluIHRoZSB0YWJsZSBhYm92ZQoqIENvbXB1dGUgdGhlIGFjY3VyYWNpZXMgb2YgdGhlIGJyZWVkaW5nIHZhbHVlcyBvZiBhbGwgYW5pbWFscyBzaG93biBpbiB0aGUgdGFibGUgYWJvdmUuCgojIyMgWW91ciBTb2x1dGlvbgoKKiBSZWFkIHRoZSBkYXRhIHN1Y2ggdGhhdCB5b3UgaGF2ZSB0aGUgcGhlbm90eXBlcyBhdmFpbGFibGUgYXMgYSB2ZWN0b3Igb3IgYSB0aWJibGUKKiBVc2UgdGhlIGZvcm11bGEgZm9yIGVzdGltYXRpbmcgYnJlZWRpbmcgdmFsdWVzIGJhc2VkIG9uIG93bi1wZXJmb3JtYW5jZSByZWNvcmRzCiogU2hvdyB0aGUgcmVzdWx0IGZvciBlYWNoIGFuaW1hbAoKCgoKCiMjIFByb2JsZW0gMjogQnJlZWRpbmcgVmFsdWUgUHJlZGljdGlvbiBCYXNlZCBvbiBSZXBlYXRlZCBPYnNlcnZhdGlvbnMKYGBge3IgU2V0dXBFeDJ9CmdlYl9nZXcgPC0gNTIKbXUyIDwtIDE3MApyZXAgPC0gMC42NQpoMiA8LSAwLjQ1CnkgPC0gMzIwCm11IDwtIDI1MApgYGAKRWxzYSBoYXMgb2JzZXJ2YXRpb25zIGZvciBoZXIgYmlydGggd2VpZ2h0ICgkYHIgZ2ViX2dld2AkIGtnKSBhbmQgc29tZSBtb3JlIHJlcGVhdGVkIG1lYXN1cmVzIGZvciBoZXIgd2VpZ2h0LiBXZSBhc3N1bWUgdGhlIGhlcml0YWJpbGl0eSB0byBiZSAgJGheMiA9IGByIGgyYCQuIFRoZSBwb3B1bGF0aW9uIG1lYW4gZm9yIHRoZSByZXBlYXRlZCBvYnNlcnZhdGlvbnMgb2YgdGhlIHdlaWdodCBpcyAgJGByIG11MmAkIGtnLiBUaGUgcmVwZWF0YWJpbGl0eSBvZiB0aGUgd2VpZ2h0IG1lYXN1cmVtZW50cyBpcyAkdCA9IGByIHJlcGAkLiAKClRoZSBmb2xsb3dpbmcgdGFibGVzIGNvbnRhaW5zIGFsbCBvYnNlcnZlZCB2YWx1ZXMgZm9yIHRoZSB3ZWlnaHQuIAoKYGBge3IgV2VpZ2h0VGFibGV9Cm5yX21lYXN1cmUgPC0gMTAKd2Vhbl93ZWlnaHQgPC0geQpzbG9wZSA8LSAod2Vhbl93ZWlnaHQtZ2ViX2dldykvKG5yX21lYXN1cmUtMSkKbWVhc3VyZSA8LSBjKDE6bnJfbWVhc3VyZSkKd2VpZ2h0IDwtIHJvdW5kKHNsb3BlKihtZWFzdXJlLTEpICsgZ2ViX2dldywgZGlnaXRzID0gMCkKbWVhbl93ZWlnaHQgPC0gbWVhbih3ZWlnaHQpCmRmV2VpZ2h0VGFibGUgPC0gZGF0YS5mcmFtZShNZWFzdXJlbWVudCA9IG1lYXN1cmUsIFdlaWdodCA9IHdlaWdodCkKa25pdHI6OmthYmxlKGRmV2VpZ2h0VGFibGUsIGJvb2t0YWJzID0gVFJVRSwgbG9uZ3RhYmxlID0gVFJVRSkKYGBgCgphKSBQcmVkaWN0IHRoZSBicmVlZGluZyB2YWx1ZSBmb3IgRWxzYSBiYXNlZCBvbiB0aGUgcmVwZWF0ZWQgd2VpZ2h0IHJlY29yZHMuCmIpIFdoYXQgaXMgdGhlIHJlbGlhYmlsaXR5IGZvciB0aGUgcHJlZGljdGVkIGJyZWVkaW5nIHZhbHVlIGZyb20gMmEpPwpjKSBDb21wYXJlIHRoZSByZWxpYWJpbGl0eSBmcm9tIDJiKSB3aXRoIHRoZSByZWxpYWJpbGl0eSB0aGF0IHdvdWxkIHJlc3VsdCBmcm9tIGEgcHJlZGljdGlvbiBvZiBicmVlZGluZyB2YWx1ZXMgYmFzZWQgb24gb3duIHBlcmZvcm1hbmNlLgoKCiMjIyBZb3VyIFNvbHV0aW9uCgpBcyBpbiBQcm9ibGVtIDEsIHlvdSBjYW4gdXNlIHRoZSBhc3NpZ25lZCB2YXJpYWJsZXMuIFRoZSB2YXJpYWJsZXMgaGF2ZSB0aGUgZm9sbG93aW5nIG1lYW5pbmcKCiogbnJfbWVhc3VyZTogICBudW1iZXIgb2YgbWVhc3VyZW1lbnRzIG9mIHRoZSB3ZWlnaHQKKiBoMjogICAgICAgICAgIGhlcml0YWJpbGl0eSAKKiByZXA6ICAgICAgICAgIHJlcGVhdGFiaWxpdHkKKiBtZWFuX3dlaWdodDogIG1lYW4gb2YgdGhlIHdlaWdodHMKKiBtdTI6ICAgICAgICAgIHBvcHVsYXRpb24gbWVhbgoKCgoKCiMjIFByb2JsZW0gMzogUHJlZGljdCBCcmVlZGluZyBWYWx1ZXMgQmFzZWQgb24gUHJvZ2VueSBSZWNvcmRzCmBgYHtyIHByb2IzLWRlZn0Kbl9ucl9wcm9nZW55IDwtIDUKYGBgCgpBIGZldyB5ZWFycyBsYXRlciBFbHNhIHdhcyB0aGUgZGFtIG9mIGByIG5fbnJfcHJvZ2VueWAgb2Zmc3ByaW5nLiBFYWNoIG9mIHRoZSBvZmZzcHJpbmcgaGFzIGEgcmVjb3JkIGZvciB3ZWFuaW5nIHdlaWdodC4gUHJlZGljdCB0aGUgYnJlZWRpbmcgdmFsdWUgb2YgRWxzYSBmb3Igd2VhbmluZyB3ZWlnaHQgYmFzZWQgb24gdGhlIG9mZnBzcmluZyByZWNvcmRzIGxpc3RlZCBpbiB0aGUgZm9sbG93aW5nIHRhYmxlLgoKYGBge3IgdGFiLXByb2ctYncsIGVjaG89RkFMU0V9CnZlY193d19wcm9nIDwtIHJvdW5kKHkgKyBybm9ybShuX25yX3Byb2dlbnksIG1lYW4gPSAwLCBzZCA9IDIpLCBkaWdpdHMgPSAwKQp0YmxfcHJvZ193dyA8LSB0aWJibGU6OnRpYmJsZShPZmZzcHJpbmcgPSBjKDE6bl9ucl9wcm9nZW55KSwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYFdlYW5pbmcgV2VpZ2h0YCA9IHZlY193d19wcm9nKQprbml0cjo6a2FibGUodGJsX3Byb2dfd3csIGJvb2t0YWJzID0gVFJVRSwgbG9uZ3RhYmxlID0gVFJVRSkKYGBgCgpUaGUgbWVhbiBhbmQgdGhlIGhlcml0YWJpbGl0eSBjYW4gYmUgdGFrZW4gdGhlIHNhbWUgYXMgaW4gUHJvYmxlbXMgMSBhbmQgMiByZXN1bHRpbmcgaW4gCgokaF4yID0gYHIgaDJgJCBhbmQgJFxtdSA9IGByIG11YCQKCgoKIyMjIFlvdXIgU29sdXRpb24KVGhpcyBwcm9ibGVtIGNhbiBiZSBzb2x2ZWQgYW5hbG9nb3VzbHkgdG8gdGhlIHByZXZpb3VzIHByb2JsZW1zLCBqdXN0IHRha2luZyBpbnRvIGFjY291bnQgdGhhdCB0aGUgaW5mb3JtYXRpb24gbm93IGNvbWVzIGZyb20gb2Zmc3ByaW5nLgoKCgogCgoKYGBge3IsIGVjaG89RkFMU0UsIHJlc3VsdHM9J2FzaXMnfQpjYXQoJ1xuLS0tXG5cbiBfTGF0ZXN0IENoYW5nZXM6ICcsIGZvcm1hdChTeXMudGltZSgpLCAnJVktJW0tJWQgJUg6JU06JVMnKSwgJyAoJywgU3lzLmluZm8oKVsndXNlciddLCAnKV9cbicsIHNlcCA9ICcnKQpgYGAKIAo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiBMaXZlc3RvY2sgQnJlZWRpbmcgYW5kIEdlbm9taWNzIC0gTm90ZWJvb2sgNQphdXRob3I6IFBldGVyIHZvbiBSb2hyCmRhdGU6ICcyMDIyLTEwLTIxJwpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKcGFyYW1zOgogIGRvY3R5cGU6CiAgICBsYWJlbDogRG9jdW1lbnQgVHlwZQogICAgdmFsdWU6IHNvbHV0aW9uCiAgICBjaG9pY2VzOgogICAgLSBleGVyY2lzZQogICAgLSBzb2x1dGlvbgogICAgLSBub3RlYm9vawogIGlzb25saW5lOgogICAgbGFiZWw6IE9ubGluZSAoeS9uKQogICAgdmFsdWU6IHRydWUKICAgIGNob2ljZXM6CiAgICAtIHRydWUKICAgIC0gZmFsc2UKLS0tCgoKCmBgYHtyIHNldHVwLCBpbmNsdWRlPUZBTFNFfQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUpCmBgYAoKCiMjIFByb2JsZW0gMTogT3duIFBlcmZvcm1hbmNlCmBgYHtyIHByb2IxLXNldHVwLCBlY2hvPUZBTFNFLCBtZXNzYWdlPUZBTFNFLCB3YXJuaW5nPUZBTFNFfQpzZXQuc2VlZCg0MjA2KQpuX25yX2FuaW1hbCA8LSAxMgpuX3dlaWdodF9tZWFuIDwtIDI4MwpuX3dlaWdodF9zZCA8LSAzCnZlY193ZWlnaHQgPC0gcm91bmQocm5vcm0obl9ucl9hbmltYWwsIG1lYW4gPSBuX3dlaWdodF9tZWFuLCBuX3dlaWdodF9zZCksIGRpZ2l0cyA9IDApCnRibF93ZWlnaHQgPC0gdGliYmxlOjp0aWJibGUoQW5pbWFsID0gYygxOm5fbnJfYW5pbWFsKSwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICBXZWlnaHQgPSB2ZWNfd2VpZ2h0KQpuX3dlaWdodF9oMiA8LSAwLjIwMjUKYGBgCgpHaXZlbiBpcyB0aGUgZGF0YXNldCB3aXRoIHdlaWdodCBvYnNlcnZhdGlvbnMgZm9yIGByIG5fbnJfYW5pbWFsYCBhbmltYWxzLiBUaGUgaGVyaXRhYmlsaXR5ICgkaF4yJCkgZm9yIHRoZSB0cmFpdCBpcyBgciBuX3dlaWdodF9oMmAuIFRoZSBwb3B1bGF0aW9uIG1lYW4gJFxtdSQgY2FuIGFzc3VtZWQgdG8gYmUgdGhlIG1lYW4gb2YgdGhlIHdlaWdodHMgaW4gdGhlIHRhYmxlIGJlbG93LiAKCmAKYGBge3IgdGJsLXdlaWdodCwgZWNobz1GQUxTRX0Ka25pdHI6OmthYmxlKHRibF93ZWlnaHQsIGJvb2t0YWJzID0gVFJVRSwgbG9uZ3RhYmxlID0gVFJVRSwgZXNjYXBlID0gRkFMU0UpCmBgYAoKIyMjIFlvdXIgVGFza3MKCiogQ29tcHV0ZSB0aGUgYnJlZWRpbmcgdmFsdWVzIGZvciBhbGwgYW5pbWFscyBnaXZlbiBpbiB0aGUgdGFibGUgYWJvdmUKKiBDb21wdXRlIHRoZSBhY2N1cmFjaWVzIG9mIHRoZSBicmVlZGluZyB2YWx1ZXMgb2YgYWxsIGFuaW1hbHMgc2hvd24gaW4gdGhlIHRhYmxlIGFib3ZlLgoKIyMjIFlvdXIgU29sdXRpb24KCiogUmVhZCB0aGUgZGF0YSBzdWNoIHRoYXQgeW91IGhhdmUgdGhlIHBoZW5vdHlwZXMgYXZhaWxhYmxlIGFzIGEgdmVjdG9yIG9yIGEgdGliYmxlCiogVXNlIHRoZSBmb3JtdWxhIGZvciBlc3RpbWF0aW5nIGJyZWVkaW5nIHZhbHVlcyBiYXNlZCBvbiBvd24tcGVyZm9ybWFuY2UgcmVjb3JkcwoqIFNob3cgdGhlIHJlc3VsdCBmb3IgZWFjaCBhbmltYWwKCgoKCgojIyBQcm9ibGVtIDI6IEJyZWVkaW5nIFZhbHVlIFByZWRpY3Rpb24gQmFzZWQgb24gUmVwZWF0ZWQgT2JzZXJ2YXRpb25zCgpgYGB7ciBTZXR1cEV4MiwgZWNobz1GQUxTRX0KZ2ViX2dldyA8LSA1MgptdTIgPC0gMTcwCnJlcCA8LSAwLjY1CmgyIDwtIDAuNDUKeSA8LSAzMjAKbXUgPC0gMjUwCmBgYAoKRWxzYSBoYXMgb2JzZXJ2YXRpb25zIGZvciBoZXIgYmlydGggd2VpZ2h0ICgkYHIgZ2ViX2dld2AkIGtnKSBhbmQgc29tZSBtb3JlIHJlcGVhdGVkIG1lYXN1cmVzIGZvciBoZXIgd2VpZ2h0LiBXZSBhc3N1bWUgdGhlIGhlcml0YWJpbGl0eSB0byBiZSAgJGheMiA9IGByIGgyYCQuIFRoZSBwb3B1bGF0aW9uIG1lYW4gZm9yIHRoZSByZXBlYXRlZCBvYnNlcnZhdGlvbnMgb2YgdGhlIHdlaWdodCBpcyAgJGByIG11MmAkIGtnLiBUaGUgcmVwZWF0YWJpbGl0eSBvZiB0aGUgd2VpZ2h0IG1lYXN1cmVtZW50cyBpcyAkdCA9IGByIHJlcGAkLiAKClRoZSBmb2xsb3dpbmcgdGFibGVzIGNvbnRhaW5zIGFsbCBvYnNlcnZlZCB2YWx1ZXMgZm9yIHRoZSB3ZWlnaHQuIAoKYGBge3IgV2VpZ2h0VGFibGUsIGVjaG89RkFMU0V9Cm5yX21lYXN1cmUgPC0gMTAKd2Vhbl93ZWlnaHQgPC0geQpzbG9wZSA8LSAod2Vhbl93ZWlnaHQtZ2ViX2dldykvKG5yX21lYXN1cmUtMSkKbWVhc3VyZSA8LSBjKDE6bnJfbWVhc3VyZSkKd2VpZ2h0IDwtIHJvdW5kKHNsb3BlKihtZWFzdXJlLTEpICsgZ2ViX2dldywgZGlnaXRzID0gMCkKbWVhbl93ZWlnaHQgPC0gbWVhbih3ZWlnaHQpCmRmV2VpZ2h0VGFibGUgPC0gZGF0YS5mcmFtZShNZWFzdXJlbWVudCA9IG1lYXN1cmUsIFdlaWdodCA9IHdlaWdodCkKa25pdHI6OmthYmxlKGRmV2VpZ2h0VGFibGUsIGJvb2t0YWJzID0gVFJVRSwgbG9uZ3RhYmxlID0gVFJVRSkKYGBgCgphKSBQcmVkaWN0IHRoZSBicmVlZGluZyB2YWx1ZSBmb3IgRWxzYSBiYXNlZCBvbiB0aGUgcmVwZWF0ZWQgd2VpZ2h0IHJlY29yZHMuCmIpIFdoYXQgaXMgdGhlIHJlbGlhYmlsaXR5IGZvciB0aGUgcHJlZGljdGVkIGJyZWVkaW5nIHZhbHVlIGZyb20gMmEpPwpjKSBDb21wYXJlIHRoZSByZWxpYWJpbGl0eSBmcm9tIDJiKSB3aXRoIHRoZSByZWxpYWJpbGl0eSB0aGF0IHdvdWxkIHJlc3VsdCBmcm9tIGEgcHJlZGljdGlvbiBvZiBicmVlZGluZyB2YWx1ZXMgYmFzZWQgb24gb3duIHBlcmZvcm1hbmNlLgoKCiMjIyBZb3VyIFNvbHV0aW9uCgpBcyBpbiBQcm9ibGVtIDEsIHlvdSBjYW4gdXNlIHRoZSBhc3NpZ25lZCB2YXJpYWJsZXMuIFRoZSB2YXJpYWJsZXMgaGF2ZSB0aGUgZm9sbG93aW5nIG1lYW5pbmcKCiogbnJfbWVhc3VyZTogICBudW1iZXIgb2YgbWVhc3VyZW1lbnRzIG9mIHRoZSB3ZWlnaHQKKiBoMjogICAgICAgICAgIGhlcml0YWJpbGl0eSAKKiByZXA6ICAgICAgICAgIHJlcGVhdGFiaWxpdHkKKiBtZWFuX3dlaWdodDogIG1lYW4gb2YgdGhlIHdlaWdodHMKKiBtdTI6ICAgICAgICAgIHBvcHVsYXRpb24gbWVhbgoKCgoKCiMjIFByb2JsZW0gMzogUHJlZGljdCBCcmVlZGluZyBWYWx1ZXMgQmFzZWQgb24gUHJvZ2VueSBSZWNvcmRzCgpgYGB7ciBwcm9iMy1kZWYsIGVjaG89RkFMU0V9Cm5fbnJfcHJvZ2VueSA8LSA1CmBgYAoKQSBmZXcgeWVhcnMgbGF0ZXIgRWxzYSB3YXMgdGhlIGRhbSBvZiBgciBuX25yX3Byb2dlbnlgIG9mZnNwcmluZy4gRWFjaCBvZiB0aGUgb2Zmc3ByaW5nIGhhcyBhIHJlY29yZCBmb3Igd2VhbmluZyB3ZWlnaHQuIFByZWRpY3QgdGhlIGJyZWVkaW5nIHZhbHVlIG9mIEVsc2EgZm9yIHdlYW5pbmcgd2VpZ2h0IGJhc2VkIG9uIHRoZSBvZmZwc3JpbmcgcmVjb3JkcyBsaXN0ZWQgaW4gdGhlIGZvbGxvd2luZyB0YWJsZS4KCmBgYHtyIHRhYi1wcm9nLWJ3LCBlY2hvPUZBTFNFfQp2ZWNfd3dfcHJvZyA8LSByb3VuZCh5ICsgcm5vcm0obl9ucl9wcm9nZW55LCBtZWFuID0gMCwgc2QgPSAyKSwgZGlnaXRzID0gMCkKdGJsX3Byb2dfd3cgPC0gdGliYmxlOjp0aWJibGUoT2Zmc3ByaW5nID0gYygxOm5fbnJfcHJvZ2VueSksCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGBXZWFuaW5nIFdlaWdodGAgPSB2ZWNfd3dfcHJvZykKa25pdHI6OmthYmxlKHRibF9wcm9nX3d3LCBib29rdGFicyA9IFRSVUUsIGxvbmd0YWJsZSA9IFRSVUUpCmBgYAoKVGhlIG1lYW4gYW5kIHRoZSBoZXJpdGFiaWxpdHkgY2FuIGJlIHRha2VuIHRoZSBzYW1lIGFzIGluIFByb2JsZW1zIDEgYW5kIDIgcmVzdWx0aW5nIGluIAoKJGheMiA9IGByIGgyYCQgYW5kICRcbXUgPSBgciBtdWAkCgoKCiMjIyBZb3VyIFNvbHV0aW9uClRoaXMgcHJvYmxlbSBjYW4gYmUgc29sdmVkIGFuYWxvZ291c2x5IHRvIHRoZSBwcmV2aW91cyBwcm9ibGVtcywganVzdCB0YWtpbmcgaW50byBhY2NvdW50IHRoYXQgdGhlIGluZm9ybWF0aW9uIG5vdyBjb21lcyBmcm9tIG9mZnNwcmluZy4KCgoKIAoKCmBgYHtyLCBlY2hvPUZBTFNFLCByZXN1bHRzPSdhc2lzJ30KY2F0KCdcbi0tLVxuXG4gX0xhdGVzdCBDaGFuZ2VzOiAnLCBmb3JtYXQoU3lzLnRpbWUoKSwgJyVZLSVtLSVkICVIOiVNOiVTJyksICcgKCcsIFN5cy5pbmZvKClbJ3VzZXInXSwgJylfXG4nLCBzZXAgPSAnJykKYGBgCiAK</div>
 
 
 
