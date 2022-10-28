@@ -1,3 +1,7 @@
+# lbgfs2022 0.6.1
+
+* Slides l05
+
 # lbgfs2022 0.6.0
 
 *  Chapter 5
