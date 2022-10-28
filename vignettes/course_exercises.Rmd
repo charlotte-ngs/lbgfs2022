@@ -32,7 +32,7 @@ tbl_ex <- tibble::tibble(Nr = c(1, 2, 3, 4, 5, 6),
                            paste0("Quantitative Genetics [pdf](", s_ex_url, "lbg_ex03.pdf) | [nb](", s_nb_url, "lbg_ex03_nb_src.nb.html)", collapse = ""),
                            paste0("QTL Data [pdf](", s_ex_url, "lbg_ex04.pdf) | [nb](", s_nb_url, "lbg_ex04_nb_src.nb.html)", collapse = ""),
                            paste0("Genetic Evaluation [pdf](", s_ex_url, "lbg_ex05.pdf) | [nb](", s_nb_url, "lbg_ex05_nb_src.nb.html)", collapse = ""),
-                           paste0("[Fixed linear effects model [pdf](", s_ex_url, "lbg_ex06.pdf) | [nb](", s_nb_url, "lbg_ex06_nb_src.nb.html)", collapse = "")
+                           paste0("Fixed linear effects model [pdf](", s_ex_url, "lbg_ex06.pdf) | [nb](", s_nb_url, "lbg_ex06_nb_src.nb.html)", collapse = "")
                          ))
 knitr::kable(tbl_ex)
 ```
