@@ -1,3 +1,8 @@
+# lbgfs2022 0.6.3
+
+* OHP L06
+* Video L06
+
 # lbgfs2022 0.6.2
 
 * Exercise lbg_ex06
