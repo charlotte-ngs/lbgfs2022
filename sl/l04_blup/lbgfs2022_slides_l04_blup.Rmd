@@ -152,6 +152,11 @@ knitr::kable( tbl_beef_data,
 $$y_{ij} = \mu + herd_j + e_{ij}$$
 
 * Result: Estimate of effect of herd j
+* Try with given dataset
+
+
+## Linear Mixed Effects Model
+
 * What about breeding value $u_i$ for animal $i$?
     + Problem: breeding values have a variance $\sigma_u^2$
     + Cannot be specified in simple linear model
@@ -193,13 +198,17 @@ $$var(u) = G  \text{  and  } var(e) = R$$
 with $cov(u, e^T) = 0$, $$var(y) = Z * var(u) * Z^T + var(e) = ZGZ^T + R = V$$
 
 
-## The Solution
+## Estimates of unknown Parameters
 
-$$\hat{u} = GZ^TV^{-1}(y - X\hat{\beta})$$
+$$\hat{u} = E(u|y) = GZ^TV^{-1}(y - X\hat{\beta})$$
 
 $$\hat{\beta} = (X^T V^{-1} X)^- X^T V^{-1} y$$
 
+
 ## Mixed Model Equations
+
+* Problem: $V^{-1}$
+* Same solutions obtained with following set of equations
 
 $$\left[
   \begin{array}{lr}
