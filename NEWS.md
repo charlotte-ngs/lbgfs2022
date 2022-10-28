@@ -1,3 +1,7 @@
+# lbgfs2022 0.6.2
+
+* Exercise lbg_ex06
+
 # lbgfs2022 0.6.1
 
 * Slides l05
