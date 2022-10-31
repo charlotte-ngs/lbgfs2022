@@ -29,7 +29,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 ## Problem 1: QTL Data
-```{r problem1-setup, echo=FALSE}
+```{r p01-setup, echo=FALSE}
 if (params$isonline){
   s_data_path <- "https://charlotte-ngs.github.io/lbgfs2022/data/p1_qtl_1_loci.csv"  
 } else {
@@ -62,7 +62,17 @@ cat(s_data_path, "\n")
  
 
 ## Problem 2: 
-Change the phenotypic records in the above given dataset such that the QTL explains $50%$ of the genetic variation when a heritability of $0.45$ is assumed. It is assumed that the QTL acts purely additively, hence the genotypic value of the heterozygotes can be set to $d=0$. 
+```{r p02-setup, echo=FALSE}
+if (params$isonline){
+  s_data_path <- "https://charlotte-ngs.github.io/lbgfs2022/data/p1_qtl_1_loci.csv"  
+} else {
+  s_data_path <- file.path(here::here(), "docs", "data", "p1_qtl_1_loci.csv")
+}
+n_h2_all <- 0.45
+n_ratio_qtl <- 0.5 
+```
+
+Change the phenotypic records in the above given dataset such that the QTL explains $`r n_ratio_qtl * 100`%$ of the genetic variation when a heritability of $`r n_h2_all`$ is assumed. It is assumed that the QTL acts purely additively, hence the genotypic value of the heterozygotes can be set to $d=0$. 
 
 Show the results as a scatter plot of all phenotypic values for the QTL genotypes.
 
@@ -79,9 +89,40 @@ Show the results as a scatter plot of all phenotypic values for the QTL genotype
 In a first step the phenotypic variance, the genetic variance and the QTL-variance must be determined from the data and the given information.
 
 ```{r}
-tbl_qtl <- readr::read_delim(file = s_data_path, delim = ";")
+tbl_qtl <- readr::read_delim(file = s_data_path, delim = ";",
+                             col_types = readr::cols(
+                               ID = readr::col_integer(),
+                               L1_pat = readr::col_integer(),
+                               L1_mat = readr::col_integer(),
+                               Phenotype = readr::col_double()
+                             ))
 head(tbl_qtl)
 ```
+
+The phenotypic variance is computed as
+
+```{r}
+(n_phen_var <- var(tbl_qtl$Phenotype))
+```
+
+The genetic variance is 
+
+```{r}
+(n_gen_var <- n_h2_all * n_phen_var)
+```
+
+The variation explained by the QTL is
+
+```{r}
+(n_qtl_var <- n_ratio_qtl * n_gen_var)
+```
+
+From `n_qtl_var`, the additive effect $a$ can be computed. Because, $d=0$, the additive effect $\alpha$ is the same as $a$. Hence with $\alpha=a$, the genetic additive variance ($\sigma_A^2$) is computed as $\sigma_A^2 = 2pqa^2$
+
+From that we get 
+
+$$a = \sqrt{\frac{\sigma_A^2}{2pq}}$$
+
 
 <!-- master-solution-end -->
  
