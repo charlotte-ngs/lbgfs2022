@@ -23,12 +23,14 @@ Additional material for the course is shown below.
 root_url <- "https://charlotte-ngs.github.io/lbgfs2022" 
 sl_url <- paste0(root_url, "/sl/")
 misc_url <- paste0(root_url, "/misc/")
-tbl_sl <- tibble::tibble(Nr = c(1, 2, 3, 4, 5),
+tbl_sl <- tibble::tibble(Nr = c(1, 2, 3, 4, 5, 6, 7),
                          Date = c("2022-09-23",
                                   "2022-09-30",
                                   "2022-10-07",
                                   "2022-10-21",
-                                  "2022-10-28"),
+                                  "2022-10-28",
+                                  "2022-11-04",
+                                  "2022-11-04"),
                          Topic = c(
                            paste0("[Introduction to Livestock Breeding and Genomics](", 
                                   sl_url, 
@@ -49,6 +51,14 @@ tbl_sl <- tibble::tibble(Nr = c(1, 2, 3, 4, 5),
                            paste0("[Genetic Covariance between Animals](",
                                   sl_url,
                                   "lbgfs2022_l05_slides_gencov.pdf)",
+                                  collapse = ""),
+                           paste0("[Numerator Relationship Matrix](",
+                                  sl_url,
+                                  "lbgfs2021_l06_slides_numrelmat.pdf)",
+                                  collapse = ""),
+                           paste0("[Inverse Numerator Relationship Matrix](",
+                                  sl_url,
+                                  "lbgfs2021_l06_slides_invnumrelmat.pdf)",
                                   collapse = "")
                          ))
 knitr::kable(tbl_sl)
