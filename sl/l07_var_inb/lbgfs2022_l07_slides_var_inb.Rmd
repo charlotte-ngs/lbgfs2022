@@ -1,7 +1,7 @@
 ---
 title: "Variance and Inbreeding"
 author: "Peter von Rohr"
-date: "2022-11-04"
+date: "2022-11-18"
 output:
   beamer_presentation:
 header-includes:
