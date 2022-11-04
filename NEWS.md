@@ -1,3 +1,7 @@
+# lbgfs2022 0.7.0
+
+* Course notes chapter 6
+
 # lbgfs2022 0.6.3
 
 * OHP L06
