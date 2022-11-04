@@ -101,6 +101,34 @@ lm_geno_a <- lm(Phenotype ~ Genotype, data = tbl_qtl_hom)
 (sry_geno_a <- summary(lm_geno_a))
 ``` 
 
+The genotypic value $a$ can be read from the regression slope which is 
+
+```{r}
+n_value_a <- sry_geno_a$coefficients["Genotype", "Estimate"]
+```
+
+
+$$a = `r n_value_a`$$
+
+The value $d$ is obtained by subracting from the mean of the heterozygous animals, the intercept and the value $a$. First, we generate a dataset with only heterozygous animals. 
+
+```{r}
+tbl_qtl_het <- tbl_qtl_geno %>% 
+  filter(Genotype == 1L)
+table(tbl_qtl_het$Genotype)
+```
+
+The value $d$ is computed as
+
+```{r}
+n_mean_het <- mean(tbl_qtl_het$Phenotype)
+n_inter <- sry_geno_a$coefficients["(Intercept)", "Estimate"]
+n_val_d <-  n_mean_het - n_value_a - n_inter
+```
+
+$$d = `r n_mean_het` - `r n_value_a` - `r n_inter` = `r n_val_d`$$
+
+
 
 <!-- master-solution-end -->
  

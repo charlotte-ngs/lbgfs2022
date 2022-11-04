@@ -68,20 +68,22 @@ knitr::kable(tbl_sl)
 # Videos
 
 ```{r video-table, echo=FALSE, message=FALSE, warning=FALSE}
-tbl_video <- tibble::tibble(Nr = c(1, 2, 3, 4, 5, 6),
+tbl_video <- tibble::tibble(Nr = c(1, 2, 3, 4, 5, 6, 7),
                             Date = c("2022-09-23",
                                      "2022-09-30",
                                      "2022-10-07",
                                      "2022-10-14",
                                      "2022-10-21",
-                                     "2022-10-28"),
+                                     "2022-10-28",
+                                     "2022-11-04"),
                             Topic = c(
                               "[Introduction to Livestock Breeding](https://youtu.be/tp09u8Z5lOM)",
                               "[Quantiative Genetics](https://youtu.be/wBj1ZwkMyR4)",
                               "[Single Locus Breeding Values](https://youtu.be/Ie6ozie2aWA)",
                               "[Genetic Evaluation](https://youtu.be/_X-asWKKRgM)",
                               "[Repeated Records and Progeny](https://youtu.be/_oCnakzpsB0)",
-                              "[Linear fixed effects models and linear mixed effects models](https://youtu.be/EFtJcn9XvTs)"
+                              "[Linear fixed effects models and linear mixed effects models](https://youtu.be/EFtJcn9XvTs)",
+                              "[Sire model, animal model and numerator relationship matrix](https://youtu.be/sQvt-ZtYcgk)"
                             ))
 knitr::kable(tbl_video)
 ```
@@ -91,20 +93,22 @@ knitr::kable(tbl_video)
 
 ```{r, ohp-table, echo=FALSE, message=FALSE, warning=FALSE}
 s_ohp_url <- file.path(root_url, "ohp/")
-tbl_ohp <- tibble::tibble(Nr = c(1, 2, 3, 4, 5, 6),
+tbl_ohp <- tibble::tibble(Nr = c(1, 2, 3, 4, 5, 6, 7),
                           Date = c("2022-09-23",
                                    "2022-09-30",
                                    "2022-10-07",
                                    "2022-10-14",
                                    "2022-10-21",
-                                   "2022-10-28"),
+                                   "2022-10-28",
+                                   "2022-11-04"),
                           Topic = c(
                               paste0("[Introduction to Livestock Breeding](", s_ohp_url, "20220923_ohp_l01.pdf)", collapse = ""),
                               paste0("[Quantitative Genetics](", s_ohp_url, "20220930_ohp_l02.pdf)", collapse = ""),
                               paste0("[Single Locus Breeding Values](", s_ohp_url, "20221007_ohp_l03.pdf)", collapse = ""),
                               paste0("[Genetic Evaluation](", s_ohp_url, "20221014_ohp_l04.pdf)", collapse = ""),
                               paste0("[Repeated Records and Progeny](", s_ohp_url, "20221021_ohp_l05.pdf)", collapse = ""),
-                              paste0("[Linear fixed effects models and linear mixed effects models](", s_ohp_url, "20221028_ohp_l06.pdf)", collapse = "")
+                              paste0("[Linear fixed effects models and linear mixed effects models](", s_ohp_url, "20221028_ohp_l06.pdf)", collapse = ""),
+                              paste0("[Sire model, animal model and numerator relationship matrix](", s_ohp_url, "20221104_ohp_l07.pdf)", collapse = "")
                             ))
 knitr::kable(tbl_ohp)
 ```
