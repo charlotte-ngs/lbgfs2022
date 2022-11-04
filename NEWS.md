@@ -1,3 +1,7 @@
+# lbgfs2022 0.7.1
+
+Slides l06
+
 # lbgfs2022 0.7.0
 
 * Course notes chapter 6
