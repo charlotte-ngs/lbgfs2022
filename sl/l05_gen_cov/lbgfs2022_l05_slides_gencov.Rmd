@@ -33,8 +33,22 @@ where  &       &     \\
 \end{tabular}  
 
 
-## Example
+## Example I
 ```{r numexblupanimalmodel, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+n_nr_ani_ped <- 6
+n_nr_parent <- 2
+tbl_ped <- tibble::tibble(Calf = c((n_nr_parent+1):n_nr_ani_ped),
+                             Sire = c(1, NA, 4, 5),
+                             Dam  = c(2, NA, 3, 2),
+                             Herd = c(1, 2, 2, 1),
+                             WWG  = c(4.5, 2.9, 3.9, 3.5))
+knitr::kable(tbl_ped, booktabs = TRUE)
+```
+
+
+## Example II
+
+```{r numexblupanimalmodel2, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
 n_nr_ani_ped <- 6
 n_nr_parent <- 2
 tbl_ped <- tibble::tibble(Calf = c((n_nr_parent+1):n_nr_ani_ped),

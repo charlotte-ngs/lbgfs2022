@@ -114,15 +114,17 @@ knitr::kable(tbl_ohp)
 
 ```{r, data-table, echo=FALSE, message=FALSE, warning=FALSE}
 s_data_url <- file.path(root_url, "data/")
-tbl_data <- tibble::tibble(Nr = c(1,2,3,4),
+tbl_data <- tibble::tibble(Nr = c(1,2,3,4,5),
                            Date = c(rep("2022-09-30", 2),
                                     "2022-10-14",
-                                    "2022-10-28"),
+                                    "2022-10-28",
+                                    "2022-11-04"),
                            Topic = c(
                              paste0("[One Locus Marker Data](", s_data_url, "p1_mrk_one_locus.csv)", collapse = ""),
                              paste0("[Multiple Loci Marker Data](", s_data_url, "p1_mrk_5_loci.csv)", collapse = ""),
                              paste0("[QTL Data](", s_data_url, "p1_qtl_1_loci.csv)", collapse = ""),
-                             paste0("[Weaning weight data](", s_data_url, "beef_data_bc.csv)", collapse = "")
+                             paste0("[Weaning weight data](", s_data_url, "beef_data_bc.csv)", collapse = ""),
+                             paste0("[Pedigree Example 1](", s_data_url, "ped_ex1.csv)", collapse = "")
                            ))
 knitr::kable(tbl_data)
 ```
