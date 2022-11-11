@@ -1,3 +1,7 @@
+# lbgfs2022 0.8.0
+
+* Deployed lbg_ex07
+
 # lbgfs2022 0.7.2
 
 * Video and OHP L07
