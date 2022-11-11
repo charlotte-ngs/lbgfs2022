@@ -159,7 +159,7 @@ knitr::kable(tbl_ped_simple,
              caption = "Pedigree Used To Compute Inverse Numerator Relationship Matrix")
 ```
 
-The numerator relationship matrix $A$ for the pedigree shown in Table \@ref(tab:simplepedexamplesetup) is shown in \@ref(eq:numeratorrelationshipmatrix).
+The numerator relationship matrix $A$ for the pedigree shown in Table \@ref(tab:tabpedsimpleexample) is shown in \@ref(eq:numeratorrelationshipmatrix).
 
 ```{r displaymatrixasimple, echo=FALSE, results='asis'}
 cat("\\begin{equation}\n")
