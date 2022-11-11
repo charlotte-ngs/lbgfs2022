@@ -19,20 +19,22 @@ Links to exercises are shown in the following table.
 ```{r, echo=FALSE, results='asis'}
 s_ex_url <- "https://charlotte-ngs.github.io/lbgfs2022/ex/"
 s_nb_url <- "https://charlotte-ngs.github.io/lbgfs2022/nb/"
-tbl_ex <- tibble::tibble(Nr = c(1, 2, 3, 4, 5, 6),
+tbl_ex <- tibble::tibble(Nr = c(1, 2, 3, 4, 5, 6, 7, 8),
                          Date = c("2022-09-23",
                                   "2022-09-30",
                                   "2022-10-07",
                                   "2022-10-14",
                                   "2022-10-21",
-                                  "2022-10-28"),
+                                  "2022-10-28",
+                                  "2022-11-11"),
                          Topic = c(
                            paste0("[Questionnaire](", s_ex_url, "lbg_ex01.pdf)", collapse = ""),
                            paste0("Linear Algebra [pdf](", s_ex_url, "lbg_ex02.pdf) | [nb](", s_nb_url, "lbg_ex02_nb_src.nb.html)", collapse = ""),
                            paste0("Quantitative Genetics [pdf](", s_ex_url, "lbg_ex03.pdf) | [nb](", s_nb_url, "lbg_ex03_nb_src.nb.html)", collapse = ""),
                            paste0("QTL Data [pdf](", s_ex_url, "lbg_ex04.pdf) | [nb](", s_nb_url, "lbg_ex04_nb_src.nb.html)", collapse = ""),
                            paste0("Genetic Evaluation [pdf](", s_ex_url, "lbg_ex05.pdf) | [nb](", s_nb_url, "lbg_ex05_nb_src.nb.html)", collapse = ""),
-                           paste0("Fixed linear effects model [pdf](", s_ex_url, "lbg_ex06.pdf) | [nb](", s_nb_url, "lbg_ex06_nb_src.nb.html)", collapse = "")
+                           paste0("Fixed linear effects model [pdf](", s_ex_url, "lbg_ex06.pdf) | [nb](", s_nb_url, "lbg_ex06_nb_src.nb.html)", collapse = ""),
+                           paste0("Numerator relationship matrix [pdf](", s_ex_url, "lbg_ex07.pdf) | nb](", s_nb_url, "lbg_ex07_nb_src.nb.html)", collapse = "")
                          ))
 knitr::kable(tbl_ex)
 ```
