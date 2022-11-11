@@ -32,6 +32,13 @@ if (!file.exists(s_ped_data))
 
 ```{r}
 s_ped_sl <- file.path(here::here(), "docs", "data", "ped_sl_rel_mat.csv")
+n_nr_ani_ped <- 6
+n_nr_parent <- 2
+tbl_ped <- tibble::tibble(Calf = c((n_nr_parent+1):n_nr_ani_ped),
+                             Sire = c(1, 1, 4, 5),
+                             Dam  = c(2, NA, 3, 2))
+if (!file.exists(s_ped_sl))
+  readr::write_delim(tbl_ped, file = s_ped_sl, delim = ";")
 
 ```
 

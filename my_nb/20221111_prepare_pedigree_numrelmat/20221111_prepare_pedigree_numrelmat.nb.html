@@ -1777,6 +1777,54 @@ tbl_pedigree &lt;- tibble::tibble(Calf = c(1:nr_animal),
                                Dam = c(NA, NA, NA, 2, 2, 5))
 knitr::kable(tbl_pedigree, booktabs = TRUE, longtable = TRUE)</code></pre>
 <!-- rnb-source-end -->
+
+<!-- rnb-html-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImtuaXRfYXNpcyJdLCJzaXppbmdQb2xpY3kiOltdfX0= -->
+
+<table>
+<thead>
+<tr class="header">
+<th align="right">Calf</th>
+<th align="right">Sire</th>
+<th align="right">Dam</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">3</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">4</td>
+<td align="right">5</td>
+</tr>
+</tbody>
+</table>
+
+
+<!-- rnb-html-end -->
+
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>If the file does not exist, it is written to a file</p>
@@ -1790,15 +1838,22 @@ knitr::kable(tbl_pedigree, booktabs = TRUE, longtable = TRUE)</code></pre>
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc19wZWRfc2wgPC0gZmlsZS5wYXRoKGhlcmU6OmhlcmUoKSwgXCJkb2NzXCIsIFwiZGF0YVwiLCBcInBlZF9zbF9yZWxfbWF0LmNzdlwiKVxuXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc19wZWRfc2wgPC0gZmlsZS5wYXRoKGhlcmU6OmhlcmUoKSwgXCJkb2NzXCIsIFwiZGF0YVwiLCBcInBlZF9zbF9yZWxfbWF0LmNzdlwiKVxubl9ucl9hbmlfcGVkIDwtIDZcbm5fbnJfcGFyZW50IDwtIDJcbnRibF9wZWQgPC0gdGliYmxlOjp0aWJibGUoQ2FsZiA9IGMoKG5fbnJfcGFyZW50KzEpOm5fbnJfYW5pX3BlZCksXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgIFNpcmUgPSBjKDEsIDEsIDQsIDUpLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICBEYW0gID0gYygyLCBOQSwgMywgMikpXG5pZiAoIWZpbGUuZXhpc3RzKHNfcGVkX3NsKSlcbiAgcmVhZHI6OndyaXRlX2RlbGltKHRibF9wZWQsIGZpbGUgPSBzX3BlZF9zbCwgZGVsaW0gPSBcIjtcIilcblxuYGBgIn0= -->
 <pre class="r"><code>s_ped_sl &lt;- file.path(here::here(), &quot;docs&quot;, &quot;data&quot;, &quot;ped_sl_rel_mat.csv&quot;)
+n_nr_ani_ped &lt;- 6
+n_nr_parent &lt;- 2
+tbl_ped &lt;- tibble::tibble(Calf = c((n_nr_parent+1):n_nr_ani_ped),
+                             Sire = c(1, 1, 4, 5),
+                             Dam  = c(2, NA, 3, 2))
+if (!file.exists(s_ped_sl))
+  readr::write_delim(tbl_ped, file = s_ped_sl, delim = &quot;;&quot;)
 </code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUHJlcGFyZSBQZWRpZ3JlZSBEYXRhIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgoKVGhlIGZvbGxvd2luZyBwcmVwYXJlcyB0aGUgcGVkaWdyZWUgZGF0YSBmb3IgbGJnX2V4MDcuIAoKVGhlIGZpbGUgd2hlcmUgdGhlIGRhdGEgc2hvdWxkIGJlIHdyaXR0ZW4gaXMgZ2l2ZW4gYnkKCmBgYHtyfQpzX3BlZF9kYXRhIDwtIGZpbGUucGF0aChoZXJlOjpoZXJlKCksICJkb2NzIiwgImRhdGEiLCAicGVkX251bV9yZWxfbWF0LmNzdiIpCmBgYAoKVGhlIHBlZGlncmVlIGlzIGRlZmluZWQgYXMKCmBgYHtyfQpucl9hbmltYWwgPC0gNgp0YmxfcGVkaWdyZWUgPC0gdGliYmxlOjp0aWJibGUoQ2FsZiA9IGMoMTpucl9hbmltYWwpLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgU2lyZSA9IGMoTkEsIE5BLCBOQSwgMSAsMywgNCksCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBEYW0gPSBjKE5BLCBOQSwgTkEsIDIsIDIsIDUpKQprbml0cjo6a2FibGUodGJsX3BlZGlncmVlLCBib29rdGFicyA9IFRSVUUsIGxvbmd0YWJsZSA9IFRSVUUpCmBgYAoKSWYgdGhlIGZpbGUgZG9lcyBub3QgZXhpc3QsIGl0IGlzIHdyaXR0ZW4gdG8gYSBmaWxlCgpgYGB7cn0KaWYgKCFmaWxlLmV4aXN0cyhzX3BlZF9kYXRhKSkKICByZWFkcjo6d3JpdGVfZGVsaW0odGJsX3BlZGlncmVlLCBmaWxlID0gc19wZWRfZGF0YSwgZGVsaW0gPSAiOyIpCmBgYAoKCmBgYHtyfQpzX3BlZF9zbCA8LSBmaWxlLnBhdGgoaGVyZTo6aGVyZSgpLCAiZG9jcyIsICJkYXRhIiwgInBlZF9zbF9yZWxfbWF0LmNzdiIpCgpgYGAKCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUHJlcGFyZSBQZWRpZ3JlZSBEYXRhIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgoKVGhlIGZvbGxvd2luZyBwcmVwYXJlcyB0aGUgcGVkaWdyZWUgZGF0YSBmb3IgbGJnX2V4MDcuIAoKVGhlIGZpbGUgd2hlcmUgdGhlIGRhdGEgc2hvdWxkIGJlIHdyaXR0ZW4gaXMgZ2l2ZW4gYnkKCmBgYHtyfQpzX3BlZF9kYXRhIDwtIGZpbGUucGF0aChoZXJlOjpoZXJlKCksICJkb2NzIiwgImRhdGEiLCAicGVkX251bV9yZWxfbWF0LmNzdiIpCmBgYAoKVGhlIHBlZGlncmVlIGlzIGRlZmluZWQgYXMKCmBgYHtyfQpucl9hbmltYWwgPC0gNgp0YmxfcGVkaWdyZWUgPC0gdGliYmxlOjp0aWJibGUoQ2FsZiA9IGMoMTpucl9hbmltYWwpLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgU2lyZSA9IGMoTkEsIE5BLCBOQSwgMSAsMywgNCksCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBEYW0gPSBjKE5BLCBOQSwgTkEsIDIsIDIsIDUpKQprbml0cjo6a2FibGUodGJsX3BlZGlncmVlLCBib29rdGFicyA9IFRSVUUsIGxvbmd0YWJsZSA9IFRSVUUpCmBgYAoKSWYgdGhlIGZpbGUgZG9lcyBub3QgZXhpc3QsIGl0IGlzIHdyaXR0ZW4gdG8gYSBmaWxlCgpgYGB7cn0KaWYgKCFmaWxlLmV4aXN0cyhzX3BlZF9kYXRhKSkKICByZWFkcjo6d3JpdGVfZGVsaW0odGJsX3BlZGlncmVlLCBmaWxlID0gc19wZWRfZGF0YSwgZGVsaW0gPSAiOyIpCmBgYAoKCmBgYHtyfQpzX3BlZF9zbCA8LSBmaWxlLnBhdGgoaGVyZTo6aGVyZSgpLCAiZG9jcyIsICJkYXRhIiwgInBlZF9zbF9yZWxfbWF0LmNzdiIpCm5fbnJfYW5pX3BlZCA8LSA2Cm5fbnJfcGFyZW50IDwtIDIKdGJsX3BlZCA8LSB0aWJibGU6OnRpYmJsZShDYWxmID0gYygobl9ucl9wYXJlbnQrMSk6bl9ucl9hbmlfcGVkKSwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICBTaXJlID0gYygxLCAxLCA0LCA1KSwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICBEYW0gID0gYygyLCBOQSwgMywgMikpCmlmICghZmlsZS5leGlzdHMoc19wZWRfc2wpKQogIHJlYWRyOjp3cml0ZV9kZWxpbSh0YmxfcGVkLCBmaWxlID0gc19wZWRfc2wsIGRlbGltID0gIjsiKQoKYGBgCgoK</div>
 
 
 
