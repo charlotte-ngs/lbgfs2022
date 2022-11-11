@@ -30,3 +30,9 @@ if (!file.exists(s_ped_data))
 ```
 
 
+```{r}
+s_ped_sl <- file.path(here::here(), "docs", "data", "ped_sl_rel_mat.csv")
+
+```
+
+

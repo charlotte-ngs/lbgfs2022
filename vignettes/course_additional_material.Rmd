@@ -118,7 +118,7 @@ knitr::kable(tbl_ohp)
 
 ```{r, data-table, echo=FALSE, message=FALSE, warning=FALSE}
 s_data_url <- file.path(root_url, "data/")
-tbl_data <- tibble::tibble(Nr = c(1,2,3,4,5,6),
+tbl_data <- tibble::tibble(Nr = c(1,2,3,4,5,6,7),
                            Date = c(rep("2022-09-30", 2),
                                     "2022-10-14",
                                     "2022-10-28",
@@ -130,7 +130,8 @@ tbl_data <- tibble::tibble(Nr = c(1,2,3,4,5,6),
                              paste0("[QTL Data](", s_data_url, "p1_qtl_1_loci.csv)", collapse = ""),
                              paste0("[Weaning weight data](", s_data_url, "beef_data_bc.csv)", collapse = ""),
                              paste0("[Pedigree Example 1](", s_data_url, "ped_ex1.csv)", collapse = ""),
-                             paste0("[Pedigree numerator relationship matrix](", s_data_url, "ped_num_rel_mat.csv)", collapse = "")
+                             paste0("[Pedigree numerator relationship matrix](", s_data_url, "ped_num_rel_mat.csv)", collapse = ""),
+                             paste0("[Pedigree from slides](", s_data_url,"ped_sl_rel_mat.csv)", collapse = "")
                            ))
 knitr::kable(tbl_data)
 ```
