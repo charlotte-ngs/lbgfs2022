@@ -1767,10 +1767,18 @@ display: none;
 <!-- rnb-text-begin -->
 <div id="problem-1-qtl-data" class="section level2">
 <h2>Problem 1: QTL Data</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 <p>Estimate genotypic values <span class="math inline">\(a\)</span> and
 <span class="math inline">\(d\)</span> and predict breeding values for
 all animals using the QTL-data given under:</p>
-<p><a href="https://charlotte-ngs.github.io/lbgfs2022/data/p1_qtl_1_loci.csv" class="uri">https://charlotte-ngs.github.io/lbgfs2022/data/p1_qtl_1_loci.csv</a>.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<p><a href="https://charlotte-ngs.github.io/lbgfs2022/data/p1_qtl_1_loci.csv" class="uri">https://charlotte-ngs.github.io/lbgfs2022/data/p1_qtl_1_loci.csv</a></p>
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 <div id="your-solution" class="section level3">
 <h3>Your Solution</h3>
 <ul>
@@ -1779,17 +1787,48 @@ genotype</li>
 <li>Use a linear regression to estimate genotypic values</li>
 <li>Predict breeding values for all animals</li>
 </ul>
+</div>
+</div>
+<div id="problem-2-increase-effects-of-genotype-on-phenotype" class="section level2">
+<h2>Problem 2: Increase Effects of Genotype on Phenotype</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Change the phenotypic records in the above given dataset such that
+the QTL explains <span class="math inline">\(50%\)</span> of the genetic
+variation when a heritability of <span class="math inline">\(0.45\)</span> is assumed. It is assumed that the
+QTL acts purely additively, hence the genotypic value of the
+heterozygotes can be set to <span class="math inline">\(d=0\)</span>.</p>
+<p>Show the results as a scatter plot of all phenotypic values for the
+QTL genotypes.</p>
+<div id="your-solution-1" class="section level3">
+<h3>Your Solution</h3>
+<ul>
+<li>Compute the genetic variance that can be attributed to the QTL based
+on the phenotypic variance on the heritability and on the amount of
+variation explained by the QTL.</li>
+<li>Read the data and convert the paternal and the maternal alleles to
+QTL-genotypes</li>
+<li>Compute allele frequencies</li>
+<li>Compute the genotypic value <span class="math inline">\(a\)</span>
+from the QTL variance</li>
+<li>Add genotypic value to the phenotypes according to the
+QTL-Genotype</li>
+<li>Fit regression of new phenotypes on genotypes</li>
+<li>Show the results with plots</li>
+</ul>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <hr />
-<p><em>Latest Changes: 2022-10-14 08:28:41 (pvr)</em></p>
+<p><em>Latest Changes: 2022-11-11 05:21:35 (pvr)</em></p>
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiBMaXZlc3RvY2sgQnJlZWRpbmcgYW5kIEdlbm9taWNzIC0gTm90ZWJvb2sgNAphdXRob3I6IFBldGVyIHZvbiBSb2hyCmRhdGU6ICcyMDIyLTEwLTE0JwpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKcGFyYW1zOgogIGRvY3R5cGU6CiAgICBsYWJlbDogRG9jdW1lbnQgVHlwZQogICAgdmFsdWU6IHNvbHV0aW9uCiAgICBjaG9pY2VzOgogICAgLSBleGVyY2lzZQogICAgLSBzb2x1dGlvbgogICAgLSBub3RlYm9vawogIGlzb25saW5lOgogICAgbGFiZWw6IE9ubGluZSAoeS9uKQogICAgdmFsdWU6IHRydWUKICAgIGNob2ljZXM6CiAgICAtIHRydWUKICAgIC0gZmFsc2UKLS0tCgoKCmBgYHtyIHNldHVwLCBpbmNsdWRlPUZBTFNFfQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUpCmBgYAoKCiMjIFByb2JsZW0gMTogUVRMIERhdGEKRXN0aW1hdGUgZ2Vub3R5cGljIHZhbHVlcyAkYSQgYW5kICRkJCBhbmQgcHJlZGljdCBicmVlZGluZyB2YWx1ZXMgZm9yIGFsbCBhbmltYWxzIHVzaW5nIHRoZSBRVEwtZGF0YSBnaXZlbiB1bmRlcjoKCmh0dHBzOi8vY2hhcmxvdHRlLW5ncy5naXRodWIuaW8vbGJnZnMyMDIyL2RhdGEvcDFfcXRsXzFfbG9jaS5jc3YuICAKCiMjIyBZb3VyIFNvbHV0aW9uCgoqIFN0YXJ0IGJ5IHJlLWZvcm1hdHRpbmcgdGhlIHBhdGVybmFsIGFuZCBtYXRlcm5hbCBhbGxlbGVzIGludG8gYSBnZW5vdHlwZQoqIFVzZSBhIGxpbmVhciByZWdyZXNzaW9uIHRvIGVzdGltYXRlIGdlbm90eXBpYyB2YWx1ZXMKKiBQcmVkaWN0IGJyZWVkaW5nIHZhbHVlcyBmb3IgYWxsIGFuaW1hbHMKCgoKIAoKCmBgYHtyLCBlY2hvPUZBTFNFLCByZXN1bHRzPSdhc2lzJ30KY2F0KCdcbi0tLVxuXG4gX0xhdGVzdCBDaGFuZ2VzOiAnLCBmb3JtYXQoU3lzLnRpbWUoKSwgJyVZLSVtLSVkICVIOiVNOiVTJyksICcgKCcsIFN5cy5pbmZvKClbJ3VzZXInXSwgJylfXG4nLCBzZXAgPSAnJykKYGBgCiAK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiBMaXZlc3RvY2sgQnJlZWRpbmcgYW5kIEdlbm9taWNzIC0gTm90ZWJvb2sgNAphdXRob3I6IFBldGVyIHZvbiBSb2hyCmRhdGU6ICcyMDIyLTEwLTE0JwpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKcGFyYW1zOgogIGRvY3R5cGU6CiAgICBsYWJlbDogRG9jdW1lbnQgVHlwZQogICAgdmFsdWU6IHNvbHV0aW9uCiAgICBjaG9pY2VzOgogICAgLSBleGVyY2lzZQogICAgLSBzb2x1dGlvbgogICAgLSBub3RlYm9vawogIGlzb25saW5lOgogICAgbGFiZWw6IE9ubGluZSAoeS9uKQogICAgdmFsdWU6IHRydWUKICAgIGNob2ljZXM6CiAgICAtIHRydWUKICAgIC0gZmFsc2UKLS0tCgoKCmBgYHtyIHNldHVwLCBpbmNsdWRlPUZBTFNFfQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUpCmBgYAoKCiMjIFByb2JsZW0gMTogUVRMIERhdGEKYGBge3IgcDAxLXNldHVwLCBlY2hvPUZBTFNFfQppZiAocGFyYW1zJGlzb25saW5lKXsKICBzX2RhdGFfcGF0aCA8LSAiaHR0cHM6Ly9jaGFybG90dGUtbmdzLmdpdGh1Yi5pby9sYmdmczIwMjIvZGF0YS9wMV9xdGxfMV9sb2NpLmNzdiIgIAp9IGVsc2UgewogIHNfZGF0YV9wYXRoIDwtIGZpbGUucGF0aChoZXJlOjpoZXJlKCksICJkb2NzIiwgImRhdGEiLCAicDFfcXRsXzFfbG9jaS5jc3YiKQp9CmBgYAoKRXN0aW1hdGUgZ2Vub3R5cGljIHZhbHVlcyAkYSQgYW5kICRkJCBhbmQgcHJlZGljdCBicmVlZGluZyB2YWx1ZXMgZm9yIGFsbCBhbmltYWxzIHVzaW5nIHRoZSBRVEwtZGF0YSBnaXZlbiB1bmRlcjoKCmBgYHtyLCBlY2hvPUZBTFNFLCByZXN1bHRzPSdhc2lzJ30KY2F0KHNfZGF0YV9wYXRoLCAiXG4iKQpgYGAKCgojIyMgWW91ciBTb2x1dGlvbgoKKiBTdGFydCBieSByZS1mb3JtYXR0aW5nIHRoZSBwYXRlcm5hbCBhbmQgbWF0ZXJuYWwgYWxsZWxlcyBpbnRvIGEgZ2Vub3R5cGUKKiBVc2UgYSBsaW5lYXIgcmVncmVzc2lvbiB0byBlc3RpbWF0ZSBnZW5vdHlwaWMgdmFsdWVzCiogUHJlZGljdCBicmVlZGluZyB2YWx1ZXMgZm9yIGFsbCBhbmltYWxzCgoKCiAKCiMjIFByb2JsZW0gMjogSW5jcmVhc2UgRWZmZWN0cyBvZiBHZW5vdHlwZSBvbiBQaGVub3R5cGUKYGBge3IgcDAyLXNldHVwLCBlY2hvPUZBTFNFfQppZiAocGFyYW1zJGlzb25saW5lKXsKICBzX2RhdGFfcGF0aCA8LSAiaHR0cHM6Ly9jaGFybG90dGUtbmdzLmdpdGh1Yi5pby9sYmdmczIwMjIvZGF0YS9wMV9xdGxfMV9sb2NpLmNzdiIgIAp9IGVsc2UgewogIHNfZGF0YV9wYXRoIDwtIGZpbGUucGF0aChoZXJlOjpoZXJlKCksICJkb2NzIiwgImRhdGEiLCAicDFfcXRsXzFfbG9jaS5jc3YiKQp9Cm5faDJfYWxsIDwtIDAuNDUKbl9yYXRpb19xdGwgPC0gMC41IApgYGAKCkNoYW5nZSB0aGUgcGhlbm90eXBpYyByZWNvcmRzIGluIHRoZSBhYm92ZSBnaXZlbiBkYXRhc2V0IHN1Y2ggdGhhdCB0aGUgUVRMIGV4cGxhaW5zICRgciBuX3JhdGlvX3F0bCAqIDEwMGAlJCBvZiB0aGUgZ2VuZXRpYyB2YXJpYXRpb24gd2hlbiBhIGhlcml0YWJpbGl0eSBvZiAkYHIgbl9oMl9hbGxgJCBpcyBhc3N1bWVkLiBJdCBpcyBhc3N1bWVkIHRoYXQgdGhlIFFUTCBhY3RzIHB1cmVseSBhZGRpdGl2ZWx5LCBoZW5jZSB0aGUgZ2Vub3R5cGljIHZhbHVlIG9mIHRoZSBoZXRlcm96eWdvdGVzIGNhbiBiZSBzZXQgdG8gJGQ9MCQuIAoKU2hvdyB0aGUgcmVzdWx0cyBhcyBhIHNjYXR0ZXIgcGxvdCBvZiBhbGwgcGhlbm90eXBpYyB2YWx1ZXMgZm9yIHRoZSBRVEwgZ2Vub3R5cGVzLgoKIyMjIFlvdXIgU29sdXRpb24KCiogQ29tcHV0ZSB0aGUgZ2VuZXRpYyB2YXJpYW5jZSB0aGF0IGNhbiBiZSBhdHRyaWJ1dGVkIHRvIHRoZSBRVEwgYmFzZWQgb24gdGhlIHBoZW5vdHlwaWMgdmFyaWFuY2Ugb24gdGhlIGhlcml0YWJpbGl0eSBhbmQgb24gdGhlIGFtb3VudCBvZiB2YXJpYXRpb24gZXhwbGFpbmVkIGJ5IHRoZSBRVEwuIAoqIFJlYWQgdGhlIGRhdGEgYW5kIGNvbnZlcnQgdGhlIHBhdGVybmFsIGFuZCB0aGUgbWF0ZXJuYWwgYWxsZWxlcyB0byBRVEwtZ2Vub3R5cGVzCiogQ29tcHV0ZSBhbGxlbGUgZnJlcXVlbmNpZXMKKiBDb21wdXRlIHRoZSBnZW5vdHlwaWMgdmFsdWUgJGEkIGZyb20gdGhlIFFUTCB2YXJpYW5jZQoqIEFkZCBnZW5vdHlwaWMgdmFsdWUgdG8gdGhlIHBoZW5vdHlwZXMgYWNjb3JkaW5nIHRvIHRoZSBRVEwtR2Vub3R5cGUKKiBGaXQgcmVncmVzc2lvbiBvZiBuZXcgcGhlbm90eXBlcyBvbiBnZW5vdHlwZXMKKiBTaG93IHRoZSByZXN1bHRzIHdpdGggcGxvdHMKCgoKCiAKCgpgYGB7ciwgZWNobz1GQUxTRSwgcmVzdWx0cz0nYXNpcyd9CmNhdCgnXG4tLS1cblxuIF9MYXRlc3QgQ2hhbmdlczogJywgZm9ybWF0KFN5cy50aW1lKCksICclWS0lbS0lZCAlSDolTTolUycpLCAnICgnLCBTeXMuaW5mbygpWyd1c2VyJ10sICcpX1xuJywgc2VwID0gJycpCmBgYAogCg==</div>
 
 
 

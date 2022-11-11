@@ -128,6 +128,50 @@ n_val_d <-  n_mean_het - n_value_a - n_inter
 
 $$d = `r n_mean_het` - `r n_value_a` - `r n_inter` = `r n_val_d`$$
 
+To compute the breeding values, we need the allele substitution effect $\alpha$ and the allele frequencies $p$ and $q$. The genotype frequencies are computed with
+
+```{r}
+(tbl_qtl_freq <- tbl_qtl_geno %>%
+  group_by(Genotype) %>%
+  summarise(geno_count = n(),
+            geno_freq = geno_count/nrow(tbl_qtl_geno)))
+```
+
+The allele frequencies $p$ and $q$ is 
+
+```{r}
+n_geno_freq_g2g2 <- tbl_qtl_freq$geno_freq[1]
+n_geno_freq_g1g2 <- tbl_qtl_freq$geno_freq[2]
+n_geno_freq_g1g1 <- tbl_qtl_freq$geno_freq[3]
+n_allele_freq_q <- n_geno_freq_g2g2 + 0.5 * n_geno_freq_g1g2
+n_allele_freq_p <- n_geno_freq_g1g1 + 0.5 * n_geno_freq_g1g2
+```
+
+
+```{r}
+n_alpha = n_value_a + (n_allele_freq_q - n_allele_freq_p) * n_val_d
+```
+
+
+$$\alpha = a + (q-p)d = `r n_value_a` + (`r n_allele_freq_q` - `r n_allele_freq_p`) * `r n_val_d` = `r n_alpha`$$
+
+The breeding values for the three genotypes are 
+
+```{r}
+n_bv_g1g1 <- 2 * n_allele_freq_q * n_alpha
+n_bv_g1g2 <- (n_allele_freq_q - n_allele_freq_p) * n_alpha
+n_bv_g2g2 <- -2 * n_allele_freq_p * n_alpha
+```
+
+In a table this is 
+
+```{r}
+tbl_bv <- tibble::tibble(Genotype = c("$G_1G_1$", "$G_1G_2$", "$G_2G_2$"),
+                         `Breeding Value` = c(paste("$2q\\alpha = $", n_bv_g1g1),
+                                              paste("$(q-p)\\alpha = $", n_bv_g1g2),
+                                              paste("$-2p\\alpha = $", n_bv_g2g2)))
+knitr::kable(tbl_bv, longtable = TRUE, booktabs = TRUE, escape = FALSE)
+```
 
 
 <!-- master-solution-end -->
