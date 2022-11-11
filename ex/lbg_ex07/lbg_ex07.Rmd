@@ -1,0 +1,113 @@
+---
+title: Livestock Breeding and Genomics - `r tools::toTitleCase(params$doctype)` 7
+author: Peter von Rohr
+date: 2022-11-11
+output:
+  bookdown::pdf_document2:
+    toc: false
+    number_sections: false
+    keep_md: false
+    keep_tex: false
+header-includes:
+ \usepackage{longtable}
+ \usepackage{float}
+params:
+  doctype:
+    label: 'Document Type'
+    value: 'solution'
+    choices: ['exercise', 'solution', 'notebook']
+  isonline:
+    label: 'Online (y/n)'
+    value: TRUE
+    choices: [TRUE, FALSE]
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Problem 1: Numerator Relationship Matrix
+```{r lbg-ex07-p01-setup, echo=FALSE, message=FALSE, warning=FALSE}
+# if (params$isonline){
+  s_ped_data <- "https://charlotte-ngs.github.io/lbgfs2022/data/ped_num_rel_mat.csv"
+# } else {
+#   s_ped_data <- file.path(here::here(), "docs", "data", "ped_num_rel_mat.csv")
+# }
+```
+
+The following pedigree is given
+
+```{r, echo=FALSE}
+nr_animal <- 6
+tbl_pedigree <- readr::read_delim(file = s_ped_data, 
+                                  col_types = readr::cols(Calf = readr::col_integer(),
+                                                          Sire = readr::col_integer(),
+                                                          Dam = readr::col_integer()))
+knitr::kable(tbl_pedigree, booktabs = TRUE, longtable = TRUE)
+```
+
+The pedigree can be read from the file
+
+```{r, echo=FALSE}
+cat(s_ped_data, "\n")
+```
+
+Compute the numerator relationship matrix $A$ for the given pedigree. Recall from the course notes that elements of matrix $A$ are computed differently for elements on the diagonal and for off-diagonal elements. In summary, we compute
+
+* diagonal element $(A)_{ii}$ as $(A)_{ii} = 1+F_i$ where $F_i = 0.5 * (A)_{sd}$ where $s$ and $d$ are parents of $i$. 
+* off-diagonal element $(A)_{ki}$ as $(A)_{ki} = 0.5 * \left[(A)_{ks} + (A)_{kd}\right]$ where $s$ and $d$ are parents of $i$
+
+
+### Task
+Use two nested loops over the rows and the columns of matrix $A$ to compute all the elements of matrix $A$ using the formulas given above.
+
+<!-- your-solution-start
+### Your Solution
+
+* Create an empty square matrix $A$ with as many rows and columns as we have animals in the pedigree.
+* Use the above formula to compute the diagonal element of the first row
+* Create a first loop to compute all the off-diagonal elements of the first row
+* Create a loop to repeat the computations over all rows.
+
+---  your-solution-end -->
+
+
+<!-- master-solution-start -->
+
+### Solution
+
+<!-- master-solution-end -->
+
+
+## Problem 2: Verification
+Use the function `pedigreemm::getA()` from package `pedigreemm` to verify your result from problem 1.
+
+<!-- your-solution-start
+### Your Solution
+
+---  your-solution-end -->
+
+
+<!-- master-solution-start -->
+
+### Solution
+
+<!-- master-solution-end -->
+
+
+## Problem 3
+
+<!-- your-solution-start
+### Your Solution
+
+---  your-solution-end -->
+
+
+<!-- master-solution-start -->
+
+### Solution
+
+<!-- master-solution-end -->
+ 

@@ -1,0 +1,32 @@
+---
+title: "Prepare Pedigree Data"
+output: html_notebook
+---
+
+
+The following prepares the pedigree data for lbg_ex07. 
+
+The file where the data should be written is given by
+
+```{r}
+s_ped_data <- file.path(here::here(), "docs", "data", "ped_num_rel_mat.csv")
+```
+
+The pedigree is defined as
+
+```{r}
+nr_animal <- 6
+tbl_pedigree <- tibble::tibble(Calf = c(1:nr_animal),
+                               Sire = c(NA, NA, NA, 1 ,3, 4),
+                               Dam = c(NA, NA, NA, 2, 2, 5))
+knitr::kable(tbl_pedigree, booktabs = TRUE, longtable = TRUE)
+```
+
+If the file does not exist, it is written to a file
+
+```{r}
+if (!file.exists(s_ped_data))
+  readr::write_delim(tbl_pedigree, file = s_ped_data, delim = ";")
+```
+
+
