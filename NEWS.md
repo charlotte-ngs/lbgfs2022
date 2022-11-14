@@ -1,3 +1,7 @@
+# lbgfs2022 0.8.1
+
+* Added link to video and ohpl08
+
 # lbgfs2022 0.8.0
 
 * Deployed lbg_ex07
