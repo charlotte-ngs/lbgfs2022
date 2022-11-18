@@ -23,14 +23,15 @@ Additional material for the course is shown below.
 root_url <- "https://charlotte-ngs.github.io/lbgfs2022" 
 sl_url <- paste0(root_url, "/sl/")
 misc_url <- paste0(root_url, "/misc/")
-tbl_sl <- tibble::tibble(Nr = c(1, 2, 3, 4, 5, 6, 7),
+tbl_sl <- tibble::tibble(Nr = c(1, 2, 3, 4, 5, 6, 7, 8),
                          Date = c("2022-09-23",
                                   "2022-09-30",
                                   "2022-10-07",
                                   "2022-10-21",
                                   "2022-10-28",
                                   "2022-11-04",
-                                  "2022-11-04"),
+                                  "2022-11-04",
+                                  "2022-11-18"),
                          Topic = c(
                            paste0("[Introduction to Livestock Breeding and Genomics](", 
                                   sl_url, 
@@ -59,10 +60,33 @@ tbl_sl <- tibble::tibble(Nr = c(1, 2, 3, 4, 5, 6, 7),
                            paste0("[Inverse Numerator Relationship Matrix](",
                                   sl_url,
                                   "lbgfs2021_l06_slides_invnumrelmat.pdf)",
+                                  collapse = ""),
+                           paste0("[Variance and Inbreeding](",
+                                  sl_url,
+                                  "lbgfs2022_l07_slides_var_inb.pdf)",
                                   collapse = "")
                          ))
 knitr::kable(tbl_sl)
 ```                         
+
+# Slides with Notes
+
+```{r sl-with-notes, echo=FALSE, message=FALSE, warning=FALSE}
+slwn_url <- paste0(root_url, "/sl_with_notes/")
+tbl_slwn <- tibble::tibble(Nr = c(1, 2),
+                           Date = c(rep("2022-11-18", 2)),
+                           Topic = c(
+                             paste0("[Inverse Numerator Relationship Matrix](",
+                                  slwn_url,
+                                  "lbgfs2021_l06_slides_invnumrelmat_with_notes.pdf)",
+                                  collapse = ""),
+                             paste0("[Variance and Inbreeding](",
+                                    slwn_url,
+                                    "lbgfs2022_l07_slides_var_inb_with_notes.pdf)",
+                                    collapse = "")
+                             ))
+knitr::kable(tbl_slwn)
+```
 
 
 # Videos
