@@ -28,11 +28,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Problem 1: Numerator Relationship Matrix
 ```{r lbg-ex07-p01-setup, echo=FALSE, message=FALSE, warning=FALSE}
-if (params$isonline){
+# if (params$isonline){
   s_ped_data <- "https://charlotte-ngs.github.io/lbgfs2022/data/ped_num_rel_mat.csv"
-} else {
-   s_ped_data <- file.path(here::here(), "docs", "data", "ped_num_rel_mat.csv")
-}
+# } else {
+#    s_ped_data <- file.path(here::here(), "docs", "data", "ped_num_rel_mat.csv")
+# }
 ```
 
 The following pedigree is given

@@ -30,11 +30,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Problem 1: Numerator Relationship Matrix
 ```{r lbg-ex07-p01-setup, echo=FALSE, message=FALSE, warning=FALSE}
-if (params$isonline){
+# if (params$isonline){
   s_ped_data <- "https://charlotte-ngs.github.io/lbgfs2022/data/ped_num_rel_mat.csv"
-} else {
-   s_ped_data <- file.path(here::here(), "docs", "data", "ped_num_rel_mat.csv")
-}
+# } else {
+#    s_ped_data <- file.path(here::here(), "docs", "data", "ped_num_rel_mat.csv")
+# }
 ```
 
 The following pedigree is given
@@ -95,7 +95,9 @@ tbl_ped
 Find animals that appear only as parents, start with sires
 
 ```{r}
-vec_founder_sire_idx <- sapply(tbl_ped$Sire[!is.na(tbl_ped$Sire)], function(x) !is.element(x, tbl_ped$Calf), USE.NAMES = FALSE)
+vec_founder_sire_idx <- sapply(tbl_ped$Sire[!is.na(tbl_ped$Sire)], 
+                               function(x) !is.element(x, tbl_ped$Calf), 
+                               USE.NAMES = FALSE)
 vec_founder_sire <- unique(tbl_ped$Sire[vec_founder_sire_idx])
 vec_founder_sire
 ```
@@ -103,7 +105,9 @@ vec_founder_sire
 The same for the dams
 
 ```{r}
-vec_founder_dam_idx <- sapply(tbl_ped$Dam[!is.na(tbl_ped$Dam)], function(x) !is.element(x, tbl_ped$Calf), USE.NAMES = FALSE)
+vec_founder_dam_idx <- sapply(tbl_ped$Dam[!is.na(tbl_ped$Dam)], 
+                              function(x) !is.element(x, tbl_ped$Calf), 
+                              USE.NAMES = FALSE)
 vec_founder_dam <- unique(tbl_ped$Dam[vec_founder_dam_idx])
 vec_founder_dam
 ```
