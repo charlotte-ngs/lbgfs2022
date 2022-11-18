@@ -18,7 +18,7 @@ knitr::knit_hooks$set(hook_convert_odg = rmdhelp::hook_convert_odg)
 
 * Look at a simple example of $A$ and $A^{-1}$
 
-```{r simplepedexamplesetup, echo=FALSE, results='hide'}
+```{r simplepedexamplesetup, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
 ### # first six animals from Goetz p. 83
 suppressPackageStartupMessages( library(pedigreemm) )
 n_nr_ani_ped <- 5
@@ -161,64 +161,6 @@ cat("$$\n")
 * Result: Decomposition of true breeding values
 
 $$u = P \cdot u + m$$
-
-
-## Decomposition of Variance
-
-* Analogous decomposition of $var(u_i)$
-
-\begin{align}
-var(u_i)  &=  var(1/2u_s + 1/2u_d + m_i) \notag \\
-          &=  var(1/2u_s)  + var(1/2u_d) + {1\over 2} * cov(u_s, u_d) + var(m_i) \notag \\
-          &=  1/4 var(u_s) + 1/4 var(u_d) + {1\over 2} * cov(u_s, u_d) + var(m_i) \notag 
-\end{align}
-
-* From the definition of $A$
-
-\begin{align}
-var(u_i)  &=  (1 + F_i) \sigma_u^2 \notag \\
-var(u_s)  &=  (1 + F_s) \sigma_u^2 \notag \\
-var(u_d)  &=  (1 + F_d) \sigma_u^2 \notag \\
-cov(u_s, u_d)  &=  (A)_{sd} \sigma_u^2 = 2F_i \sigma_u^2 \notag
-\end{align}
-
-
-## Variance of Mendelian Sampling Terms
-
-* What is $var(m_i)$?
-
-* Solve equation for $var(u_i)$ for $var(m_i)$
-
-\begin{align}
-var(m_i)  &=  var(u_i) - 1/4 var(u_s) - 1/4 var(u_d) - 2 * cov(u_s, u_d) \notag
-\end{align}
-
-* Insert definitions from $A$
-
-\begin{align}
-var(m_i)  &=  (1 + F_i) \sigma_u^2 - 1/4 (1 + F_s) \sigma_u^2 - 1/4 (1 + F_d) \sigma_u^2 - {1\over 2} * 2 * F_i \sigma_u^2 \notag \\
-          &=  \left({1\over 2} - {1\over 4}(F_s + F_d)\right) \sigma_u^2 \notag
-\end{align}
-
-* True, for both parents $s$ and $d$ of animal $i$ are known
-
-
-## Unknown Parents
-
-* Only parent $s$ of animal $i$ is known
-
-\begin{align}
-u_i       &=  {1\over 2} u_s + m_i \notag \\
-var(m_i)  &=  \left(1 - {1\over 4}(1+ F_s)\right) \sigma_u^2 \notag \\
-          &=  \left({3\over 4} - {1\over 4}F_s\right) \sigma_u^2 \notag
-\end{align}
-
-* Both parents are unknown
-
-\begin{align}
-u_i       &=  m_i \notag \\
-var(m_i)  &=  \sigma_u^2 \notag
-\end{align}
 
 
 ## Recursive Decomposition
@@ -380,7 +322,65 @@ var(u)  &=  var(L \cdot m) \notag \\
 where $var(m)$ is the variance-covariance matrix of all components in vector $m$. 
 
 * covariances of components $m_i$, $cov(m_i, m_j) = 0$ for $i \ne j$
-* $var(m_i)$ computed as shown before
+* $var(m_i)$ computed as shown below
+
+
+## What is the Variance $var(m_i)$
+
+* Decomposition of $var(u_i)$ using $u_i = 1/2u_s + 1/2u_d + m_i$
+
+\begin{align}
+var(u_i)  &=  var(1/2u_s + 1/2u_d + m_i) \notag \\
+          &=  var(1/2u_s)  + var(1/2u_d) + {1\over 2} * cov(u_s, u_d) + var(m_i) \notag \\
+          &=  1/4 var(u_s) + 1/4 var(u_d) + {1\over 2} * cov(u_s, u_d) + var(m_i) \notag 
+\end{align}
+
+* From the definition of $A$
+
+\begin{align}
+var(u_i)  &=  (1 + F_i) \sigma_u^2 \notag \\
+var(u_s)  &=  (1 + F_s) \sigma_u^2 \notag \\
+var(u_d)  &=  (1 + F_d) \sigma_u^2 \notag \\
+cov(u_s, u_d)  &=  (A)_{sd} \sigma_u^2 = 2F_i \sigma_u^2 \notag
+\end{align}
+
+
+## Variance of Mendelian Sampling Terms
+
+* What is $var(m_i)$?
+
+* Solve equation for $var(u_i)$ for $var(m_i)$
+
+\begin{align}
+var(m_i)  &=  var(u_i) - 1/4 var(u_s) - 1/4 var(u_d) - 2 * cov(u_s, u_d) \notag
+\end{align}
+
+* Insert definitions from $A$
+
+\begin{align}
+var(m_i)  &=  (1 + F_i) \sigma_u^2 - 1/4 (1 + F_s) \sigma_u^2 - 1/4 (1 + F_d) \sigma_u^2 - {1\over 2} * 2 * F_i \sigma_u^2 \notag \\
+          &=  \left({1\over 2} - {1\over 4}(F_s + F_d)\right) \sigma_u^2 \notag
+\end{align}
+
+* True, for both parents $s$ and $d$ of animal $i$ are known
+
+
+## Unknown Parents
+
+* Only parent $s$ of animal $i$ is known
+
+\begin{align}
+u_i       &=  {1\over 2} u_s + m_i \notag \\
+var(m_i)  &=  \left(1 - {1\over 4}(1+ F_s)\right) \sigma_u^2 \notag \\
+          &=  \left({3\over 4} - {1\over 4}F_s\right) \sigma_u^2 \notag
+\end{align}
+
+* Both parents are unknown
+
+\begin{align}
+u_i       &=  m_i \notag \\
+var(m_i)  &=  \sigma_u^2 \notag
+\end{align}
 
 
 ## Result
