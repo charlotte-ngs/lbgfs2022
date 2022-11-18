@@ -1,3 +1,7 @@
+# lbgfs2022 0.9.0
+
+* Slides with notes
+
 # lbgfs2022 0.8.1
 
 * Added link to video and ohpl08
