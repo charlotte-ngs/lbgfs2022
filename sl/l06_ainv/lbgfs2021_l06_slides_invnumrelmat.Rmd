@@ -553,6 +553,13 @@ cat("\\right]\n")
 cat("$$ \\normalsize \n")
 ```
 
+## Decomposition of $A^{-1}$ III
+
+```{r decom-a-inv, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg", out.width="100%"}
+#rmdhelp::use_odg_graphic(ps_path = "odg/decom-a-inv.odg")
+knitr::include_graphics(path = "odg/decom-a-inv.png")
+```
+
 
 ## Henderson's Rules
 
@@ -570,4 +577,4 @@ cat("$$ \\normalsize \n")
     + add $1$ to diagonal-element $(i,i)$
 
 * Valid without inbreeding 
-  
+   
