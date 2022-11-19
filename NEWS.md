@@ -1,3 +1,7 @@
+# lbgfs2022 0.9.1
+
+* Link to video for l09
+
 # lbgfs2022 0.9.0
 
 * Slides with notes
