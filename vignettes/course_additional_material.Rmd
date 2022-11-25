@@ -78,8 +78,9 @@ knitr::kable(tbl_sl)
 
 ```{r sl-with-notes, echo=FALSE, message=FALSE, warning=FALSE}
 slwn_url <- paste0(root_url, "/sl_with_notes/")
-tbl_slwn <- tibble::tibble(Nr = c(1, 2),
-                           Date = c(rep("2022-11-18", 2)),
+tbl_slwn <- tibble::tibble(Nr = c(1, 2, 3),
+                           Date = c(rep("2022-11-18", 2),
+                                    "2022-11-25"),
                            Topic = c(
                              paste0("[Inverse Numerator Relationship Matrix](",
                                   slwn_url,
