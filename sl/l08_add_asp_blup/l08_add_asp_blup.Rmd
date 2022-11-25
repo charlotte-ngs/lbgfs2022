@@ -130,6 +130,22 @@ knitr::kable(tbl_interval_widths,
 with $\hat{u}_i = `r pred_bv`$, $var(u_i) = `r sigma_u^2`$ and $\alpha = `r alpha`$
 
 
+## Selection Response
+
+Correlation $r_{u_i,\hat{u}_i}$ for a single animal $i$
+
+* across conceptual repeated sampling
+* change of a predicted breeding value for animal $i$ with increasing information
+* related to standard error of prediction (SEP) $\rightarrow$ measure of risk of using $i$ as parent
+
+Accuracies also important for selection response
+
+* correlation between true and predicted breeding values in selection candidates
+* characteristic of population not of single animal
+* estimation with cross-validation
+
+$\rightarrow$ use correlation between predicted breeding values with whole and partial data
+
 ## Decomposition of Predicted Breeding Value
 
 * Write MME as 
