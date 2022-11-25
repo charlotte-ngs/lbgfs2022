@@ -102,7 +102,7 @@ knitr::kable(tbl_slwn)
 # Videos
 
 ```{r video-table, echo=FALSE, message=FALSE, warning=FALSE}
-tbl_video <- tibble::tibble(Nr = c(1, 2, 3, 4, 5, 6, 7, 8, 9),
+tbl_video <- tibble::tibble(Nr = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
                             Date = c("2022-09-23",
                                      "2022-09-30",
                                      "2022-10-07",
@@ -111,7 +111,8 @@ tbl_video <- tibble::tibble(Nr = c(1, 2, 3, 4, 5, 6, 7, 8, 9),
                                      "2022-10-28",
                                      "2022-11-04",
                                      "2022-11-11",
-                                     "2022-11-18"),
+                                     "2022-11-18",
+                                     "2022-11-25"),
                             Topic = c(
                               "[Introduction to Livestock Breeding](https://youtu.be/tp09u8Z5lOM)",
                               "[Quantiative Genetics](https://youtu.be/wBj1ZwkMyR4)",
@@ -121,7 +122,8 @@ tbl_video <- tibble::tibble(Nr = c(1, 2, 3, 4, 5, 6, 7, 8, 9),
                               "[Linear Fixed Effects Models and Linear Mixed Effects Models](https://youtu.be/EFtJcn9XvTs)",
                               "[Sire Model, Animal Model and Numerator Relationship Matrix](https://youtu.be/sQvt-ZtYcgk)",
                               "[Numerator Relationship Matrix, if-statements and loops in R](https://youtu.be/3uKjJWs2IAI)",
-                              "[Inverse Numerator Relationship Matrix](https://youtu.be/DguAfzDqPqc)"
+                              "[Inverse Numerator Relationship Matrix](https://youtu.be/DguAfzDqPqc)",
+                              "[Variance and Inbreeding](https://youtu.be/bXP_Y0gKOaA)"
                             ))
 knitr::kable(tbl_video)
 ```
