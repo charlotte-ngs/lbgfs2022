@@ -1,3 +1,7 @@
+# lbgfs2022 0.10.0
+
+* lbg_ex08
+
 # lbgfs2022 0.9.1
 
 * Link to video for l09
