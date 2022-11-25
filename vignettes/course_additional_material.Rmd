@@ -88,6 +88,10 @@ tbl_slwn <- tibble::tibble(Nr = c(1, 2),
                              paste0("[Variance and Inbreeding](",
                                     slwn_url,
                                     "lbgfs2022_l07_slides_var_inb_with_notes.pdf)",
+                                    collapse = ""),
+                             paste0("[Additional Aspects of BLUP](",
+                                    slwn_url,
+                                    "l08_add_asp_blup_with_notes.pdf)",
                                     collapse = "")
                              ))
 knitr::kable(tbl_slwn)
