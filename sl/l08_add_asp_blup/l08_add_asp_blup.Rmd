@@ -80,7 +80,7 @@ $$r_{u_i, \hat{u}_i} = \frac{cov(u_i, \hat{u}_i)}{\sqrt{var(u_i) * var(\hat{u}_i
 $$PEV(\hat{u}_i) = (C)_{ii}^{22} = var(u_i) - var(\hat{u}_i) = var(u_i) - r_{u_i, \hat{u}_i}^2 var(u_i)$$
 
 
-## Accuracy $B_i$
+## Reliability $B_i$
 
 $$B_i = r_{u_i, \hat{u}_i}^2 = \frac{var(u_i) - (C)_{ii}^{22}}{var(u_i)} = 1 - \frac{PEV(\hat{u}_i)}{var(u_i)}  
   = 1 - \frac{(C)_{ii}^{22}}{var(u_i)} $$
