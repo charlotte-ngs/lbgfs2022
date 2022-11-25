@@ -18,18 +18,20 @@ Solutions to exercises are listed here.
 
 ```{r, echo=FALSE, results='asis'}
 s_sol_url <- "https://charlotte-ngs.github.io/lbgfs2022/sol/"
-tbl_sol <- tibble::tibble(Nr = c(1, 2, 3, 4, 5),
+tbl_sol <- tibble::tibble(Nr = c(1, 2, 3, 4, 5, 6),
                           Date = c("2022-09-30",
                                   "2022-10-07",
                                   "2022-10-14",
                                   "2022-10-21",
-                                  "2022-10-28"),
+                                  "2022-10-28",
+                                  "2022-11-11"),
                           Topic = c(
                            paste0("[Linear Algebra](", s_sol_url, "lbg_ex02_sol.pdf)", collapse = ""),
                            paste0("[Quantitative Genetics](", s_sol_url, "lbg_ex03_sol.pdf)", collapse = ""),
                            paste0("[QTL Data](", s_sol_url, "lbg_ex04_sol.pdf)", collapse = ""),
                            paste0("[Genetic Evaluation](", s_sol_url, "lbg_ex05_sol.pdf)", collapse = ""),
-                           paste0("[Fixed linear effects model](", s_sol_url, "lbg_ex06_sol.pdf)", collapse = "")
+                           paste0("[Fixed linear effects model](", s_sol_url, "lbg_ex06_sol.pdf)", collapse = ""),
+                           paste0("[Numerator relationship matrix](", s_sol_url, "lbg_ex07_sol.pdf)", collapse = "")
                           ))
 knitr::kable(tbl_sol)
 ```
