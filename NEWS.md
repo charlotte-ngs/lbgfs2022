@@ -1,3 +1,7 @@
+# lbgfs2022 0.11.3
+
+* Link to video and slides with notes
+
 # lbgfs2022 0.11.2
 
 * Added link to lbg_ex09
