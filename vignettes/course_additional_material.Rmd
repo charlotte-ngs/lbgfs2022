@@ -83,9 +83,10 @@ knitr::kable(tbl_sl)
 
 ```{r sl-with-notes, echo=FALSE, message=FALSE, warning=FALSE}
 slwn_url <- paste0(root_url, "/sl_with_notes/")
-tbl_slwn <- tibble::tibble(Nr = c(1, 2, 3),
+tbl_slwn <- tibble::tibble(Nr = c(1, 2, 3, 4),
                            Date = c(rep("2022-11-18", 2),
-                                    "2022-11-25"),
+                                    "2022-11-25",
+                                    "2022-12-02"),
                            Topic = c(
                              paste0("[Inverse Numerator Relationship Matrix](",
                                   slwn_url,
@@ -98,6 +99,10 @@ tbl_slwn <- tibble::tibble(Nr = c(1, 2, 3),
                              paste0("[Additional Aspects of BLUP](",
                                     slwn_url,
                                     "l08_add_asp_blup_with_notes.pdf)",
+                                    collapse = ""),
+                             paste0("[Genomic Selection](",
+                                    slwn_url,
+                                    "l09_geno_sel_with_notes.pdf)",
                                     collapse = "")
                              ))
 knitr::kable(tbl_slwn)
@@ -107,7 +112,7 @@ knitr::kable(tbl_slwn)
 # Videos
 
 ```{r video-table, echo=FALSE, message=FALSE, warning=FALSE}
-tbl_video <- tibble::tibble(Nr = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+tbl_video <- tibble::tibble(Nr = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11),
                             Date = c("2022-09-23",
                                      "2022-09-30",
                                      "2022-10-07",
@@ -117,7 +122,8 @@ tbl_video <- tibble::tibble(Nr = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
                                      "2022-11-04",
                                      "2022-11-11",
                                      "2022-11-18",
-                                     "2022-11-25"),
+                                     "2022-11-25",
+                                     "2022-12-02"),
                             Topic = c(
                               "[Introduction to Livestock Breeding](https://youtu.be/tp09u8Z5lOM)",
                               "[Quantiative Genetics](https://youtu.be/wBj1ZwkMyR4)",
@@ -128,7 +134,8 @@ tbl_video <- tibble::tibble(Nr = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
                               "[Sire Model, Animal Model and Numerator Relationship Matrix](https://youtu.be/sQvt-ZtYcgk)",
                               "[Numerator Relationship Matrix, if-statements and loops in R](https://youtu.be/3uKjJWs2IAI)",
                               "[Inverse Numerator Relationship Matrix](https://youtu.be/DguAfzDqPqc)",
-                              "[Variance and Inbreeding](https://youtu.be/bXP_Y0gKOaA)"
+                              "[Variance and Inbreeding](https://youtu.be/bXP_Y0gKOaA)",
+                              "[Genomic Selection](https://youtu.be/PPVf_xHXqe4)"
                             ))
 knitr::kable(tbl_video)
 ```
