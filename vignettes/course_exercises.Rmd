@@ -19,7 +19,7 @@ Links to exercises are shown in the following table.
 ```{r, echo=FALSE, results='asis'}
 s_ex_url <- "https://charlotte-ngs.github.io/lbgfs2022/ex/"
 s_nb_url <- "https://charlotte-ngs.github.io/lbgfs2022/nb/"
-tbl_ex <- tibble::tibble(Nr = c(1, 2, 3, 4, 5, 6, 7, 8),
+tbl_ex <- tibble::tibble(Nr = c(1, 2, 3, 4, 5, 6, 7, 8, 9),
                          Date = c("2022-09-23",
                                   "2022-09-30",
                                   "2022-10-07",
@@ -27,7 +27,8 @@ tbl_ex <- tibble::tibble(Nr = c(1, 2, 3, 4, 5, 6, 7, 8),
                                   "2022-10-21",
                                   "2022-10-28",
                                   "2022-11-11",
-                                  "2022-11-25"),
+                                  "2022-11-25",
+                                  "2022-12-02"),
                          Topic = c(
                            paste0("[Questionnaire](", 
                                   s_ex_url, 
