@@ -1,3 +1,7 @@
+# lbgfs2022 0.11.2
+
+* Added link to lbg_ex09
+
 # lbgfs2022 0.11.1
 
 * Corrected typo in link to chpt 8 in cn
