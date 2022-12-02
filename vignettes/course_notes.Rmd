@@ -20,22 +20,40 @@ Chapters of course notes are linked below.
 
 ```{r chapter-table, echo=FALSE, message=FALSE, warning=FALSE}
 s_cn_url <- "https://charlotte-ngs.github.io/lbgfs2022/cn/"
-tbl_chpt <- tibble::tibble(Nr      = c(1, 2, 3, 4, 5, 6, 7),
+tbl_chpt <- tibble::tibble(Nr      = c(1, 2, 3, 4, 5, 6, 7, 8),
                            Date    = c("2022-09-23",
                                        "2022-09-30",
                                        "2022-10-07",
                                        "2022-10-21",
                                        "2022-10-28",
                                        "2022-11-04",
-                                       "2022-11-25"),
+                                       "2022-11-25",
+                                       "2022-12-02"),
                            Topic   = c(
-                             paste0("[Introduction to Livestock Breeding and Genomics](", s_cn_url, "01_intro.pdf)", collapse = ""),
-                             paste0("[Basics of Quantitative Genetics](", s_cn_url, "02_qg_basics.pdf)", collapse = ""),
-                             paste0("[Genetic Evaluation](", s_cn_url, "03_gen_eval.pdf)", collapse = ""),
-                             paste0("[BLUP](", s_cn_url, "04_blup.pdf)", collapse = ""),
-                             paste0("[Genetic Covariance between Animals](", s_cn_url, "05_gen_cov.pdf)", collapse = ""),
-                             paste0("[Variance and Inbreeding](", s_cn_url, "06_var_inb.pdf)", collapse = ""),
-                             paste0("[Additional Aspects of BLUP](", s_cn_url, "07_add_asp_blup.pdf)", collapse = "")
+                             paste0("[Introduction to Livestock Breeding and Genomics](", 
+                                    s_cn_url, 
+                                    "01_intro.pdf)", collapse = ""),
+                             paste0("[Basics of Quantitative Genetics](", 
+                                    s_cn_url, 
+                                    "02_qg_basics.pdf)", collapse = ""),
+                             paste0("[Genetic Evaluation](", 
+                                    s_cn_url, 
+                                    "03_gen_eval.pdf)", collapse = ""),
+                             paste0("[BLUP](", 
+                                    s_cn_url, 
+                                    "04_blup.pdf)", collapse = ""),
+                             paste0("[Genetic Covariance between Animals](", 
+                                    s_cn_url, 
+                                    "05_gen_cov.pdf)", collapse = ""),
+                             paste0("[Variance and Inbreeding](", 
+                                    s_cn_url, 
+                                    "06_var_inb.pdf)", collapse = ""),
+                             paste0("[Additional Aspects of BLUP](", 
+                                    s_cn_url, 
+                                    "07_add_asp_blup.pdf)", collapse = ""),
+                             paste0("[Genomic Selection](",
+                                    s_cn_url,
+                                    "08_gen_sel.pdf", collapse = "")
                              ))
 knitr::kable(tbl_chpt)
 ```

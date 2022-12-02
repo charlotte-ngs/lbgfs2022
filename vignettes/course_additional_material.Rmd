@@ -23,7 +23,7 @@ Additional material for the course is shown below.
 root_url <- "https://charlotte-ngs.github.io/lbgfs2022" 
 sl_url <- paste0(root_url, "/sl/")
 misc_url <- paste0(root_url, "/misc/")
-tbl_sl <- tibble::tibble(Nr = c(1, 2, 3, 4, 5, 6, 7, 8, 9),
+tbl_sl <- tibble::tibble(Nr = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
                          Date = c("2022-09-23",
                                   "2022-09-30",
                                   "2022-10-07",
@@ -32,7 +32,8 @@ tbl_sl <- tibble::tibble(Nr = c(1, 2, 3, 4, 5, 6, 7, 8, 9),
                                   "2022-11-04",
                                   "2022-11-04",
                                   "2022-11-18",
-                                  "2022-11-25"),
+                                  "2022-11-25",
+                                  "2022-12-02"),
                          Topic = c(
                            paste0("[Introduction to Livestock Breeding and Genomics](", 
                                   sl_url, 
@@ -69,6 +70,10 @@ tbl_sl <- tibble::tibble(Nr = c(1, 2, 3, 4, 5, 6, 7, 8, 9),
                            paste0("[Additional Aspects of BLUP](",
                                   sl_url,
                                   "l08_add_asp_blup.pdf)",
+                                  collapse = ""),
+                           paste0("[Genomic Selection](",
+                                  sl_url,
+                                  "l09_geno_sel.pdf)",
                                   collapse = "")
                          ))
 knitr::kable(tbl_sl)
