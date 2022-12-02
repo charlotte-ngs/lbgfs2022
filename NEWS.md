@@ -1,3 +1,7 @@
+# lbgfs2022 0.11.1
+
+* Corrected typo in link to chpt 8 in cn
+
 # lbgfs2022 0.11.0
 
 * Material for lecture 11
