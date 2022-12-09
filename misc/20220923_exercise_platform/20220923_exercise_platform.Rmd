@@ -355,7 +355,11 @@ cd /home/quagadmin/courses/lbgfs2022/bash
 # stop
 ./docker_student_stop.sh -f ../students/test_students_lbgfs2022.txt
 # restart
-./docker_student_start.sh -f ../students/test_students_lbgfs2022.txt -c /home/quagadmin/courses/lbgfs2022/home -p 10187 -w /home/quagadmin/courses/lbgfs2022/created -i lbgfs2022
+./docker_student_start.sh -f ../students/test_students_lbgfs2022.txt \
+-c /home/quagadmin/courses/lbgfs2022/home \
+-p 10187 \
+-w /home/quagadmin/courses/lbgfs2022/created \
+-i lbgfs2022
 ```
 
 The same can be done for all other students
@@ -366,7 +370,10 @@ cd /home/quagadmin/courses/lbgfs2022/bash
 # stop
 ./docker_student_stop.sh -f ../students/students_lbgfs2022.txt
 # restart
-./docker_student_start.sh -f ../students/students_lbgfs2022.txt -c /home/quagadmin/courses/lbgfs2022/home -w /home/quagadmin/courses/lbgfs2022/created -i lbgfs2022
+./docker_student_start.sh -f ../students/students_lbgfs2022.txt \
+-c /home/quagadmin/courses/lbgfs2022/home \
+-w /home/quagadmin/courses/lbgfs2022/created \
+-i lbgfs2022
 ```
 
 
