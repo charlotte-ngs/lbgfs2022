@@ -1,3 +1,7 @@
+# lbgfs2022 0.12.1
+
+* Material for lbg_ex10
+
 # lbgfs2022 0.12.0
 
 * Link to video
