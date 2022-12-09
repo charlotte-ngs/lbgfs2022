@@ -1,0 +1,135 @@
+---
+title: Livestock Breeding and Genomics - `r tools::toTitleCase(params$doctype)` 10
+author: Peter von Rohr
+date: 2022-12-09
+output:
+  bookdown::pdf_document2:
+    toc: false
+    number_sections: false
+    keep_md: false
+    keep_tex: false
+header-includes:
+ \usepackage{longtable}
+ \usepackage{float}
+params:
+  doctype:
+    label: 'Document Type'
+    value: 'solution'
+    choices: ['exercise', 'solution', 'notebook']
+  isonline:
+    label: 'Online (y/n)'
+    value: TRUE
+    choices: [TRUE, FALSE]
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Problem 1: Marker Effect Model
+
+```{r dataflemsnpobs, echo=FALSE, message=FALSE}
+library(dplyr)
+### # fix the number of animals
+n_nr_animal <- 10
+### # intercept
+n_inter_cept <- 150
+### # residual standard deviation
+n_res_sd <- 9.3
+### # vector of genotype value coefficients
+vec_geno_value_coeff <- c(-1,0,1)
+### # sample genotypes of unlinked SNP randomly
+set.seed(5432)
+### # fix allele frequency of positive allele
+n_prob_snps <- .45
+### # genotypic values 
+vec_geno_val <- c(17.9, 3.3)
+n_nr_snp <- length(vec_geno_val)
+### # put together the genotypes into a matrix
+mat_geno_snp <- matrix(c(sample(vec_geno_value_coeff, n_nr_animal, prob = c((1-n_prob_snps)^2, 
+                                                                   2*(1-n_prob_snps)*n_prob_snps, 
+                                                                   n_prob_snps^2), 
+                       replace = TRUE),
+                       sample(vec_geno_value_coeff, n_nr_animal, prob = c(n_prob_snps^2, 
+                                                                   2*(1-n_prob_snps)*n_prob_snps, 
+                                                                   (1-n_prob_snps)^2), 
+                       replace = TRUE)),
+                       nrow = n_nr_snp)
+mat_obs_y <- n_inter_cept + crossprod(mat_geno_snp, vec_geno_val) + rnorm(n = n_nr_animal, mean = 0, sd = n_res_sd)
+### # combine SNP genotypes into a tibble
+geno_code <- tibble::tibble(`SNP A` = mat_geno_snp[1,],
+                            `SNP B` = mat_geno_snp[2,])
+
+### # add the data
+mat_obs_y_rounded <- round(mat_obs_y, digits = 0)
+tbl_obs <- tibble::tibble(Observation = mat_obs_y_rounded[,1])
+geno_code %>% bind_cols(tbl_obs) -> tbl_all_data
+### # add animal ids
+tbl_all_data <- bind_cols(Animal = c(1:n_nr_animal),tbl_all_data)
+### # write data to file
+s_data_path <- file.path(here::here(), "docs", "data", "geno_data.csv")
+readr::write_csv(tbl_all_data, file = s_data_path)
+```
+
+We are given the dataset that is shown in the table below. This dataset contains gentyping results of `r n_nr_animal` for `r n_nr_snp` SNP loci.
+
+```{r showdataex13}
+knitr::kable(tbl_all_data,
+             booktabs = TRUE,
+             longtable = TRUE,
+#             caption = "Animals With Two SNP Loci A and B Affecting A Quantitative Trait",
+             escape = FALSE)
+
+```
+
+
+### Your Task
+* The goal of this problem is to estimate SNP marker effects using a `marker effect model`. Because we have just `r n_nr_snp` SNP loci, you can use a fixed effects linear model with the `r n_nr_snp` loci as fixed effects. Furthermore you can also include a fixed intercept into the model.
+* Specify all the model components including the vector of observations, the design matrix $X$, the vector of unknowns and the vector of residuals. 
+* You can use the R-function `lm()` to get the solutions for estimates of the unknown SNP effects.
+
+
+<!-- your-solution-start
+### Your Solution
+
+---  your-solution-end -->
+
+
+<!-- master-solution-start -->
+
+### Solution
+
+<!-- master-solution-end -->
+
+
+## Problem 2
+
+<!-- your-solution-start
+### Your Solution
+
+---  your-solution-end -->
+
+
+<!-- master-solution-start -->
+
+### Solution
+
+<!-- master-solution-end -->
+
+
+## Problem 3
+
+<!-- your-solution-start
+### Your Solution
+
+---  your-solution-end -->
+
+
+<!-- master-solution-start -->
+
+### Solution
+
+<!-- master-solution-end -->
+ 
