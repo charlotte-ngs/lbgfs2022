@@ -1,3 +1,7 @@
+# lbgfs2022 0.12.0
+
+* Link to video
+
 # lbgfs2022 0.11.3
 
 * Link to video and slides with notes
