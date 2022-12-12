@@ -153,10 +153,14 @@ library(dplyr)
 tbl_gen_anova <- tibble::tibble(Source = c("Between lines", "Within lines","Total"),
                                 Variance = c("$2FV_G$", "$(1-F)V_G$", "$(1+F)V_G$"))
 
-knitr::kable(tbl_gen_anova,
-             booktabs = TRUE, 
-             escape = FALSE) %>%
-  kableExtra::kable_styling(position = 'center')
+# knitr::kable(tbl_gen_anova,
+#              booktabs = TRUE, 
+#              escape = FALSE) %>%
+#   kableExtra::kable_styling(position = 'center')
+knitr::kable(tbl_gen_anova,,
+             booktabs = TRUE,
+             longtable = TRUE,
+             escape = FALSE)
 ```
 
 The variance $V_G$ corresponds to the genetic additive variance in the base population and is computed as 
@@ -176,10 +180,14 @@ tbl_gen_anova_sol <- tibble::tibble(Source = c("Between lines", "Within lines","
                                                  (1-n_inbreeding_coefficient) * n_add_gen_var_base_pop,
                                                  (1+n_inbreeding_coefficient) * n_add_gen_var_base_pop))
 
+# knitr::kable(tbl_gen_anova_sol,
+#              booktabs = TRUE, 
+#              escape = FALSE)  %>%
+#   kableExtra::kable_styling(position = 'center')
 knitr::kable(tbl_gen_anova_sol,
-             booktabs = TRUE, 
-             escape = FALSE)  %>%
-  kableExtra::kable_styling(position = 'center')
+             booktabs = TRUE,
+             longtable = TRUE,
+             escape = FALSE)
 ```
 
 
