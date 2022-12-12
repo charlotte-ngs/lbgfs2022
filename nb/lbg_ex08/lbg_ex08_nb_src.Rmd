@@ -90,6 +90,9 @@ Write a program in R that implements the rules found in the solution of Problem 
 
 ### Your Solution
 
+* Because the focus of this problem is the implementation of Henderson's rules in a function, we use then function `pedigreemm::Dmat()` to obtain the values of the matrix $D$. 
+* Write a function `get_A_inverse` which takes as input a pedigree and that returns the inverse numerator relationship matrix
+
 
 
  

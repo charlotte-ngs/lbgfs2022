@@ -196,12 +196,67 @@ Write a program in R that implements the rules found in the solution of Problem 
 <!-- your-solution-start
 ### Your Solution
 
+* Because the focus of this problem is the implementation of Henderson's rules in a function, we use then function `pedigreemm::Dmat()` to obtain the values of the matrix $D$. 
+* Write a function `get_A_inverse` which takes as input a pedigree and that returns the inverse numerator relationship matrix
+
 ---  your-solution-end -->
 
 
 <!-- master-solution-start -->
 
 ### Solution
+The function takes one input parameter which is the pedigree. 
+
+```{r}
+get_A_inverse <- function(ptbl_pedigree){
+  # first get values of matrix D
+  ped <- pedigreemm::pedigree(sire = ptbl_pedigree$Sire,
+                            dam = ptbl_pedigree$Dam,
+                            label = as.character(ptbl_pedigree$Calf))
+  vec_diag_matD <- pedigreemm::Dmat(ped = ped)
+  vec_delta <- 1/vec_diag_matD
+  # initialize Ainv
+  nr_animal <- nrow(ptbl_pedigree)
+  mat_result_ainv <- matrix(data = 0, nrow = nr_animal, ncol = nr_animal)
+  # loop over animals and add contributions to Ainv according to Hendersons rules
+  for (idx in 1:nr_animal){
+    # contribution for animal
+    mat_result_ainv[idx,idx] <- mat_result_ainv[idx,idx] + vec_delta[[idx]]
+    # parent s
+    n_parent_s <- ptbl_pedigree$Sire[idx]
+    if (!is.na(n_parent_s)){
+      mat_result_ainv[idx,n_parent_s] <- mat_result_ainv[idx,n_parent_s] - vec_delta[[idx]]/2
+      mat_result_ainv[n_parent_s,idx] <- mat_result_ainv[n_parent_s,idx] - vec_delta[[idx]]/2
+      mat_result_ainv[n_parent_s,n_parent_s] <- mat_result_ainv[n_parent_s,n_parent_s] + 
+        vec_delta[[idx]]/4
+    }
+    # parent d
+    n_parent_d <- ptbl_pedigree$Dam[idx]
+    if (!is.na(n_parent_d)){
+      mat_result_ainv[idx,n_parent_d] <- mat_result_ainv[idx,n_parent_d] - vec_delta[[idx]]/2
+      mat_result_ainv[n_parent_d,idx] <- mat_result_ainv[n_parent_d,idx] - vec_delta[[idx]]/2
+      mat_result_ainv[n_parent_d,n_parent_d] <- mat_result_ainv[n_parent_d,n_parent_d] + 
+        vec_delta[[idx]]/4
+    }
+    # both parents
+    if (!is.na(n_parent_s) && !is.na(n_parent_d)){
+     mat_result_ainv[n_parent_d,n_parent_s] <- mat_result_ainv[n_parent_d,n_parent_s] + 
+       vec_delta[[idx]]/4 
+     mat_result_ainv[n_parent_s,n_parent_d] <- mat_result_ainv[n_parent_s,n_parent_d] + 
+       vec_delta[[idx]]/4 
+    }
+  }
+  return(mat_result_ainv)
+}
+```
+
+The function `get_A_inverse()` is tested with the pedigree from Problem 1.
+
+```{r}
+(mat_A_inv <- get_A_inverse(ptbl_pedigree = tbl_pedigree))
+mat_A_inv - as.matrix(pedigreemm::getAInv(ped = ped))
+```
+
 
 <!-- master-solution-end -->
  
