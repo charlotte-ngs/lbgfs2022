@@ -1,3 +1,7 @@
+# lbgfs2022 0.12.2
+
+* Link to solutions for all exercises
+
 # lbgfs2022 0.12.1
 
 * Material for lbg_ex10
