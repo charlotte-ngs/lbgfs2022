@@ -153,9 +153,9 @@ Use the same data as in Problem 1 to estimate genomic breeding values using a `b
 
 ### Hints
 * The only fixed effect in this model is the mean $\mu$ which is the same for all observations.
-* You can use the following matrix as the genomic relationship matrix
+* You can use the following function to compute the genomic relationship matrix
 
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 #' Compute genomic relationship matrix based on data matrix
 computeMatGrm <- function(pmatData) {
   matData <- pmatData
@@ -176,8 +176,11 @@ matG <-computeMatGrm(pmatData = t(mat_geno_snp))
 matG_star <- matG + 0.01 * diag(nrow = nrow(matG))
 n_min_eig_matG_start <- min(eigen(matG_star, only.values = TRUE)$values)
 if (n_min_eig_matG_start < sqrt(.Machine$double.eps))
-  stop(" *** Genomic relationship matrix singular with smallest eigenvalue: ", n_min_eig_matG_start)
+  stop(" *** Genomic relationship matrix singular with smallest eigenvalue: ", 
+       n_min_eig_matG_start)
 ```
+
+* The resulting genomic relationship matrix is given by
 
 ```{r show-genomic-reltionship-matrix, echo=FALSE, results='asis'}
 cat(paste(rmdhelp::bmatrix(pmat = round(matG_star, digits = 3), ps_name = 'G', ps_env = '$$'), collapse = '\n'), '\n')
