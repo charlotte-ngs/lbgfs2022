@@ -112,7 +112,7 @@ knitr::kable(tbl_slwn)
 # Videos
 
 ```{r video-table, echo=FALSE, message=FALSE, warning=FALSE}
-tbl_video <- tibble::tibble(Nr = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),
+tbl_video <- tibble::tibble(Nr = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13),
                             Date = c("2022-09-23",
                                      "2022-09-30",
                                      "2022-10-07",
@@ -124,7 +124,8 @@ tbl_video <- tibble::tibble(Nr = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),
                                      "2022-11-18",
                                      "2022-11-25",
                                      "2022-12-02",
-                                     "2022-12-09"),
+                                     "2022-12-09",
+                                     "2022-12-16"),
                             Topic = c(
                               "[Introduction to Livestock Breeding](https://youtu.be/tp09u8Z5lOM)",
                               "[Quantiative Genetics](https://youtu.be/wBj1ZwkMyR4)",
@@ -137,7 +138,8 @@ tbl_video <- tibble::tibble(Nr = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),
                               "[Inverse Numerator Relationship Matrix](https://youtu.be/DguAfzDqPqc)",
                               "[Variance and Inbreeding](https://youtu.be/bXP_Y0gKOaA)",
                               "[Genomic Selection](https://youtu.be/PPVf_xHXqe4)",
-                              "[Genomic Breeding Values](https://youtu.be/8bBVOsuZPO8)"
+                              "[Genomic Breeding Values](https://youtu.be/8bBVOsuZPO8)",
+                              "[Course Summary and Students Q & A](https://youtu.be/oaCWohbTRl4)"
                             ))
 knitr::kable(tbl_video)
 ```
@@ -147,7 +149,7 @@ knitr::kable(tbl_video)
 
 ```{r, ohp-table, echo=FALSE, message=FALSE, warning=FALSE}
 s_ohp_url <- file.path(root_url, "ohp/")
-tbl_ohp <- tibble::tibble(Nr = c(1, 2, 3, 4, 5, 6, 7, 8),
+tbl_ohp <- tibble::tibble(Nr = c(1, 2, 3, 4, 5, 6, 7, 8, 13),
                           Date = c("2022-09-23",
                                    "2022-09-30",
                                    "2022-10-07",
@@ -155,7 +157,8 @@ tbl_ohp <- tibble::tibble(Nr = c(1, 2, 3, 4, 5, 6, 7, 8),
                                    "2022-10-21",
                                    "2022-10-28",
                                    "2022-11-04",
-                                   "2022-11-11"),
+                                   "2022-11-11",
+                                   "2022-12-16"),
                           Topic = c(
                               paste0("[Introduction to Livestock Breeding](", 
                                      s_ohp_url, 
@@ -188,6 +191,10 @@ tbl_ohp <- tibble::tibble(Nr = c(1, 2, 3, 4, 5, 6, 7, 8),
                               paste0("[Numerator relationship matrix, if-statements and loops in R](",
                                      s_ohp_url,
                                      "20221111_ohp_l08.pdf)",
+                                     collapse = ""),
+                              paste0("[Course Summary and Students Q & A](",
+                                     s_ohp_url,
+                                     "20221216_ohp_l13.pdf)",
                                      collapse = "")
                             ))
 knitr::kable(tbl_ohp)

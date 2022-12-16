@@ -39,7 +39,7 @@ n_sex_ratio <- 0.5
 n_generation_interval <- 10
 ```
 
-Because of very low amounts of harvested corn and grains at the end of the $18^{th}$ century in central Europe, many farmers were forced to leave their contry and find a new home in the USA. In `r n_year_emigration` a group of farmers took a population of about `r n_pop_size` animals and moved to the US.  After the arrival, the group formed `r n_line` subgroups and settled in the states of Wisconsin, Virginia, Texas and Calefornia. The animals were equally partitioned to the subgroups. After the partion into the subpopulations, the animals were bred independently in the four different lines. In `r n_year_semen_import`, semen from bulls of the partitioned subpopulations was re-imported to Europe. 
+Because of very low amounts of harvested corn and grains at the end of the $18^{th}$ century in central Europe, many farmers were forced to leave their contry and find a new home in the USA. In `r n_year_emigration` a group of farmers took a population of about `r n_pop_size` animals and moved to the US.  After the arrival, the group formed `r n_line` subgroups and settled in the states of Wisconsin, Virginia, Texas and California. The animals were equally partitioned to the subgroups. After the partion into the subpopulations, the animals were bred independently in the four different lines. In `r n_year_semen_import`, semen from bulls of the partitioned subpopulations was re-imported to Europe. 
 
 ## Assumptions
 * Although, cattle does not follow the same mode of inheritance as the organism shown in the lecture, the computations as shown in the lecture can be used as an approximation. 
@@ -76,7 +76,7 @@ From the lecture the inbreeding coefficient ($F_t$) can be computed as
 
 $$F_t = 1 - (1 - \Delta F)^t $$
 
-with $\Delta F$ corresponding to $1/2N$ where $N$ is the number of female animals in any of the subpopulations. The variable $t$ corresponds to the number of generations.  Inserting all the quantities in 
+with $\Delta F$ corresponding to $1/(2N)$ where $N$ is the number of female animals in any of the subpopulations. The variable $t$ corresponds to the number of generations.  Inserting all the quantities in 
 
 $$F_t = 1 - (1 - `r round(n_delta_F, digits = 4)`)^{`r n_generations`} = `r round(n_inbreeding_coefficient, digits = 4)` $$
 
