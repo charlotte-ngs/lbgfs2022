@@ -1,3 +1,7 @@
+# lbgfs2022 0.13.2
+
+* Solution of test exam
+
 # lbgfs2022 0.13.1
 
 * Function computeGRM in solution to lbg_ex10
