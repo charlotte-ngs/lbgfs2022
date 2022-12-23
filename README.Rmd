@@ -37,6 +37,7 @@ Methods for analysing livestock data, in particular for the estimation of breedi
     + written
     + Time: 09:15 - 11:15
     + Room: LFW C 11
+    + Datasets available under: https://charlotte-ngs.github.io/lbgfs2022/misc/20221223_exam_datasets.html 
     
     
 ### Exercise Platform

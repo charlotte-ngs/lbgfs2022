@@ -3,8 +3,8 @@
 
 Welcome to the website of
 
--   [751-6305-00L Livestock Breeding and
-    Genomics](http://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?semkez=2022W&ansicht=ALLE&lerneinheitId=163170&lang=en)
+- [751-6305-00L Livestock Breeding and
+  Genomics](http://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?semkez=2022W&ansicht=ALLE&lerneinheitId=163170&lang=en)
 
 The course website can be found at:
 <https://charlotte-ngs.github.io/lbgfs2022/>
@@ -24,29 +24,31 @@ material will be illustrated via exercises and assignments.
 
 ## Information
 
--   Form: Hybrid, virtual participation via zoom possible. Zoom link:
-    <https://ethz.zoom.us/j/68262986875>
--   Lecturer: Peter von Rohr
--   Date: Friday 9-12
--   Room: [LFW C
-    11](http://www.mapsearch.ethz.ch/map/map.do?gebaeudeMap=LFW&lang=en)
--   Exam:
-    -   written
-    -   Time: 09:15 - 11:15
-    -   Room: LFW C 11
+- Form: Hybrid, virtual participation via zoom possible. Zoom link:
+  <https://ethz.zoom.us/j/68262986875>
+- Lecturer: Peter von Rohr
+- Date: Friday 9-12
+- Room: [LFW C
+  11](http://www.mapsearch.ethz.ch/map/map.do?gebaeudeMap=LFW&lang=en)
+- Exam:
+  - written
+  - Time: 09:15 - 11:15
+  - Room: LFW C 11
+  - Datasets available under:
+    <https://charlotte-ngs.github.io/lbgfs2022/misc/20221223_exam_datasets.html>
 
 ### Exercise Platform
 
--   Information about the exercise platform can be found at:
-    <https://charlotte-ngs.github.io/lbgfs2022/misc/20220923_rexpf_link.html>
--   The username is: rstudio
+- Information about the exercise platform can be found at:
+  <https://charlotte-ngs.github.io/lbgfs2022/misc/20220923_rexpf_link.html>
+- The username is: rstudio
 
 ## Questions
 
 Questions can be asked during the lecture and during the exercise hour
 or via e-mail:
 
--   Peter von Rohr (peter.vonrohr `at` usys.ethz.ch)
+- Peter von Rohr (peter.vonrohr `at` usys.ethz.ch)
 
 ------------------------------------------------------------------------
 
