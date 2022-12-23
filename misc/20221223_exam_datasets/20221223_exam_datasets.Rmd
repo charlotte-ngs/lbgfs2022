@@ -1,0 +1,102 @@
+---
+title: "Exam Datasets"
+author: "Peter von Rohr"
+date: "2022-12-23"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+## Disclaimer
+This document provides R code-chunks that read the datasets used in the exam 2022.
+
+
+## Problem 1
+
+```{r}
+s_data_root <- "https://charlotte-ngs.github.io/lbgfs2022/data"
+s_data_p1_path <- file.path(s_data_root, "lbgfs2022_exam_problem1.csv")
+tbl_data_p01 <- readr::read_delim(s_data_p1_path, 
+                                  delim = ",",
+                                  col_types = readr::cols(
+                                    Animal = readr::col_integer(),
+                                    SNP_1 = readr::col_integer(),
+                                    SNP_2 = readr::col_integer(),
+                                    Observation = readr::col_double()
+                                  ))
+dim(tbl_data_p01)
+```
+
+
+## Problem 2
+
+Breed 1
+
+```{r}
+s_data_root <- "https://charlotte-ngs.github.io/lbgfs2022/data"
+s_ped1_path <- file.path(s_data_root, "lbgfs2022_exam_problem2_pedigree1.csv")
+tbl_ped1_p02 <- readr::read_delim(s_ped1_path, 
+                                  delim = ",",
+                                  col_types = readr::cols(
+                                    id = readr::col_character(),
+                                    sire = readr::col_character(),
+                                    dam = readr::col_character(),
+                                    AgeOwner = readr::col_double()
+                                  ))
+dim(tbl_ped1_p02)
+```
+
+Breed 2
+
+```{r}
+s_data_root <- "https://charlotte-ngs.github.io/lbgfs2022/data"
+s_ped2_path <- file.path(s_data_root, "lbgfs2022_exam_problem2_pedigree2.csv")
+tbl_ped2_p02 <- readr::read_delim(s_ped2_path, 
+                                  delim = ",",
+                                  col_types = readr::cols(
+                                    id = readr::col_character(),
+                                    sire = readr::col_character(),
+                                    dam = readr::col_character(),
+                                    AgeOwner = readr::col_double()
+                                  ))
+dim(tbl_ped2_p02)
+```
+
+
+## Problem 3
+
+```{r}
+s_data_root <- "https://charlotte-ngs.github.io/lbgfs2022/data"
+s_pr03_data_path <- file.path(s_data_root, "lbgfs2022_exam_problem3.csv")
+tbl_pr3 <- readr::read_delim(s_pr03_data_path, 
+                             delim = ",",
+                             col_types = readr::cols(
+                               sex = readr::col_factor(),
+                               y = readr::col_double(),
+                               .default = readr::col_integer()
+                             ))
+dim(tbl_pr3)
+```
+
+
+## Problem 4
+
+```{r}
+s_data_root <- "https://charlotte-ngs.github.io/lbgfs2022/data"
+s_data_p04_url <- file.path(s_data_root, "lbgfs2022_exam_problem4.csv")
+tbl_data_p04_read <- readr::read_delim(s_data_p04_url, 
+                                       delim = ",",
+                                       col_types = readr::cols(
+                                         y = readr::col_double(),
+                                         .default = readr::col_integer()
+                                       ))
+dim(tbl_data_p04_read)
+```
+
+
+## Problem 5
+
+No dataset to be read.
+
