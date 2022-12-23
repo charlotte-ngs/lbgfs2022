@@ -6,7 +6,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 ```
 
 ## Disclaimer
@@ -40,9 +40,9 @@ s_ped1_path <- file.path(s_data_root, "lbgfs2022_exam_problem2_pedigree1.csv")
 tbl_ped1_p02 <- readr::read_delim(s_ped1_path, 
                                   delim = ",",
                                   col_types = readr::cols(
-                                    id = readr::col_character(),
-                                    sire = readr::col_character(),
-                                    dam = readr::col_character(),
+                                    Animal = readr::col_character(),
+                                    Sire = readr::col_character(),
+                                    Dam = readr::col_character(),
                                     AgeOwner = readr::col_double()
                                   ))
 dim(tbl_ped1_p02)
@@ -56,9 +56,9 @@ s_ped2_path <- file.path(s_data_root, "lbgfs2022_exam_problem2_pedigree2.csv")
 tbl_ped2_p02 <- readr::read_delim(s_ped2_path, 
                                   delim = ",",
                                   col_types = readr::cols(
-                                    id = readr::col_character(),
-                                    sire = readr::col_character(),
-                                    dam = readr::col_character(),
+                                    Animal = readr::col_character(),
+                                    Sire = readr::col_character(),
+                                    Dam = readr::col_character(),
                                     AgeOwner = readr::col_double()
                                   ))
 dim(tbl_ped2_p02)

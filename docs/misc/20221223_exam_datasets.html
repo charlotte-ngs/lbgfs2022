@@ -385,9 +385,9 @@ s_ped1_path &lt;- file.path(s_data_root, &quot;lbgfs2022_exam_problem2_pedigree1
 tbl_ped1_p02 &lt;- readr::read_delim(s_ped1_path, 
                                   delim = &quot;,&quot;,
                                   col_types = readr::cols(
-                                    id = readr::col_character(),
-                                    sire = readr::col_character(),
-                                    dam = readr::col_character(),
+                                    Animal = readr::col_character(),
+                                    Sire = readr::col_character(),
+                                    Dam = readr::col_character(),
                                     AgeOwner = readr::col_double()
                                   ))
 dim(tbl_ped1_p02)</code></pre>
@@ -398,9 +398,9 @@ s_ped2_path &lt;- file.path(s_data_root, &quot;lbgfs2022_exam_problem2_pedigree2
 tbl_ped2_p02 &lt;- readr::read_delim(s_ped2_path, 
                                   delim = &quot;,&quot;,
                                   col_types = readr::cols(
-                                    id = readr::col_character(),
-                                    sire = readr::col_character(),
-                                    dam = readr::col_character(),
+                                    Animal = readr::col_character(),
+                                    Sire = readr::col_character(),
+                                    Dam = readr::col_character(),
                                     AgeOwner = readr::col_double()
                                   ))
 dim(tbl_ped2_p02)</code></pre>
