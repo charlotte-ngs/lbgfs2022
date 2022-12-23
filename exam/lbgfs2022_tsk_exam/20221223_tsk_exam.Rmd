@@ -1,0 +1,588 @@
+---
+output:
+  pdf_document:
+    includes:
+      in_header: tex/preamble.tex
+    fig_caption: false
+    keep_tex: true
+documentclass: article
+---
+
+```{r setup, include=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE)
+knitr::knit_hooks$set(hook_convert_odg = rmdhelp::hook_convert_odg)
+library(dplyr)
+# decide from where data is read
+b_online <- TRUE
+if (b_online){
+  s_data_root <- "https://charlotte-ngs.github.io/lbgfs2022/data"
+} else {
+  s_data_root <- file.path(here::here(), "docs", "data")
+}
+
+```
+
+```{r TaskCounts, echo=FALSE}
+cnt <- rmdhelp::R6ClassCount$new()
+cnt$set_prefix(ps_prefix = "## Problem")
+```
+
+```{r PointAssignment, echo=FALSE}
+# Assign Points for Q1
+lPointsQ1 <- list(TaskA = 6,
+                  TaskB = 15,
+                  TaskC = 6,
+                  TaskD = 0)
+nPointQ1Total <- sum(unlist(lPointsQ1))
+# Assign Points for Q2
+lPointsQ2 <- list(TaskA = 6,
+                  TaskB = 16,
+                  TaskC = 3)
+nPointQ2Total <- sum(unlist(lPointsQ2))
+# Assign Points for Q3
+lPointsQ3 <- list(TaskA = 20,
+                  TaskB = 25,
+                  TaskC = 2)
+nPointQ3Total <- sum(unlist(lPointsQ3))
+# Assign Points for Q4
+lPointsQ4 <- list(TaskA = 22,
+                  TaskB = 6,
+                  TaskC = 0)
+nPointQ4Total <- sum(unlist(lPointsQ4))
+# Assign Points for Q5
+lPointsQ5 <- list(TaskA = 4,
+                  TaskB = 2,
+                  TaskC = 6,
+                  TaskD = 10)
+nPointQ5Total <- sum(unlist(lPointsQ5))
+# compute overal sum of points
+nPointOverallTotal <- nPointQ1Total + nPointQ2Total + nPointQ3Total + nPointQ4Total + nPointQ5Total
+```
+
+\thispagestyle{empty}
+
+```{=tex}
+\begin{tabular}{l}
+ETH Zurich \\
+D-USYS\\
+Institute of Agricultural Sciences\\
+\end{tabular}
+```
+```{=tex}
+\vspace{15ex}
+\begin{center}
+\huge
+Exam\\ \vspace{1ex}
+Livestock Breeding and Genomics \\  \vspace{1ex}
+FS 2022 \\
+
+\normalsize
+\vspace{7ex}
+Peter von Rohr 
+\end{center}
+```
+```{=tex}
+\vspace{7ex}
+\begin{tabular}{p{5cm}lr}
+  & \textsc{Date}  & \textsc{\emph{23. December 2022}} \\
+  & \textsc{Begin} & \textsc{\emph{09:15 }}\\
+  & \textsc{End}   & \textsc{\emph{11:15 }}\\ 
+\end{tabular}
+```
+\vspace{5ex}
+
+<!-- Table with Name -->
+
+```{=tex}
+\large
+\begin{tabular}{p{2.5cm}p{3cm}p{6cm}}
+  &  Name:     &  \\
+  &            &  \\
+  &  Legi-Nr:  & \\
+\end{tabular}
+\normalsize
+```
+<!-- Table with Points -->
+
+```{=tex}
+\vspace{9ex}
+\begin{center}
+\begin{tabular}{|p{3cm}|c|c|}
+\hline
+Problem  &  Maximum Number of Points  &  Number of Points Reached \\
+\hline
+1        &  `r nPointQ1Total`         & \\
+\hline
+2        &  `r nPointQ2Total`         & \\
+\hline
+3        &  `r nPointQ3Total`         & \\
+\hline
+4        &  `r nPointQ4Total`          & \\
+\hline
+5        &  `r nPointQ5Total`          & \\
+\hline
+Total    &  `r nPointOverallTotal`    & \\
+\hline
+\end{tabular}
+\end{center}
+```
+```{=tex}
+\clearpage
+\pagebreak
+```
+```{r, echo=FALSE, results='asis'}
+cat(cnt$out(ps_suffix = "Quantitative Genetics"), "\n")
+```
+
+```{r, echo=FALSE}
+# read the data
+s_data_p1_path <- file.path(s_data_root, "lbgfs2022_exam_problem1.csv")
+tbl_data_p01 <- readr::read_delim(s_data_p1_path, 
+                                  delim = ",",
+                                  col_types = readr::cols(
+                                    Animal = readr::col_integer(),
+                                    SNP_1 = readr::col_integer(),
+                                    SNP_2 = readr::col_integer(),
+                                    Observation = readr::col_double()
+                                  ))
+#head(tbl_data_p01)
+```
+
+
+The following dataset contains observations of a phenotypic trait and genotypes for two loci. The numbers in the columns `SNP_1` and `SNP_2` count the number of alleles with a positive effect on the observation. Genotypic values of heterozygous animals are assumed to be right between the genotypic values of homozygous animals ($d=0$). 
+
+\textit{Der folgende Datensatz enthält Beobachtungen für ein phänotypisches Merkmal und Genotypen von zwei Loci. Die Zahlen in den Kolonnen } \verb+SNP_1+ \textit{ und } \verb+SNP_2+ \textit{ zählen die Anzahl Allele mit einem positiven Effekt auf den Merkmalswert. Genotypische Werte der heterozygoten Tiere sind genau in der Mitte zwischen den genotypischen Werten der homozygoten Tiere} ($d=0$).
+
+```{r, echo=FALSE}
+knitr::kable(tbl_data_p01, booktabs = TRUE, longtable = TRUE)
+```
+
+
+```{=tex}
+\clearpage
+\pagebreak
+```
+
+The dataset as shown in the table above is available under: 
+
+\textit{Der oben gezeigte Datensatz ist verfügbar unter:}
+
+```{r, echo=FALSE, results='asis'}
+cat(s_data_p1_path, "\n")
+```
+
+\vspace{3ex}
+```{=tex}
+\begin{enumerate}
+\item[a)] Compute the genotypic values for all genotypes of the two loci  \verb+SNP_1+ and \verb+SNP_2+ using the above dataset.
+
+\textit{Berechnen Sie die genotypischen Werte aller Genotypen für die zwei Loci } \verb+SNP_1+ \textit{ und } \verb+SNP_2+ basierend auf dem oben gezeigtem Datensatz.  
+\points{`r lPointsQ1$TaskA`}
+\end{enumerate}
+```
+
+
+\solstart
+
+
+\clearpage
+\pagebreak
+
+
+\begin{enumerate}
+\item[b)] Compute the breeding values and the dominance deviations for all animals in the above dataset. Allele frequencies can be determined based on the given dataset.
+
+\textit{Berechnen Sie die Zuchtwerte und die Dominanzabweichungen aller Tiere im oben gegebenen Datensatz. Die Allelefrequenzen sollen aufgrund des gegebenen Datensatzes bestimmt werden.}
+\points{`r lPointsQ1$TaskB`}
+\end{enumerate}
+
+\solstart
+
+
+\clearpage
+\pagebreak
+\begin{enumerate}
+\item[c)]  Compute the genetic additive variance $\sigma_A^2$ and the dominance variance $\sigma_D^2$ for the trait in the given dataset over both loci.
+
+\textit{Berechnen Sie die genetisch-additive Varianz } $\sigma_A^2$ \textit{ und die Dominanzvarianz } $\sigma_D^2$ für das Merkmal im Datensatz über beide Loci. 
+\points{`r lPointsQ1$TaskC`}
+\end{enumerate}
+
+\solstart
+
+\clearpage
+\pagebreak
+
+```{r, echo=FALSE, results='asis'}
+cat(cnt$out(ps_suffix = "Relationship and Inbreeding"), "\n")
+```
+
+Starting on 01.01.2023, the Swiss Federal Office of Agriculture will start to pay subsidies to owners of livestock animals of endangered breeds. The amount of subsidies will be based on an index which among other components is based on the average inbreeding coefficient of animals and on the average age of the owners of the animals. Below we are given two example pedigrees of two different breeds. 
+
+\textit{Ab 01.01.2023 wird das Bundesamt für Landwirtschaft Subventionen an Halter von Nutztieren seltener Rassen auszahlen. Die Höhe der Subventionen wird auf einem Index basieren. Dieser Index wird neben anderen Komponenten auch den durchschnittlichen Inzuchtkoeffizient der Tiere und das mittlere Alter der Halter beinhalten. Unten sind zwei Beispielpedigrees von zwei verschiedenen Rassen gegeben.}
+
+```{r, echo=FALSE}
+s_ped1_path <- file.path(s_data_root, "lbgfs2022_exam_problem2_pedigree1.csv")
+tbl_ped1_p02 <- readr::read_delim(s_ped1_path, 
+                                  delim = ",",
+                                  col_types = readr::cols(
+                                    id = readr::col_character(),
+                                    sire = readr::col_character(),
+                                    dam = readr::col_character(),
+                                    AgeOwner = readr::col_double()
+                                  ))
+s_ped2_path <- file.path(s_data_root, "lbgfs2022_exam_problem2_pedigree2.csv")
+tbl_ped2_p02 <- readr::read_delim(s_ped2_path, 
+                                  delim = ",",
+                                  col_types = readr::cols(
+                                    id = readr::col_character(),
+                                    sire = readr::col_character(),
+                                    dam = readr::col_character(),
+                                    AgeOwner = readr::col_double()
+                                  ))
+```
+
+### Breed 1:
+
+```{r, echo=FALSE, prompt=FALSE}
+cat(s_ped1_path, "\n")
+knitr::kable(tbl_ped1_p02, booktabs = TRUE, longtable = TRUE)
+```
+
+
+### Breed 2:
+
+```{r, echo=FALSE, prompt=FALSE}
+cat(s_ped2_path, "\n")
+knitr::kable(tbl_ped2_p02, booktabs = TRUE, longtable = TRUE)
+```
+
+\clearpage
+\pagebreak
+
+\begin{enumerate}
+\item[a)] Setup the numerator relationship matrices for both breeds given above. 
+
+\textit{Stellen Sie die additiv genetischen Verwandtschaftsmatrizen für beide oben gegebenen Rassen auf.}
+\points{`r lPointsQ2$TaskA`}
+\end{enumerate}
+
+\vspace{3ex}
+\solstart
+
+
+
+\clearpage
+\pagebreak
+
+
+\begin{enumerate}
+\item[b)] Compute the inbreeding coefficients for all animals in both pedigrees of the two breeds given above. 
+
+\textit{Berechnen Sie die Inzuchtkoeffizienten für alle Tiere in beiden Pedigrees der zwei Rassen, welche oben gegeben sind.}
+\points{`r lPointsQ2$TaskB`}
+\end{enumerate}
+
+\vspace{3ex}
+\solstart
+
+
+\clearpage
+\pagebreak
+
+```{r, echo=FALSE}
+n_weight_AvInb <- 1
+n_weight_AvAge <- 0.002
+```
+
+\begin{enumerate}
+\item[c)] For our example breeds, we use a simplified version of the index ($I_E$) indicating which breeds are endangered. This version of the index is based on the average inbreeding coefficients of all animals in a given breed and on the average age of the owners of the animals in that breed. Compute for both given breeds the index $I_E$ using a weight $w_F = `r n_weight_AvInb`$ for the average inbreeding coefficient and a weight $w_O = `r n_weight_AvAge`$ for the average age of the owners of the animals. The index can be computed as shown below. Determine based on the value of the index for both breeds which breed is considered to be more endangered.
+
+\textit{Für die zwei Beispielrassen wird eine vereinfachte Form des Gefährungsindexes} $I_E$ \textit{ berechnet. Diese Version des Indexes basiert auf dem durchschnittlichen Inzuchtkoeffizienten aller Tiere im Pedigree und auf dem durchschnittlichen Alter der Tierhalter einer bestimmten Rasse. Berechnen Sie für beide gegebenen Rassen den index } $I_E$ \textit{ mit den Gewichten } $w_F = `r n_weight_AvInb`$ \textit{ für den durchschnittlichen Inzuchtkoeffizient und } $w_O = `r n_weight_AvAge`$ \textit{ für das durchschnittliche Alter der Tierhalter. Der Index kann wie nachfolgend gezeigt berechent werden. Entscheiden Sie basierend auf dem Indexwert für beide Rassen, welche Rasse als gefährdeter eingestuft würde.}
+\points{`r lPointsQ2$TaskC`}
+\end{enumerate}
+
+For a given breed the endangerment index $I_E$ is computed as
+
+\textit{Für eine bestimmte Rasse kann der Gefährdungsindex } $I_E$ \textit{ wie folgt berechnet werden}
+
+$$I_E = w_F * \bar{F} + w_O * \bar{O}$$
+
+where $\bar{F}$ is the average inbreeding coefficient of all animals in the pedigree and $\bar{O}$ is the average age of all owners of animals of a given breed.
+
+
+\vspace{3ex}
+\solstart
+
+
+\clearpage
+\pagebreak
+
+```{r, echo=FALSE, results='asis'}
+cat(cnt$out(ps_suffix = "Genomics"), "\n")
+```
+
+```{r, echo=FALSE}
+s_pr03_data_path <- file.path(s_data_root, "lbgfs2022_exam_problem3.csv")
+tbl_pr3 <- readr::read_delim(s_pr03_data_path, 
+                             delim = ",",
+                             col_types = readr::cols(
+                               sex = readr::col_factor(),
+                               y = readr::col_double(),
+                               .default = readr::col_integer()
+                             ))
+n_nr_loci <- length(grep("S", colnames(tbl_pr3)))
+lambda_mem <- 1
+```
+
+
+The following dataset is used to predict genomic breeding values. The column `y` contains the observations and columns `S1` to `S15` contain genotypes of `r n_nr_loci` SNP marker loci.
+
+\textit{Der folgende Datensatz wird für die Schätzung genomischer Zuchtwerte verwendet. Die Kolonne } \verb+y+ \textit{ enthält die beobachteten Merkmalswerte und die Kolonnen } \verb+S1+ \textit{ bis } \verb+S15+ \textit{ enthalten die Genotypen von } `r n_nr_loci` SNP-Marker. 
+
+```{r, echo=FALSE}
+knitr::kable(tbl_pr3, booktabs = TRUE, longtable = TRUE)
+```
+
+The above dataset is available under:
+
+\textit{Der oben gezeigte Datensatz ist verfügbar unter:}
+
+```{r, echo=FALSE}
+cat(s_pr03_data_path, "\n")
+```
+
+\vspace{3ex}
+\begin{enumerate}
+\item[a)] Use a marker effect model (MEM) to predict genomic breeding values for the animals given in the dataset shown above. Specify the marker effect model as a mathematical formula and list the meaning of all model components. Indicate the expected values and the variance-covariance matrices for all random effects in the model. You can assume $\lambda = \sigma_e^2 / \sigma_q^2 = `r lambda_mem`$.
+
+\textit{Verwenden Sie ein Marker-Effekt-Modell (MEM) zur Schätzung der genomischen Zuchtwerte für die Tiere im oben gezeigten Datensatz. Spezifizieren Sie das Marker-Effekt-Modell als mathematische Formel und notieren Sie die Bedeutung aller Modellkomponenten. Geben Sie die Erwartungswerte und die Varianz-Kovarianz-Matrizen aller zufälligen Effekte an. Wir nehmen an, dass } $\lambda = \sigma_e^2 / \sigma_q^2 = `r lambda_mem`$.
+\points{`r lPointsQ3$TaskA`}
+\end{enumerate}
+
+\clearpage
+\pagebreak
+
+\solstart
+
+
+\clearpage
+\pagebreak
+
+```{r, echo=FALSE}
+lambda_bvm <- 3
+```
+
+\begin{enumerate}
+\item[b)] Predict genomic breeding values using a breeding value based model (BVM) for all animals in the above given dataset. Specify the model as a mathematical formula and list the meaning of all model components. Indicate the expected values and the variance-covariance matrices for all random effects in the model. You can assume $\lambda = \sigma_e^2 / \sigma_g^2 = `r lambda_bvm`$.
+
+\textit{Schätzen Sie genomische Zuchtwerte mit einem Zuchtwert-basierten Modell (BVM) für alle Tiere im oben gezeigten Datensatz. Spezifizieren Sie das Modell als mathematische Formel und notieren Sie die Bedeutung aller Modellkomponenten. Geben Sie die Erwartungswerte und die Varianz-Kovarianz-Matrizen aller zufälligen Effekte an. Wir nehmen an, dass } $\lambda = \sigma_e^2 / \sigma_g^2 = `r lambda_bvm`$.
+\points{`r lPointsQ3$TaskB`}
+\end{enumerate}
+
+\solstart
+
+
+\clearpage
+\pagebreak
+
+
+\vspace{3ex}
+\begin{enumerate}
+\item[c)]  Compare the order of the predicted breeding values of all animals based on the marker effect model (MEM) and based on the breeding value model (BVM)
+
+\textit{Vergleichen Sie die Reihenfolge der Tiere aufgrund der geschätzten genomischen Zuchtwerte basierend auf dem Markereffektmodell (MEM) und basierend auf dem Zuchtwert-basierten Modell (BVM)}
+\points{`r lPointsQ3$TaskC`}
+\end{enumerate}
+
+\solstart
+
+
+\clearpage
+\pagebreak
+
+
+```{r, echo=FALSE, results='asis'}
+cat(cnt$out(ps_suffix = "BLUP Animal Model"), "\n")
+```
+
+```{r, echo=FALSE}
+n_sigma_p2 <- 64
+n_h2 <- 0.16
+s_data_p04_url <- file.path(s_data_root, "lbgfs2022_exam_problem4.csv")
+tbl_data_p04_read <- readr::read_delim(s_data_p04_url, 
+                                       delim = ",",
+                                       col_types = readr::cols(
+                                         y = readr::col_double(),
+                                         .default = readr::col_integer()
+                                       ))
+n_nr_obs <- nrow(tbl_data_p04_read)
+```
+
+
+```{r, echo=FALSE}
+knitr::kable(tbl_data_p04_read, booktabs = TRUE, longtable = TRUE)
+```
+
+The above dataset is available under: 
+
+\textit{Der oben gezeigte Datensatz ist verfügbar unter:}
+
+```{r, echo=FALSE}
+cat(s_data_p04_url, "\n")
+```
+
+
+\vspace{3ex}
+\begin{enumerate}
+\item[a)]  Use the above shown dataset to predict breeding values for all animals in the pedigree using a BLUP animal model. Use `herd` as fixed effect and compute estimates for all the levels of the fixed effect. The column entitled `y` contains the values for an observed trait of interest. Specify the model as mathematical formula and list the meaning of all model components. Write down the expected values and the variance-covariance matrices for all random effects in the model. Assume the phenotypic variance to be $\sigma_p^2 = `r n_sigma_p2`$ and the heritability to be $h^2 = `r n_h2`$.
+
+\textit{Verwenden Sie den oben gezeigten Datensatz für die Schätzung von Zuchtwerten für alle Tiere im Pedigree mit einem BLUP-Tiermodell. Modellieren Sie } \verb+herd+ \textit{als fixen Effekt. Berechnen Sie Schätzwerte für alle Stufen des fixen Effekts. Die Kolonne mit dem Titel} \verb+y+ \textit{enthält die Beobachtungswerte eines Merkmals von züchterischem Interesse. Spezifizieren Sie das Modell als mathematische Formel und benennen Sie die Bedeutung jeder Modellkomponente. Notieren Sie die Erwartungswerte und die Varianz-Kovarianzmatrizen aller zufälligen Effekte im Modell. Die phänotypische Varianz wird angenommen als } $\sigma_p^2 = `r n_sigma_p2`$ \textit{ und die Erblichkeit sei } $h^2 = `r n_h2`$.
+\points{`r lPointsQ4$TaskA`}
+\end{enumerate}
+
+\clearpage
+\pagebreak
+
+\solstart
+
+
+\clearpage
+\pagebreak
+
+\begin{enumerate}
+\item[b)] Compute the reliabilities for the predicted breeding values of all animals under Problem 4a).
+
+\textit{Berechnen Sie die Bestimmtheitsmasse der unter Aufgabe 4a) geschätzten Zuchterte.}
+\points{`r lPointsQ4$TaskB`}
+\end{enumerate}
+
+\solstart
+
+
+\clearpage
+\pagebreak
+
+
+```{r, echo=FALSE, results='asis'}
+cat(cnt$out(ps_suffix = "Variance and Inbreeding"), "\n")
+```
+
+```{r prob1-prepare,echo=FALSE}
+n_exile_year <- 1892
+n_export_year <- 2022
+n_total_nr_sheep <- 2200
+n_nr_subpop <- 4
+n_nr_female_per_male <- 10
+n_gen_interval <- 1.3
+# compute derived quantities
+n_total_nr_female <- n_total_nr_sheep / (n_nr_female_per_male + 1) * n_nr_female_per_male
+n_total_nr_female_per_subpop <- n_total_nr_female / n_nr_subpop
+n_nr_gen <- (n_export_year - n_exile_year) / n_gen_interval
+n_delta_F <- 1 / (2 * n_total_nr_female_per_subpop)
+```
+
+
+
+In the year `r n_exile_year` a group of Scottish farmers landed with their sheep in Australia. The farmers took a total of `r n_total_nr_sheep` sheeps from Scotland to Australia. Once the farmers arrived in Australia, they separated in `r n_nr_subpop` subgroups of equal sizes. Each of the subgroups went to a different state of Australia (Western Australia, North Australia, New South Wales and South Australia). In the year `r n_export_year` Australian sheep farmers want to export some of their breeding animals. For this problem you can work with the following assumptions
+
+* There was no exchange of animals between the sub-populations after the split into subgroups. 
+* The ratio between the number of female animals and the number of male animals is `r n_nr_female_per_male`.
+* The size of the sub-populations $N$ which is relevant for the computation of the inbreeding coefficient is set to the number of female animals in each sub-population.
+* The generation interval can assumed to be `r n_gen_interval` years. 
+
+\textit{Im Jahr `r n_exile_year` wanderte eine Gruppe von Schottischen Farmern mit ihren Schafen nach Australien aus. Die Farmer brachten `r n_total_nr_sheep` Schafe nach Australien. Als die Farmer in Australien ankamen teilten sie sich in `r n_nr_subpop` gleich grosse Gruppen auf. Jede Gruppe ging in einen anderen Staat in Australien (Western Australia, North Australia, New South Wales and South Australia). Im Jahr `r n_export_year` möchten die Farmer einige ihrer Zuchttiere exportieren. Für diese Aufgabe können Sie die folgenden Annahmen treffen.}
+
+* \textit{Nach der Aufteilung der Tiere in die Gruppen kam es zu keinem Tieraustausch zwischen den Gruppen.}
+* \textit{Das Verhältnis zwischen der Anzahl weiblicher Tiere und der Anzahl männlicher Tiere beträgt `r n_nr_female_per_male`.}
+* \textit{Die Popultationsgrösse $N$, welche für die Berechnung des Inzuchtkoeffizienten wichtig ist, kann mit der Anzahl weiblichen Tiere in jeder Subpopulation gleichgesetzt werden.}
+* \textit{Das Generationeninterval betrage `r n_gen_interval` Jahre.}
+
+
+```{r fig-sub-pop, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg"}
+#rmdhelp::use_odg_graphic(ps_path = "odg/fig-sub-pop.odg")
+knitr::include_graphics(path = "odg/fig-sub-pop.png")
+```
+
+
+\vspace{3ex}
+
+\begin{enumerate}
+\item[a)] Compute the inbreeding coefficient $F_t$ for the breeding animals that the farmers want to sell. 
+
+\textit{Berechnen Sie den Inzuchtkoeffizienten $F_t$ für die Zuchttiere, welche die Farmer verkaufen möchten.}
+\points{`r lPointsQ5$TaskA`}
+\end{enumerate}
+
+
+\solstart
+
+
+\clearpage
+\pagebreak
+
+
+```{r prob1b-prepare, echo=FALSE}
+n_F_t_limit <- 0.1
+```
+
+
+\begin{enumerate}
+\item[b)] The sheep farmers are concerned that inbreeding in their population does not increase too much. In which year is the inbreeding coefficient $F_t$ going to be bigger than `r n_F_t_limit`?
+
+\textit{Die Farmer möchten den Inzuchtgrad nicht zu stark ansteigen lassen. In welchem Jahr wird der Inzuchtgrad $F_t$ grösser sein als `r n_F_t_limit`?}
+\points{`r lPointsQ5$TaskB`}
+\end{enumerate}
+
+\solstart
+
+
+
+\clearpage
+\pagebreak
+
+
+```{r prob1c-prepare, echo=FALSE}
+n_maf_locus_w <- 0.045
+n_homo_geno_val <- 50
+n_het_geno_val <- 15
+```
+
+
+\begin{enumerate}
+\item[c)] One reason to control the inbreeding coefficient is that breeders want to avoid inbreeding depression. We assume that locus $W$ is mainly responsible for wool fibre diameter (FD). The favorable allele $W_1$ occurs with a frequency of $p = `r n_maf_locus_w`$. The difference between the homozygous genotypes $W_1W_1$ and $W_2W_2$ in fiber diameter is $`r 2*n_homo_geno_val`$ micrometer ($\mu m$). The genotypic value of the heterozygous genotype $W_1W_2$ is `r n_het_geno_val`. Compute the inbreeding depression at locus $W$, if the inbreeding coefficient has reached the limiting value of Problem 1b of `r n_F_t_limit`.
+
+\textit{Züchter wollen die Inzucht begrenzen, da sie Inzuchtdepressionen vermeiden wollen. Wir nehmen an, dass das Merkmal Wollfaserdurchmesser hauptsächlich von einem Genort $W$ beeinflusst wird. Das vorteilhafte Allel $W_1$ kommt mit einer Häufigkeit von $p = `r n_maf_locus_w`$ vor. Die Differenz zwischen den homozygoten Genotypen $W_1W_1$ und $W_2W_2$ im Merkmal Wollfaserdurchmesser beträgt $`r 2*n_homo_geno_val`$ Mikrometer ($\mu m$). Der genotypische Wert der Heterozygoten $W_1W_2$ beträgt `r n_het_geno_val`. Berechnen Sie die Inzuchtdepression am Genort $W$ unter der Annahme, dass der Inzuchtkoeffizient den Grenzwert aus Aufgabe 1b von `r n_F_t_limit` erreicht hat.}
+\points{`r lPointsQ5$TaskC`}
+\end{enumerate}
+
+
+\vspace{3ex}
+\solstart
+
+\clearpage
+\pagebreak
+
+\begin{enumerate}
+\item[d)] Inbreeding has an influence on the genetic additive variance, as it is split into a between line and a within line component. Please, fill out the following table with the different genetic variance components for the locus $W$ from Problem 5c. We assume a value of  $`r n_F_t_limit`$ for the inbreeding coefficient $F$. 
+
+\textit{Inzucht hat einen Einfluss auf die additive genetische Varianz, da diese Varianz durch die Inzucht in eine Komponente innerhalb Linie und eine Komponente zwischen Linien aufgeteilt wird. Bitte füllen Sie die folgende Tabelle mit den unterschiedlichen Varianzkomponenten am Genort $W$ aus Aufgabe 5c aus. Als Inzuchtkoeffizienten $F$ nehmen wir einen Wert von $`r n_F_t_limit`$ an.}
+\points{`r lPointsQ5$TaskD`}
+\end{enumerate}
+
+
+\vspace{3ex}
+__Solution__:
+
+```{r prob1d-table, echo=FALSE}
+tbl_gen_anova_task <- tibble::tibble(Source = c("Between lines", "Within lines","Total additive", "Dominance", "Total genetic"),
+                                    Variance = c("", "", "", "", ""))
+
+knitr::kable(tbl_gen_anova_task,
+             booktabs = TRUE, 
+             escape = FALSE,
+             format = 'latex')  %>%
+  kableExtra::kable_styling(position = 'center', latex_options = c("HOLD_position")) %>%
+  kableExtra::column_spec(2, width = "8cm") %>%
+  kableExtra::row_spec(1:nrow(tbl_gen_anova_task), font_size = 12)
+```

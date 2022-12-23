@@ -1,0 +1,145 @@
+---
+title: "Quantitative Genetics Data"
+output: html_notebook
+---
+
+## Disclaimer
+
+Data for a trait with two loci should be produced.
+
+## Data
+
+The two loci are $G$ and $H$ with two alleles. The minor allele frequencies are given by
+
+```{r}
+vec_maf <- c(0.40, 0.45)
+n_nr_loci <- length(vec_maf)
+```
+
+With these frequencies the genotypes can be sampled assuming the Hardy-Weinberg Equilibrium
+
+```{r}
+set.seed(7632)
+n_nr_obs <- 30
+vec_geno_code <- c(0:2)
+mat_geno_code <- matrix(nrow = n_nr_obs, ncol = n_nr_loci)
+for (idx in 1:n_nr_loci){
+  mat_geno_code[,idx] <- sample(vec_geno_code, 
+                                  size = n_nr_obs, 
+                                  replace = TRUE,
+                                  prob = c((1-vec_maf[idx])^2, 
+                                           2*vec_maf[idx]*(1-vec_maf[idx]),
+                                           vec_maf[idx]^2))
+}
+mat_geno_code
+```
+
+The genotypic values are set to be
+
+```{r}
+vec_geno_value_a <- c(31.7, 19.3)
+vec_geno_value_d <- c(0, 0)
+```
+
+To be able to model a none-zero d-effect, we have to filter all the heterozygotes.
+
+```{r}
+mat_geno_het <- mat_geno_code
+mat_geno_het[mat_geno_het != 1] <- 0
+mat_geno_het
+```
+
+The data are generated
+
+```{r}
+n_intercept <- 103.21
+n_res_sd <- 3.93
+vec_obs <- n_intercept + mat_geno_code %*% vec_geno_value_a + mat_geno_het %*% vec_geno_value_d + rnorm(n_nr_obs, mean = 0, sd = n_res_sd)
+vec_obs
+```
+
+## Output
+
+Write results to output.
+
+```{r}
+vec_loc_name <- c("SNP_1", "SNP_2")
+tbl_qg_data <- tibble::tibble(Animal = c(1:n_nr_obs))
+for (idx in 1:n_nr_loci){
+  tbl_qg_data <- dplyr::bind_cols(tbl_qg_data, tibble::tibble(CurLocus = mat_geno_code[,idx]))
+  colnames(tbl_qg_data)[ncol(tbl_qg_data)] <- vec_loc_name[idx]
+}
+tbl_qg_data <- dplyr::bind_cols(tbl_qg_data, tibble::tibble(Observation = round(vec_obs[,1], digits = 0)))
+tbl_qg_data                                
+```
+
+Write the data
+
+```{r}
+s_data_path <- "lbgfs2022_exam_problem1.csv"
+s_delim_char <- ","
+readr::write_delim(tbl_qg_data, file = s_data_path, delim = s_delim_char)
+```
+
+
+## Analysis
+
+Data are read from the data path given
+
+```{r}
+tbl_data_prb01 <- readr::read_delim(file = s_data_path, delim = s_delim_char)
+```
+
+### Each Locus Separately
+
+The genotypic value $a$ are estimated using the homozygous genotypes.
+
+```{r}
+library(dplyr)
+tbl_data_hom_loc1 <- tbl_data_prb01 %>%
+  filter(SNP_1 != 1)
+#tbl_data_hom_loc1
+```
+
+Fit the regression model for the first locus
+
+```{r}
+lm_hom_loc1 <- lm(formula = Observation ~ SNP_1, data = tbl_data_hom_loc1)
+(smry_loc1 <- summary(lm_hom_loc1))
+```
+
+The same for locus 2
+
+```{r}
+tbl_data_hom_loc2 <- tbl_data_prb01 %>%
+  filter(SNP_2 != 1)
+lm_hom_loc2 <- lm(formula = Observation ~ SNP_2, data = tbl_data_hom_loc2)
+(smry_loc2 <- summary(lm_hom_loc2))
+```
+
+### Joint Analysis
+
+Fitting both loci jointly
+
+```{r}
+lm_joint <- lm(Observation ~ SNP_1 + SNP_2, data = tbl_data_prb01)
+(smry_joint <- summary(lm_joint))
+```
+
+
+### Frequencies
+The frequency of the positive Allele can be obtained by getting the total of each locus column divided by two times the number of animals which corresponds to the total number of alleles.
+
+```{r}
+tbl_freq_allele <- tbl_data_prb01 %>% 
+  summarise(freq_pos_allele_SNP1 = sum(SNP_1) / (2*nrow(tbl_data_prb01)))
+tbl_freq_allele <- dplyr::bind_cols(tbl_freq_allele,
+                                    tbl_data_prb01 %>% 
+  summarise(freq_pos_allele_SNP2 = sum(SNP_2) / (2*nrow(tbl_data_prb01))))
+tbl_freq_allele
+```
+
+```{r}
+tbl_freq_allele$freq_pos_allele_SNP1
+```
+

@@ -1,0 +1,54 @@
+---
+title: "Quarto Test Document"
+author: "Peter von Rohr"
+format: html
+editor: visual
+---
+
+## Disclaimer
+
+This document is a first test for using quarto to write texts.
+
+## Experiences
+
+### Editor
+
+The editor allows for two different modes
+
+1.  Source: seams to be what was known from before
+2.  Visual: more WYSIWYG-type of editor, except for the code chunks. The input of text-formatting elements seam to be comparable to before, hence titles can also be entered by hash-symbols, number and un-numbered lists by number followed by a dot and using the asterisk at the beginning of each line.
+
+### Code Chunks
+
+The syntax for the code chunks changed such that options are now inside of the code chunk starting with "#\|" which is most likely borrows from the yaml syntax.
+
+------------------------------------------------------------------------
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
+
+You can add options to executable code like this
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
+
+## Plotting
+
+Plots are created by
+
+```{r}
+plot(mtcars)
+```

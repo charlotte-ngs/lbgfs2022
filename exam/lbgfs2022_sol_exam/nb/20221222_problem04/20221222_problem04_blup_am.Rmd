@@ -1,0 +1,276 @@
+---
+title: "LBGFS 2022 - Exam: Problem 4: BLUP-Animal Model"
+output: html_notebook
+---
+
+
+## Disclaimer
+
+
+## Pedigree
+The pedigree is constructed using the package `pedtools`. The following examples are taken from the vignette of pedtools (https://cran.r-project.org/web/packages/pedtools/vignettes/pedtools.html)
+
+```{r}
+x = pedtools::ancestralPed(g = 2) # bottom person is "7"
+
+# Bottom part
+y = pedtools::halfCousinPed(degree = 1) # top person is "2"
+y = pedtools::swapSex(y, 4)
+#> Changing sex of spouses as well: 5
+
+# Merge
+z = pedtools::mergePed(x, y, by = c("7" = "2"), relabel = TRUE)
+
+# plot
+pedtools::plotPedList(list(x, y, z))
+```
+
+Merging two half cousin pedigrees
+
+```{r}
+p1 <- pedtools::halfCousinPed(degree = 1, child = TRUE)
+plot(p1)
+```
+
+```{r}
+p2 <- pedtools::halfCousinPed(degree = 1, removal = 1)
+plot(p2)
+```
+
+Merge the pedigree
+
+```{r}
+p_merged <- pedtools::mergePed(p1, p2, by = c("10" = "2"), relabel = TRUE)
+pedtools::swapSex(p_merged, id = "17")
+pedtools::swapSex(p_merged, id = "20")
+plot(p_merged)
+```
+
+As a table, the pedigree is
+
+```{r}
+tbl_ped_sim <- tibble::as_tibble(p_merged)
+# change sex of 17 and 20
+tbl_ped_sim$sex[c(17,20)] <- 3 - tbl_ped_sim$sex[c(17,20)]
+tbl_ped_sim
+```
+
+Reduce the pedigree for the dataset and rename parent columns
+
+```{r}
+library(dplyr)
+tbl_data_p04 <- tbl_ped_sim %>%
+  filter(fid != 0 & mid != 0) %>%
+  select(-sex) %>%
+  rename(sire = fid, dam = mid)
+tbl_data_p04
+```
+
+Add a herd 
+
+```{r}
+tbl_data_p04 <- dplyr::bind_cols(tbl_data_p04,
+                                 tibble::tibble(herd = c(rep(1L,3), rep(2L,4), rep(3L,3))))
+n_nr_obs <- nrow(tbl_data_p04)
+tbl_data_p04
+```
+
+
+## Simulate Observations
+Get numerator relationship matrix. Start by adding founders
+
+```{r}
+vec_founder_sire <- unique(tbl_data_p04$sire[!is.element(tbl_data_p04$sire, tbl_data_p04$id)])
+vec_founder_sire
+```
+
+```{r}
+vec_founder_dam <- unique(tbl_data_p04$dam[!is.element(tbl_data_p04$dam, tbl_data_p04$id)])
+vec_founder_dam
+```
+
+```{r}
+vec_founder_cmb <- c(vec_founder_sire, vec_founder_dam)
+```
+
+Add founders
+
+```{r}
+n_nr_founder <- length(vec_founder_cmb)
+tbl_ped_aug <- dplyr::bind_rows(tibble::tibble(id = vec_founder_cmb, 
+                                               sire = rep(NA, n_nr_founder), 
+                                               dam = rep(NA, n_nr_founder)),
+                                dplyr::select(tbl_data_p04, id, sire, dam))
+n_nr_ani_ped <- nrow(tbl_ped_aug)
+tbl_ped_aug
+```
+
+Numerator relationship matrix
+
+```{r}
+ped_p04 <- pedigreemm::pedigree(sire = as.integer(tbl_ped_aug$sire),
+                                dam  = as.integer(tbl_ped_aug$dam),
+                                label = tbl_ped_aug$id)
+mat_A_p04 <- as.matrix(pedigreemm::getA(ped = ped_p04))
+mat_A_p04
+```
+
+Cholesky factor
+
+```{r}
+mat_R_p04 <- t(chol(mat_A_p04))
+mat_R_p04
+```
+
+### Simulate the data
+
+Fix genetic parameters
+
+```{r}
+n_sigma_p2 <- 64
+n_h2 <- 0.16
+n_sigma_u2 <- n_h2 * n_sigma_p2
+n_sigma_e2 <- n_sigma_p2 - n_sigma_u2
+n_lambda <- n_sigma_e2 / n_sigma_u2
+```
+
+Fixed effects of sex and herd
+
+```{r}
+# effects
+# vec_sex_eff <- c(2.9, 7.1)
+vec_herd_eff <- c(19.7, 5.5, 43.2)
+# vec_fix_eff <- c(vec_sex_eff, vec_herd_eff)
+vec_fix_eff <- vec_herd_eff
+# design matrix
+# mat_X <- model.matrix(lm(id ~ 0 + as.factor(sex), data = tbl_data_p04))
+# attr(mat_X, "assign") <- NULL
+# attr(mat_X, "contrasts") <- NULL
+# colnames(mat_X) <- NULL
+mat_X <- model.matrix(lm(id ~ 0 + as.factor(herd), data = tbl_data_p04))
+attr(mat_X, "assign") <- NULL
+attr(mat_X, "contrasts") <- NULL
+colnames(mat_X) <- NULL
+# mat_X <- cbind(mat_X, mat_X_herd)
+mat_X
+```
+
+Check rank
+
+```{r}
+Matrix::rankMatrix(mat_X)
+```
+
+Random animal effect
+
+```{r}
+mat_Z <- cbind(matrix(0, nrow = n_nr_obs, ncol = n_nr_founder), diag(nrow = n_nr_obs))
+mat_Z
+```
+
+Put together observations
+
+```{r}
+set.seed(2579)
+vec_y_sim <- crossprod(t(mat_X), vec_fix_eff) + 
+  crossprod(t(mat_Z), crossprod(t(mat_R_p04), rnorm(n_nr_ani_ped, sd = sqrt(n_sigma_u2)))) + 
+  rnorm(n_nr_obs, sd = sqrt(n_sigma_e2))
+vec_y_sim
+```
+
+Add observations to dataset
+
+```{r}
+tbl_data_p04 <- dplyr::bind_cols(tbl_data_p04, tibble::tibble(y = round(vec_y_sim[,1], digits = 2)))
+tbl_data_p04
+```
+
+Write the data to a file
+
+```{r}
+s_data_p04_path <- file.path(here::here(), "docs", "data", "lbgfs2022_exam_problem4.csv")
+readr::write_delim(tbl_data_p04, s_data_p04_path, delim = ",")
+```
+
+
+## Analysis
+Read the data
+
+```{r}
+s_data_root <- "https://charlotte-ngs.github.io/lbgfs2022/data"
+s_data_p04_url <- file.path(s_data_root, "lbgfs2022_exam_problem4.csv")
+tbl_data_p04_read <- readr::read_delim(s_data_p04_url, 
+                                       delim = ",",
+                                       col_types = readr::cols(
+                                         y = readr::col_double(),
+                                         .default = readr::col_integer()
+                                       ))
+tbl_data_p04_read
+```
+
+The inverse numerator relationship matrix
+
+```{r}
+ped_p04 <- pedigreemm::pedigree(sire = as.integer(tbl_ped_aug$sire),
+                                dam  = as.integer(tbl_ped_aug$dam),
+                                label = tbl_ped_aug$id)
+mat_A_inv_p04 <- as.matrix(pedigreemm::getAInv(ped = ped_p04))
+```
+
+Mixed model equations
+
+```{r}
+vec_y_read <- tbl_data_p04_read$y
+mat_xtx <- crossprod(mat_X)
+mat_xtz <- crossprod(mat_X, mat_Z)
+mat_ztx <- crossprod(mat_Z, mat_X)
+stopifnot(min(mat_ztx - t(mat_xtz)) == 0)
+stopifnot(max(mat_ztx - t(mat_xtz)) == 0)
+mat_ztzlAinv <- crossprod(mat_Z) + n_lambda * mat_A_inv_p04
+mat_coef <- rbind(cbind(mat_xtx,mat_xtz), cbind(mat_ztx,mat_ztzlAinv))
+# rhs
+mat_rhs <- rbind(crossprod(mat_X, vec_y_read),
+                 crossprod(mat_Z, vec_y_read))
+# sol
+mat_sol <- solve(mat_coef, mat_rhs)
+mat_sol
+```
+
+```{r}
+nrow(mat_sol)
+```
+
+
+The reliabilities are computed based on PEV
+
+$$\left[ 
+\begin{array}{lr}
+X^TR^{-1}X  &  X^TR^{-1}Z \\
+Z^TR^{-1}X  &  Z^TR^{-1}Z + G^{-1}
+\end{array}
+\right]
+$$
+
+```{r}
+n_nr_herd_levels <- ncol(mat_X)
+mat_coef_full <- mat_coef / n_sigma_e2
+vec_pev <- diag(solve(mat_coef_full))[(n_nr_herd_levels+1):nrow(mat_coef)]
+vec_pev
+```
+
+```{r}
+vec_A_diag <- diag(mat_A_p04)
+vec_A_diag
+```
+
+
+```{r}
+vec_rel <- 1 - (vec_pev / (n_sigma_u2 * vec_A_diag))
+vec_rel
+```
+
+```{r}
+vec_B_per <- 100 * vec_rel
+vec_B_per
+```
+

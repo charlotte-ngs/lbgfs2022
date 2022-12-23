@@ -1,0 +1,280 @@
+---
+title: "Exam LBG-FS2022 - Problem 2: Relationship and Inbreeding"
+output: html_notebook
+---
+
+```{r}
+set.seed(1298)
+```
+
+
+## Disclaimer
+Documentation and Protocol for engineering data and results for problem 2.
+
+
+## Package
+Try using the package 
+
+```{r}
+if (!is.element("pedsuite", installed.packages()))
+  install.packages("pedsuite", dependencies = TRUE)
+```
+
+Test pedigrees are shown below
+
+### Cousin Pedigree
+
+```{r}
+library(pedsuite)
+x <- cousinPed(1, child = TRUE)
+plot(x)
+```
+
+The generated pedigree can be converted to a tibble
+
+```{r}
+library(dplyr)
+tbl_cousin <- tibble::as_tibble(x)
+(tbl_cousin_with_parents <- tbl_cousin %>%
+  filter(fid != 0 & mid != 0) %>%
+    select(id, fid, mid))
+
+```
+
+Adding ages of owners to each of the animals
+
+```{r}
+(tbl_cousin_with_parents_with_owner_age <- tbl_cousin_with_parents %>% 
+  bind_cols(tibble::tibble(AgeOwner = round(rnorm(nrow(tbl_cousin_with_parents), mean = 75, sd = 3), digits = 0))))
+```
+
+Remap the data to IDs which are from different spaces.
+
+```{r}
+vec_ids <- base::union(base::union(tbl_cousin_with_parents$id, tbl_cousin_with_parents$fid), tbl_cousin_with_parents$mid)
+tbl_id_map <- tibble::tibble(src_id = vec_ids,
+                             trg_id = sapply(runif(length(vec_ids), min = 114000220, max = 114000399), function(x) paste0("CH", floor(x)), USE.NAMES = FALSE))
+tbl_id_map
+```
+
+```{r}
+tbl_cousin_with_parents_with_owner_age_remap <- tbl_cousin_with_parents_with_owner_age %>% 
+  left_join(tbl_id_map, by = c("id" = "src_id")) %>%
+  rename(Animal = trg_id)
+tbl_cousin_with_parents_with_owner_age_remap <- tbl_cousin_with_parents_with_owner_age_remap %>%
+  left_join(tbl_id_map, by = c("fid" = "src_id")) %>%
+  rename(Sire = trg_id)
+tbl_cousin_with_parents_with_owner_age_remap <- tbl_cousin_with_parents_with_owner_age_remap %>%
+  left_join(tbl_id_map, by = c("mid" = "src_id")) %>%
+  rename(Dam = trg_id)
+(tbl_cousin_with_parents_with_owner_age_remap <- tbl_cousin_with_parents_with_owner_age_remap %>%
+  select(Animal, Sire, Dam, AgeOwner))
+
+```
+
+
+
+Writing the pedigree to a file
+
+```{r}
+s_ped1_path <- "lbgfs2022_exam_problem2_pedigree1.csv"
+readr::write_delim(tbl_cousin_with_parents_with_owner_age_remap, s_ped1_path, delim = ",")
+```
+
+
+
+## Half-Sib Pedigree with Inbred Child
+
+```{r}
+x1 = halfSibPed(nch1 = 1, nch2 = 2, sex1 = 1, sex2 = 2:1) |> 
+  addSon(parents = 4:5)
+plot(x1)
+```
+
+Converting it to a tibble
+
+```{r}
+tbl_half_sib <- tibble::as_tibble(x1)
+(tbl_half_sib_with_parents <- tbl_half_sib %>%
+  filter(fid != 0 & mid != 0) %>%
+    select(id, fid, mid))
+```
+
+Adding ages of owners to each of the animals
+
+```{r}
+(tbl_half_sib_with_parents_with_owner_age <- tbl_half_sib_with_parents %>% 
+  bind_cols(tibble::tibble(AgeOwner = round(rnorm(nrow(tbl_half_sib_with_parents), mean = 54, sd = 4), digits = 0))))
+```
+
+Remap the data to IDs which are from different spaces.
+
+```{r}
+vec_ids <- base::union(base::union(tbl_half_sib_with_parents$id, tbl_half_sib_with_parents$fid), tbl_half_sib_with_parents$mid)
+tbl_id_map <- tibble::tibble(src_id = vec_ids,
+                             trg_id = sapply(runif(length(vec_ids), min = 115000220, max = 115000399), function(x) paste0("CH", floor(x)), USE.NAMES = FALSE))
+tbl_id_map
+```
+
+
+```{r}
+tbl_half_sib_with_parents_with_owner_age_remap <- tbl_half_sib_with_parents_with_owner_age %>% 
+  left_join(tbl_id_map, by = c("id" = "src_id")) %>%
+  rename(Animal = trg_id)
+tbl_half_sib_with_parents_with_owner_age_remap <- tbl_half_sib_with_parents_with_owner_age_remap %>%
+  left_join(tbl_id_map, by = c("fid" = "src_id")) %>%
+  rename(Sire = trg_id)
+tbl_half_sib_with_parents_with_owner_age_remap <- tbl_half_sib_with_parents_with_owner_age_remap %>%
+  left_join(tbl_id_map, by = c("mid" = "src_id")) %>%
+  rename(Dam = trg_id)
+(tbl_half_sib_with_parents_with_owner_age_remap <- tbl_half_sib_with_parents_with_owner_age_remap %>%
+  select(Animal, Sire, Dam, AgeOwner))
+
+```
+
+Writing the pedigree to a file
+
+```{r}
+s_ped2_path <- "lbgfs2022_exam_problem2_pedigree2.csv"
+readr::write_delim(tbl_half_sib_with_parents_with_owner_age_remap, s_ped2_path, delim = ",")
+```
+
+
+## Data
+The data is taken from pedigrees of WAS (`/qualstorzws01/data_projekte/projekte/genmon/pedigrees/PopReport_WAS_mit_20210115.csv_adaptfin5.csv`): 
+
+
+```
+1010779957|1004634509|1005998580|2020-10-29|M|3942|0||0
+1010779958|1004634509|1005998580|2020-10-29|F|3942|0||0
+1005998580|1000171975|1000719353|2016-10-02|F|3942|0||0
+1009031358|1004634509|1005998580|2018-09-15|M|3942|0||0
+1004634509|999147646|999222110|2015-05-02|M|3984|0||0
+```
+
+This data is not needed so far.
+
+
+## Solution
+In subtask a) the numerator relationship matrices must be constructed
+
+### Numerator Relationship Matrix
+
+```{r}
+tbl_ped1 <- readr::read_delim(file = s_ped1_path,
+                              delim = ",",
+                              col_types = readr::cols(
+                                Animal = readr::col_character(),
+                                Sire = readr::col_character(),
+                                Dam = readr::col_character(),
+                                AgeOwner = readr::col_double()
+                              ))
+tbl_ped1
+```
+
+Check whether sire and dams are already in pedigree and determine the founder animals to be added to the pedigree
+
+```{r}
+vec_sire_founder <- unique(tbl_ped1$Sire)
+vec_sire_founder <- vec_sire_founder[!is.element(vec_sire_founder, tbl_ped1$Animal)]
+vec_dam_founder <- unique(tbl_ped1$Dam)
+vec_dam_founder <- vec_dam_founder[!is.element(vec_dam_founder, tbl_ped1$Animal)]
+vec_founder <- c(vec_sire_founder, vec_dam_founder)
+```
+
+Add founders to the pedigree
+
+```{r}
+n_nr_founder <- length(vec_founder)
+tbl_ped1_founder <- tibble::tibble(Animal = vec_founder, Sire = rep(NA, n_nr_founder), Dam = rep(NA, n_nr_founder), AgeOwner = rep(NA, n_nr_founder))
+tbl_ped1_aug <- dplyr::bind_rows(tbl_ped1_founder, tbl_ped1)
+tbl_ped1_aug
+```
+
+To be able to use `pedigreemm` for computing the numerator relationship matrix, animals must have integer IDs. Hence, we map the character IDs back to integer IDs.
+
+```{r}
+tbl_ped_ID_map <- tibble::tibble(DomainCharId = tbl_ped1_aug$Animal,
+                                 ImageIntId = c(1:length(tbl_ped1_aug$Animal)))
+tbl_ped_ID_map
+```
+
+Do the mapping via joins
+
+```{r}
+library(dplyr)
+# Animals
+tbl_ped1_int_id <- tbl_ped1_aug %>%
+  left_join(tbl_ped_ID_map, by = c("Animal" = "DomainCharId")) %>%
+  rename(AnimalIntId = ImageIntId)
+# Sire
+tbl_ped1_int_id <- tbl_ped1_int_id %>%
+  left_join(tbl_ped_ID_map, by = c("Sire" = "DomainCharId")) %>%
+  rename(SireIntId = ImageIntId)
+# Dam 
+tbl_ped1_int_id <- tbl_ped1_int_id %>%
+  left_join(tbl_ped_ID_map, by = c("Dam" = "DomainCharId")) %>%
+  rename(DamIntId = ImageIntId)
+tbl_ped1_int_id
+```
+
+The numerator relationship
+
+```{r}
+ped_ped1 <- pedigreemm::pedigree(sire = tbl_ped1_int_id$SireIntId, 
+                                 dam =  tbl_ped1_int_id$DamIntId,
+                                 label = as.character(tbl_ped1_int_id$AnimalIntId))
+pedigreemm::getA(ped = ped_ped1)
+```
+
+Same for pedigree 2
+
+```{r}
+# read data
+tbl_ped2 <- readr::read_delim(file = s_ped2_path,
+                              delim = ",",
+                              col_types = readr::cols(
+                                Animal = readr::col_character(),
+                                Sire = readr::col_character(),
+                                Dam = readr::col_character(),
+                                AgeOwner = readr::col_double()
+                              ))
+tbl_ped2
+
+# add founders
+vec_sire_founder <- unique(tbl_ped2$Sire)
+vec_sire_founder <- vec_sire_founder[!is.element(vec_sire_founder, tbl_ped2$Animal)]
+vec_dam_founder <- unique(tbl_ped2$Dam)
+vec_dam_founder <- vec_dam_founder[!is.element(vec_dam_founder, tbl_ped2$Animal)]
+vec_founder <- c(vec_sire_founder, vec_dam_founder)
+n_nr_founder <- length(vec_founder)
+tbl_ped2_founder <- tibble::tibble(Animal = vec_founder, Sire = rep(NA, n_nr_founder), Dam = rep(NA, n_nr_founder), AgeOwner = rep(NA, n_nr_founder))
+tbl_ped2_aug <- dplyr::bind_rows(tbl_ped2_founder, tbl_ped2)
+tbl_ped2_aug
+
+# mapping to integer IDs
+tbl_ped_ID_map <- tibble::tibble(DomainCharId = tbl_ped2_aug$Animal,
+                                 ImageIntId = c(1:length(tbl_ped2_aug$Animal)))
+tbl_ped_ID_map
+library(dplyr)
+# Animals
+tbl_ped2_int_id <- tbl_ped2_aug %>%
+  left_join(tbl_ped_ID_map, by = c("Animal" = "DomainCharId")) %>%
+  rename(AnimalIntId = ImageIntId)
+# Sire
+tbl_ped2_int_id <- tbl_ped2_int_id %>%
+  left_join(tbl_ped_ID_map, by = c("Sire" = "DomainCharId")) %>%
+  rename(SireIntId = ImageIntId)
+# Dam 
+tbl_ped2_int_id <- tbl_ped2_int_id %>%
+  left_join(tbl_ped_ID_map, by = c("Dam" = "DomainCharId")) %>%
+  rename(DamIntId = ImageIntId)
+tbl_ped2_int_id
+
+#
+ped_ped2 <- pedigreemm::pedigree(sire = tbl_ped2_int_id$SireIntId, 
+                                 dam =  tbl_ped2_int_id$DamIntId,
+                                 label = as.character(tbl_ped2_int_id$AnimalIntId))
+pedigreemm::getA(ped = ped_ped2)
+```
+

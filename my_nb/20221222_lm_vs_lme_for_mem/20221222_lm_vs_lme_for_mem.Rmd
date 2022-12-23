@@ -1,0 +1,27 @@
+---
+title: "Compare MEM with lm and with LME"
+output: html_notebook
+---
+
+
+
+Check difference between lme and lm for Problem 5a in Testexam of 2022
+
+
+## Read the Data
+
+```{r}
+rm(list = ls())
+s_data_root <- "https://charlotte-ngs.github.io/lbgfs2021/data"
+s_data_url_p5 <- file.path(s_data_root, "exam_lbgfs2021_problem5.csv")
+tbl_data_p5 <- readr::read_csv(file = s_data_url_p5)
+```
+
+## Marker Effects
+Use lm()
+
+```{r}
+lm_mrk <- lm(Observation ~ `Locus G` + `Locus H` + `Locus I`, data = tbl_data_p5)
+summary(lm_mrk)
+```
+

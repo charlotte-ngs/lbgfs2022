@@ -1,0 +1,201 @@
+---
+title: "LBGFS 2022 - Exam Problem 3: Genomics"
+output: html_notebook
+---
+
+
+## Disclaimer
+Simulation of data for problem 3 on genomics is documented.
+
+
+## Basic Parameter
+The values for the basic parameter are given.
+
+```{r}
+rm(list = ls())
+set.seed(7549)
+# dimension, animals and loci
+n_nr_animal <- 10
+n_nr_loci <- 15
+# residual standard deviation
+n_res_sd <- 3.99
+# fixed effects, sex
+vec_fixed_effect_sex <- c(-5.1, 17.9)
+mat_design_sex <- matrix(data = sample(c(0,1), size = n_nr_animal, replace = TRUE, prob = c(0.55, 0.45)), ncol = 1)
+mat_design_sex <- cbind(mat_design_sex, 1-mat_design_sex)
+# marker effects
+vec_marker_effects <- runif(n = n_nr_loci, min = 1.92, max = 9.12)
+vec_marker_maf <- runif(n = n_nr_loci, min = 0.2, max = 0.42)
+mat_geno <- NULL
+for (idx in 1:n_nr_loci){
+  mat_geno <- cbind(mat_geno,
+                    matrix(c(sample(c(0,1,2), 
+                                    size = n_nr_animal, 
+                                    replace = TRUE, 
+                                    prob = c((1-vec_marker_maf[idx])^2,
+                                              2*(1-vec_marker_maf[idx])*vec_marker_maf[idx],
+                                              vec_marker_maf[idx]^2))), 
+                           ncol = 1))
+}
+# observations
+mat_obs <- crossprod(t(mat_design_sex), vec_fixed_effect_sex) + crossprod(t(mat_geno), vec_marker_effects) + rnorm(n_nr_animal, sd = n_res_sd)
+mat_obs
+```
+
+Create a tibble with data to be written to input file
+
+```{r}
+tbl_data_p03 <- tibble::tibble(ID = c(1:n_nr_animal),
+                               sex = ifelse(mat_design_sex[,1] == 0, "F", "M"),
+                               y = round(mat_obs[,1], digits = 1))
+for (idx in 1:n_nr_loci){
+  tbl_data_p03 <- dplyr::bind_cols(tbl_data_p03,
+                                   tibble::tibble(Locus = mat_geno[,idx]))
+  colnames(tbl_data_p03)[ncol(tbl_data_p03)] <- paste0("S", idx)
+}
+tbl_data_p03
+```
+
+Write data to a file
+
+```{r}
+s_data_p03_path <- file.path(here::here(), "docs", "data", "lbgfs2022_exam_problem3.csv")
+readr::write_delim(tbl_data_p03, s_data_p03_path, delim = ",")
+```
+
+
+## Analysis
+Data is read
+
+```{r}
+s_data_root <- "https://charlotte-ngs.github.io/lbgfs2022/data"
+s_pr03_data_path <- file.path(s_data_root, "lbgfs2022_exam_problem3.csv")
+tbl_pr3 <- readr::read_delim(s_pr03_data_path, 
+                             delim = ",",
+                             col_types = readr::cols(
+                               sex = readr::col_factor(),
+                               y = readr::col_double(),
+                               .default = readr::col_integer()
+                             ))
+tbl_pr3
+```
+
+
+### MEM
+Set up a marker effect model which in this case has to be a linear mixed effect model
+
+$$y = X\beta + Wq + e$$
+with $\beta^T = \left[ \begin{array}{cc} \beta_M & \beta_F \end{array} \right]$ the sex effects.
+
+
+```{r}
+# info from dataset to model component
+vec_y <- tbl_pr3$y
+# design matrix for fixed effects
+mat_X <- model.matrix(lm(y ~ 0 + sex, data = tbl_pr3))
+attr(mat_X, "assign") <- NULL
+attr(mat_X, "contrasts") <- NULL
+colnames(mat_X) <- NULL
+mat_X
+```
+
+Genotype matrix
+
+```{r}
+tbl_SNP <- dplyr::select(tbl_pr3, dplyr::starts_with("S", ignore.case = FALSE))
+mat_W <- as.matrix(tbl_SNP) - 1
+colnames(mat_W) <- NULL
+mat_W
+```
+
+Mixed model equations
+
+```{r}
+lambda_mem <- 1
+mat_xtx <- crossprod(mat_X)
+mat_xtw <- crossprod(mat_X, mat_W)
+mat_wtx <- t(mat_xtw)
+mat_wtwlI <- crossprod(mat_W) + lambda_mem * diag(nrow = n_nr_loci)
+mat_coef <- rbind(cbind(mat_xtx,mat_xtw),cbind(mat_wtx,mat_wtwlI))
+mat_rhs <- rbind(crossprod(mat_X, vec_y),
+                 crossprod(mat_W, vec_y))
+mat_sol <- solve(mat_coef,mat_rhs)
+mat_sol
+```
+
+The genomic breeding values are computed as
+
+```{r}
+vec_marker_sol <- mat_sol[3:(nrow(mat_sol)),1]
+tbl_mem_dgw <- tibble::tibble(Animal = c(1:n_nr_animal),
+                              `Genomic BV`= crossprod(t(mat_W), vec_marker_sol))
+tbl_mem_dgw
+```
+
+Rank animals according to the DGW
+
+```{r}
+order(tbl_mem_dgw$`Genomic BV`, decreasing = TRUE)
+```
+
+
+## Genomic Relationship Matrix
+
+The genomic relationship matrix is computed using the following function
+
+```{r}
+#' Compute genomic relationship matrix based on data matrix
+computeMatGrm <- function(pmatData, pn_max_iter = 10, pn_min_eig_val = 0.0001) {
+  matData <- pmatData
+  # check the coding, if matData is -1, 0, 1 coded, then add 1 to get to 0, 1, 2 coding
+  if (min(matData) < 0) matData <- matData + 1
+  # Allele frequencies, column vector of P and sum of frequency products
+  freq <- apply(matData, 2, mean) / 2
+  P <- 2 * (freq - 0.5)
+  sumpq <- sum(freq*(1-freq))
+  # Changing the coding from (0,1,2) to (-1,0,1) and subtract matrix P
+  Z <- matData - 1 - matrix(P, nrow = nrow(matData), 
+                             ncol = ncol(matData), 
+                             byrow = TRUE)
+  # Z%*%Zt is replaced by tcrossprod(Z)
+  matG_result <- tcrossprod(Z)/(2*sumpq)
+  # check for positive definiteness
+  n_min_eig_matG_result <- min(eigen(matG_result, only.values = TRUE)$values)
+  n_iter_idx <- 0
+  while (n_min_eig_matG_result < pn_min_eig_val & n_iter_idx < pn_max_iter){
+    matG_result <- matG_result + 0.01 * diag(nrow = nrow(matG_result))
+    n_min_eig_matG_result <- min(eigen(matG_result, only.values = TRUE)$values)
+    n_iter_idx <- n_iter_idx + 1
+  }
+  # check for convergence
+  if (n_iter_idx > pn_max_iter){
+    stop(" *** ERROR: No convergence of bending genomic relationship matrix")
+  }
+  return(matG_result)
+}
+
+matG <-computeMatGrm(pmatData = mat_W)
+matG
+
+
+# matG_star <- matG + 0.01 * diag(nrow = nrow(matG))
+# n_min_eig_matG_start <- min(eigen(matG_star, only.values = TRUE)$values)
+# if (n_min_eig_matG_start < sqrt(.Machine$double.eps))
+#   stop(" *** Genomic relationship matrix singular with smallest eigenvalue: ", 
+#        n_min_eig_matG_start)
+```
+
+Eigenvalues
+
+```{r}
+eigen(matG, only.values = TRUE)$values
+```
+
+The inverse
+
+```{r}
+solve(matG)
+```
+
+
+

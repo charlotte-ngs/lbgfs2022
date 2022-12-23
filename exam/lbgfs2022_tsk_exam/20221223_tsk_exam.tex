@@ -1,0 +1,680 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+% preamble used for exam
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{float}
+
+\newcommand{\points}[1]
+{\begin{flushright}\textbf{#1}\end{flushright}}
+\newcommand{\solstart}
+{\vspace{3ex}\textbf{Solution}:}
+\newcommand{\solend}
+{\vspace{2ex}$\blacksquare$}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\begin{tabular}{l}
+ETH Zurich \\
+D-USYS\\
+Institute of Agricultural Sciences\\
+\end{tabular}
+
+\vspace{15ex}
+\begin{center}
+\huge
+Exam\\ \vspace{1ex}
+Livestock Breeding and Genomics \\  \vspace{1ex}
+FS 2022 \\
+
+\normalsize
+\vspace{7ex}
+Peter von Rohr 
+\end{center}
+
+\vspace{7ex}
+\begin{tabular}{p{5cm}lr}
+  & \textsc{Date}  & \textsc{\emph{23. December 2022}} \\
+  & \textsc{Begin} & \textsc{\emph{09:15 }}\\
+  & \textsc{End}   & \textsc{\emph{11:15 }}\\ 
+\end{tabular}
+
+\vspace{5ex}
+
+\large
+\begin{tabular}{p{2.5cm}p{3cm}p{6cm}}
+  &  Name:     &  \\
+  &            &  \\
+  &  Legi-Nr:  & \\
+\end{tabular}
+\normalsize
+
+\vspace{9ex}
+\begin{center}
+\begin{tabular}{|p{3cm}|c|c|}
+\hline
+Problem  &  Maximum Number of Points  &  Number of Points Reached \\
+\hline
+1        &  27         & \\
+\hline
+2        &  25         & \\
+\hline
+3        &  47         & \\
+\hline
+4        &  28          & \\
+\hline
+5        &  22          & \\
+\hline
+Total    &  149    & \\
+\hline
+\end{tabular}
+\end{center}
+
+\clearpage
+\pagebreak
+
+\hypertarget{problem-1-quantitative-genetics}{%
+\subsection{Problem 1 Quantitative
+Genetics}\label{problem-1-quantitative-genetics}}
+
+The following dataset contains observations of a phenotypic trait and
+genotypes for two loci. The numbers in the columns \texttt{SNP\_1} and
+\texttt{SNP\_2} count the number of alleles with a positive effect on
+the observation. Genotypic values of heterozygous animals are assumed to
+be right between the genotypic values of homozygous animals (\(d=0\)).
+
+\textit{Der folgende Datensatz enthält Beobachtungen für ein phänotypisches Merkmal und Genotypen von zwei Loci. Die Zahlen in den Kolonnen }
+\verb+SNP_1+ \textit{ und } \verb+SNP_2+
+\textit{ zählen die Anzahl Allele mit einem positiven Effekt auf den Merkmalswert. Genotypische Werte der heterozygoten Tiere sind genau in der Mitte zwischen den genotypischen Werten der homozygoten Tiere}
+(\(d=0\)).
+
+\begin{longtable}[]{@{}rrrr@{}}
+\toprule()
+Animal & SNP\_1 & SNP\_2 & Observation \\
+\midrule()
+\endhead
+1 & 0 & 2 & 141 \\
+2 & 0 & 1 & 120 \\
+3 & 2 & 1 & 189 \\
+4 & 1 & 2 & 172 \\
+5 & 1 & 1 & 158 \\
+6 & 1 & 1 & 152 \\
+7 & 1 & 0 & 141 \\
+8 & 0 & 1 & 116 \\
+9 & 1 & 2 & 176 \\
+10 & 0 & 0 & 107 \\
+11 & 1 & 0 & 132 \\
+12 & 1 & 2 & 173 \\
+13 & 1 & 0 & 131 \\
+14 & 0 & 2 & 144 \\
+15 & 1 & 2 & 176 \\
+16 & 1 & 2 & 175 \\
+17 & 0 & 0 & 103 \\
+18 & 1 & 1 & 154 \\
+19 & 2 & 0 & 176 \\
+20 & 0 & 1 & 129 \\
+21 & 2 & 1 & 187 \\
+22 & 1 & 2 & 181 \\
+23 & 1 & 0 & 138 \\
+24 & 1 & 0 & 132 \\
+25 & 0 & 1 & 119 \\
+26 & 0 & 0 & 94 \\
+27 & 1 & 0 & 139 \\
+28 & 0 & 2 & 144 \\
+29 & 0 & 1 & 124 \\
+30 & 0 & 1 & 124 \\
+\bottomrule()
+\end{longtable}
+
+\clearpage
+\pagebreak
+
+The dataset as shown in the table above is available under:
+
+\textit{Der oben gezeigte Datensatz ist verfügbar unter:}
+
+\url{https://charlotte-ngs.github.io/lbgfs2022/data/lbgfs2022_exam_problem1.csv}
+
+\vspace{3ex}
+
+\begin{enumerate}
+\item[a)] Compute the genotypic values for all genotypes of the two loci  \verb+SNP_1+ and \verb+SNP_2+ using the above dataset.
+
+\textit{Berechnen Sie die genotypischen Werte aller Genotypen für die zwei Loci } \verb+SNP_1+ \textit{ und } \verb+SNP_2+ basierend auf dem oben gezeigtem Datensatz.  
+\points{6}
+\end{enumerate}
+
+\solstart
+
+\clearpage
+\pagebreak
+
+\begin{enumerate}
+\item[b)] Compute the breeding values and the dominance deviations for all animals in the above dataset. Allele frequencies can be determined based on the given dataset.
+
+\textit{Berechnen Sie die Zuchtwerte und die Dominanzabweichungen aller Tiere im oben gegebenen Datensatz. Die Allelefrequenzen sollen aufgrund des gegebenen Datensatzes bestimmt werden.}
+\points{15}
+\end{enumerate}
+
+\solstart
+
+\clearpage
+\pagebreak
+\begin{enumerate}
+\item[c)]  Compute the genetic additive variance $\sigma_A^2$ and the dominance variance $\sigma_D^2$ for the trait in the given dataset over both loci.
+
+\textit{Berechnen Sie die genetisch-additive Varianz } $\sigma_A^2$ \textit{ und die Dominanzvarianz } $\sigma_D^2$ für das Merkmal im Datensatz über beide Loci. 
+\points{6}
+\end{enumerate}
+
+\solstart
+
+\clearpage
+\pagebreak
+
+\hypertarget{problem-2-relationship-and-inbreeding}{%
+\subsection{Problem 2 Relationship and
+Inbreeding}\label{problem-2-relationship-and-inbreeding}}
+
+Starting on 01.01.2023, the Swiss Federal Office of Agriculture will
+start to pay subsidies to owners of livestock animals of endangered
+breeds. The amount of subsidies will be based on an index which among
+other components is based on the average inbreeding coefficient of
+animals and on the average age of the owners of the animals. Below we
+are given two example pedigrees of two different breeds.
+
+\textit{Ab 01.01.2023 wird das Bundesamt für Landwirtschaft Subventionen an Halter von Nutztieren seltener Rassen auszahlen. Die Höhe der Subventionen wird auf einem Index basieren. Dieser Index wird neben anderen Komponenten auch den durchschnittlichen Inzuchtkoeffizient der Tiere und das mittlere Alter der Halter beinhalten. Unten sind zwei Beispielpedigrees von zwei verschiedenen Rassen gegeben.}
+
+\hypertarget{breed-1}{%
+\subsubsection{Breed 1:}\label{breed-1}}
+
+\begin{verbatim}
+## https://charlotte-ngs.github.io/lbgfs2022/data/lbgfs2022_exam_problem2_pedigree1.csv
+\end{verbatim}
+
+\begin{longtable}[]{@{}lllr@{}}
+\toprule()
+Animal & Sire & Dam & AgeOwner \\
+\midrule()
+\endhead
+CH114000313 & CH114000329 & CH114000277 & 78 \\
+CH114000368 & CH114000329 & CH114000277 & 71 \\
+CH114000285 & CH114000313 & CH114000255 & 72 \\
+CH114000256 & CH114000368 & CH114000248 & 77 \\
+CH114000397 & CH114000285 & CH114000256 & 77 \\
+\bottomrule()
+\end{longtable}
+
+\hypertarget{breed-2}{%
+\subsubsection{Breed 2:}\label{breed-2}}
+
+\begin{verbatim}
+## https://charlotte-ngs.github.io/lbgfs2022/data/lbgfs2022_exam_problem2_pedigree2.csv
+\end{verbatim}
+
+\begin{longtable}[]{@{}lllr@{}}
+\toprule()
+Animal & Sire & Dam & AgeOwner \\
+\midrule()
+\endhead
+CH115000392 & CH115000277 & CH115000301 & 51 \\
+CH115000319 & CH115000277 & CH115000256 & 53 \\
+CH115000346 & CH115000277 & CH115000256 & 52 \\
+CH115000347 & CH115000392 & CH115000319 & 54 \\
+\bottomrule()
+\end{longtable}
+
+\clearpage
+\pagebreak
+
+\begin{enumerate}
+\item[a)] Setup the numerator relationship matrices for both breeds given above. 
+
+\textit{Stellen Sie die additiv genetischen Verwandtschaftsmatrizen für beide oben gegebenen Rassen auf.}
+\points{6}
+\end{enumerate}
+
+\vspace{3ex}
+\solstart
+
+\clearpage
+\pagebreak
+
+\begin{enumerate}
+\item[b)] Compute the inbreeding coefficients for all animals in both pedigrees of the two breeds given above. 
+
+\textit{Berechnen Sie die Inzuchtkoeffizienten für alle Tiere in beiden Pedigrees der zwei Rassen, welche oben gegeben sind.}
+\points{16}
+\end{enumerate}
+
+\vspace{3ex}
+\solstart
+
+\clearpage
+\pagebreak
+
+\begin{enumerate}
+\item[c)] For our example breeds, we use a simplified version of the index ($I_E$) indicating which breeds are endangered. This version of the index is based on the average inbreeding coefficients of all animals in a given breed and on the average age of the owners of the animals in that breed. Compute for both given breeds the index $I_E$ using a weight $w_F = 1$ for the average inbreeding coefficient and a weight $w_O = 0.002$ for the average age of the owners of the animals. The index can be computed as shown below. Determine based on the value of the index for both breeds which breed is considered to be more endangered.
+
+\textit{Für die zwei Beispielrassen wird eine vereinfachte Form des Gefährungsindexes} $I_E$ \textit{ berechnet. Diese Version des Indexes basiert auf dem durchschnittlichen Inzuchtkoeffizienten aller Tiere im Pedigree und auf dem durchschnittlichen Alter der Tierhalter einer bestimmten Rasse. Berechnen Sie für beide gegebenen Rassen den index } $I_E$ \textit{ mit den Gewichten } $w_F = 1$ \textit{ für den durchschnittlichen Inzuchtkoeffizient und } $w_O = 0.002$ \textit{ für das durchschnittliche Alter der Tierhalter. Der Index kann wie nachfolgend gezeigt berechent werden. Entscheiden Sie basierend auf dem Indexwert für beide Rassen, welche Rasse als gefährdeter eingestuft würde.}
+\points{3}
+\end{enumerate}
+
+For a given breed the endangerment index \(I_E\) is computed as
+
+\textit{Für eine bestimmte Rasse kann der Gefährdungsindex } \(I_E\)
+\textit{ wie folgt berechnet werden}
+
+\[I_E = w_F * \bar{F} + w_O * \bar{O}\]
+
+where \(\bar{F}\) is the average inbreeding coefficient of all animals
+in the pedigree and \(\bar{O}\) is the average age of all owners of
+animals of a given breed.
+
+\vspace{3ex}
+\solstart
+
+\clearpage
+\pagebreak
+
+\hypertarget{problem-3-genomics}{%
+\subsection{Problem 3 Genomics}\label{problem-3-genomics}}
+
+The following dataset is used to predict genomic breeding values. The
+column \texttt{y} contains the observations and columns \texttt{S1} to
+\texttt{S15} contain genotypes of 15 SNP marker loci.
+
+\textit{Der folgende Datensatz wird für die Schätzung genomischer Zuchtwerte verwendet. Die Kolonne }
+\verb+y+
+\textit{ enthält die beobachteten Merkmalswerte und die Kolonnen }
+\verb+S1+ \textit{ bis } \verb+S15+
+\textit{ enthalten die Genotypen von } 15 SNP-Marker.
+
+\begin{longtable}[]{@{}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 34\tabcolsep) * \real{0.0476}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 34\tabcolsep) * \real{0.0635}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 34\tabcolsep) * \real{0.0794}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 34\tabcolsep) * \real{0.0476}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 34\tabcolsep) * \real{0.0476}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 34\tabcolsep) * \real{0.0476}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 34\tabcolsep) * \real{0.0476}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 34\tabcolsep) * \real{0.0476}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 34\tabcolsep) * \real{0.0476}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 34\tabcolsep) * \real{0.0476}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 34\tabcolsep) * \real{0.0476}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 34\tabcolsep) * \real{0.0476}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 34\tabcolsep) * \real{0.0635}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 34\tabcolsep) * \real{0.0635}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 34\tabcolsep) * \real{0.0635}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 34\tabcolsep) * \real{0.0635}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 34\tabcolsep) * \real{0.0635}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 34\tabcolsep) * \real{0.0635}}@{}}
+\toprule()
+\begin{minipage}[b]{\linewidth}\raggedleft
+ID
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+sex
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+y
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+S1
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+S2
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+S3
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+S4
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+S5
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+S6
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+S7
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+S8
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+S9
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+S10
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+S11
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+S12
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+S13
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+S14
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+S15
+\end{minipage} \\
+\midrule()
+\endhead
+1 & M & 59.0 & 1 & 1 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 1 & 0 & 2 & 1 &
+1 \\
+2 & M & 33.5 & 0 & 0 & 0 & 1 & 0 & 1 & 1 & 1 & 1 & 0 & 1 & 1 & 0 & 0 &
+0 \\
+3 & F & 75.1 & 0 & 0 & 0 & 1 & 0 & 1 & 1 & 1 & 1 & 0 & 0 & 1 & 2 & 1 &
+0 \\
+4 & F & 83.9 & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 1 & 2 & 1 & 0 &
+0 \\
+5 & F & 52.4 & 0 & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 0 & 0 & 1 & 0 & 0 &
+0 \\
+6 & M & 62.5 & 0 & 0 & 1 & 0 & 1 & 0 & 0 & 2 & 2 & 0 & 0 & 0 & 1 & 1 &
+1 \\
+7 & F & 59.7 & 1 & 1 & 0 & 0 & 1 & 1 & 1 & 1 & 0 & 1 & 0 & 0 & 0 & 1 &
+0 \\
+8 & M & 81.1 & 1 & 0 & 2 & 1 & 1 & 1 & 1 & 0 & 1 & 0 & 1 & 1 & 1 & 1 &
+2 \\
+9 & M & 54.4 & 0 & 0 & 0 & 1 & 0 & 1 & 0 & 1 & 1 & 1 & 1 & 2 & 1 & 0 &
+0 \\
+10 & M & 29.0 & 0 & 0 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 0 & 0 & 1 & 0 & 0 &
+2 \\
+\bottomrule()
+\end{longtable}
+
+The above dataset is available under:
+
+\textit{Der oben gezeigte Datensatz ist verfügbar unter:}
+
+\begin{verbatim}
+## https://charlotte-ngs.github.io/lbgfs2022/data/lbgfs2022_exam_problem3.csv
+\end{verbatim}
+
+\vspace{3ex}
+\begin{enumerate}
+\item[a)] Use a marker effect model (MEM) to predict genomic breeding values for the animals given in the dataset shown above. Specify the marker effect model as a mathematical formula and list the meaning of all model components. Indicate the expected values and the variance-covariance matrices for all random effects in the model. You can assume $\lambda = \sigma_e^2 / \sigma_q^2 = 1$.
+
+\textit{Verwenden Sie ein Marker-Effekt-Modell (MEM) zur Schätzung der genomischen Zuchtwerte für die Tiere im oben gezeigten Datensatz. Spezifizieren Sie das Marker-Effekt-Modell als mathematische Formel und notieren Sie die Bedeutung aller Modellkomponenten. Geben Sie die Erwartungswerte und die Varianz-Kovarianz-Matrizen aller zufälligen Effekte an. Wir nehmen an, dass } $\lambda = \sigma_e^2 / \sigma_q^2 = 1$.
+\points{20}
+\end{enumerate}
+
+\clearpage
+\pagebreak
+
+\solstart
+
+\clearpage
+\pagebreak
+
+\begin{enumerate}
+\item[b)] Predict genomic breeding values using a breeding value based model (BVM) for all animals in the above given dataset. Specify the model as a mathematical formula and list the meaning of all model components. Indicate the expected values and the variance-covariance matrices for all random effects in the model. You can assume $\lambda = \sigma_e^2 / \sigma_g^2 = 3$.
+
+\textit{Schätzen Sie genomische Zuchtwerte mit einem Zuchtwert-basierten Modell (BVM) für alle Tiere im oben gezeigten Datensatz. Spezifizieren Sie das Modell als mathematische Formel und notieren Sie die Bedeutung aller Modellkomponenten. Geben Sie die Erwartungswerte und die Varianz-Kovarianz-Matrizen aller zufälligen Effekte an. Wir nehmen an, dass } $\lambda = \sigma_e^2 / \sigma_g^2 = 3$.
+\points{25}
+\end{enumerate}
+
+\solstart
+
+\clearpage
+\pagebreak
+
+\vspace{3ex}
+\begin{enumerate}
+\item[c)]  Compare the order of the predicted breeding values of all animals based on the marker effect model (MEM) and based on the breeding value model (BVM)
+
+\textit{Vergleichen Sie die Reihenfolge der Tiere aufgrund der geschätzten genomischen Zuchtwerte basierend auf dem Markereffektmodell (MEM) und basierend auf dem Zuchtwert-basierten Modell (BVM)}
+\points{2}
+\end{enumerate}
+
+\solstart
+
+\clearpage
+\pagebreak
+
+\hypertarget{problem-4-blup-animal-model}{%
+\subsection{Problem 4 BLUP Animal
+Model}\label{problem-4-blup-animal-model}}
+
+\begin{longtable}[]{@{}rrrrr@{}}
+\toprule()
+id & sire & dam & herd & y \\
+\midrule()
+\endhead
+4 & 2 & 1 & 1 & 26.52 \\
+6 & 2 & 3 & 1 & 39.71 \\
+8 & 4 & 5 & 1 & 25.11 \\
+9 & 6 & 7 & 2 & 24.02 \\
+11 & 8 & 9 & 2 & 6.15 \\
+13 & 11 & 10 & 2 & 8.81 \\
+15 & 11 & 12 & 2 & 18.56 \\
+17 & 13 & 14 & 3 & 47.81 \\
+18 & 15 & 16 & 3 & 51.72 \\
+20 & 18 & 19 & 3 & 47.33 \\
+\bottomrule()
+\end{longtable}
+
+The above dataset is available under:
+
+\textit{Der oben gezeigte Datensatz ist verfügbar unter:}
+
+\begin{verbatim}
+## https://charlotte-ngs.github.io/lbgfs2022/data/lbgfs2022_exam_problem4.csv
+\end{verbatim}
+
+\vspace{3ex}
+\begin{enumerate}
+\item[a)]  Use the above shown dataset to predict breeding values for all animals in the pedigree using a BLUP animal model. Use `herd` as fixed effect and compute estimates for all the levels of the fixed effect. The column entitled `y` contains the values for an observed trait of interest. Specify the model as mathematical formula and list the meaning of all model components. Write down the expected values and the variance-covariance matrices for all random effects in the model. Assume the phenotypic variance to be $\sigma_p^2 = 64$ and the heritability to be $h^2 = 0.16$.
+
+\textit{Verwenden Sie den oben gezeigten Datensatz für die Schätzung von Zuchtwerten für alle Tiere im Pedigree mit einem BLUP-Tiermodell. Modellieren Sie } \verb+herd+ \textit{als fixen Effekt. Berechnen Sie Schätzwerte für alle Stufen des fixen Effekts. Die Kolonne mit dem Titel} \verb+y+ \textit{enthält die Beobachtungswerte eines Merkmals von züchterischem Interesse. Spezifizieren Sie das Modell als mathematische Formel und benennen Sie die Bedeutung jeder Modellkomponente. Notieren Sie die Erwartungswerte und die Varianz-Kovarianzmatrizen aller zufälligen Effekte im Modell. Die phänotypische Varianz wird angenommen als } $\sigma_p^2 = 64$ \textit{ und die Erblichkeit sei } $h^2 = 0.16$.
+\points{22}
+\end{enumerate}
+
+\clearpage
+\pagebreak
+
+\solstart
+
+\clearpage
+\pagebreak
+
+\begin{enumerate}
+\item[b)] Compute the reliabilities for the predicted breeding values of all animals under Problem 4a).
+
+\textit{Berechnen Sie die Bestimmtheitsmasse der unter Aufgabe 4a) geschätzten Zuchterte.}
+\points{6}
+\end{enumerate}
+
+\solstart
+
+\clearpage
+\pagebreak
+
+\hypertarget{problem-5-variance-and-inbreeding}{%
+\subsection{Problem 5 Variance and
+Inbreeding}\label{problem-5-variance-and-inbreeding}}
+
+In the year 1892 a group of Scottish farmers landed with their sheep in
+Australia. The farmers took a total of 2200 sheeps from Scotland to
+Australia. Once the farmers arrived in Australia, they separated in 4
+subgroups of equal sizes. Each of the subgroups went to a different
+state of Australia (Western Australia, North Australia, New South Wales
+and South Australia). In the year 2022 Australian sheep farmers want to
+export some of their breeding animals. For this problem you can work
+with the following assumptions
+
+\begin{itemize}
+\tightlist
+\item
+  There was no exchange of animals between the sub-populations after the
+  split into subgroups.
+\item
+  The ratio between the number of female animals and the number of male
+  animals is 10.
+\item
+  The size of the sub-populations \(N\) which is relevant for the
+  computation of the inbreeding coefficient is set to the number of
+  female animals in each sub-population.
+\item
+  The generation interval can assumed to be 1.3 years.
+\end{itemize}
+
+\textit{Im Jahr 1892 wanderte eine Gruppe von Schottischen Farmern mit ihren Schafen nach Australien aus. Die Farmer brachten 2200 Schafe nach Australien. Als die Farmer in Australien ankamen teilten sie sich in 4 gleich grosse Gruppen auf. Jede Gruppe ging in einen anderen Staat in Australien (Western Australia, North Australia, New South Wales and South Australia). Im Jahr 2022 möchten die Farmer einige ihrer Zuchttiere exportieren. Für diese Aufgabe können Sie die folgenden Annahmen treffen.}
+
+\begin{itemize}
+\tightlist
+\item
+  \textit{Nach der Aufteilung der Tiere in die Gruppen kam es zu keinem Tieraustausch zwischen den Gruppen.}
+\item
+  \textit{Das Verhältnis zwischen der Anzahl weiblicher Tiere und der Anzahl männlicher Tiere beträgt 10.}
+\item
+  \textit{Die Popultationsgrösse $N$, welche für die Berechnung des Inzuchtkoeffizienten wichtig ist, kann mit der Anzahl weiblichen Tiere in jeder Subpopulation gleichgesetzt werden.}
+\item
+  \textit{Das Generationeninterval betrage 1.3 Jahre.}
+\end{itemize}
+
+\includegraphics{odg/fig-sub-pop.png}
+
+\vspace{3ex}
+
+\begin{enumerate}
+\item[a)] Compute the inbreeding coefficient $F_t$ for the breeding animals that the farmers want to sell. 
+
+\textit{Berechnen Sie den Inzuchtkoeffizienten $F_t$ für die Zuchttiere, welche die Farmer verkaufen möchten.}
+\points{4}
+\end{enumerate}
+
+\solstart
+
+\clearpage
+\pagebreak
+
+\begin{enumerate}
+\item[b)] The sheep farmers are concerned that inbreeding in their population does not increase too much. In which year is the inbreeding coefficient $F_t$ going to be bigger than 0.1?
+
+\textit{Die Farmer möchten den Inzuchtgrad nicht zu stark ansteigen lassen. In welchem Jahr wird der Inzuchtgrad $F_t$ grösser sein als 0.1?}
+\points{2}
+\end{enumerate}
+
+\solstart
+
+\clearpage
+\pagebreak
+
+\begin{enumerate}
+\item[c)] One reason to control the inbreeding coefficient is that breeders want to avoid inbreeding depression. We assume that locus $W$ is mainly responsible for wool fibre diameter (FD). The favorable allele $W_1$ occurs with a frequency of $p = 0.045$. The difference between the homozygous genotypes $W_1W_1$ and $W_2W_2$ in fiber diameter is $100$ micrometer ($\mu m$). The genotypic value of the heterozygous genotype $W_1W_2$ is 15. Compute the inbreeding depression at locus $W$, if the inbreeding coefficient has reached the limiting value of Problem 1b of 0.1.
+
+\textit{Züchter wollen die Inzucht begrenzen, da sie Inzuchtdepressionen vermeiden wollen. Wir nehmen an, dass das Merkmal Wollfaserdurchmesser hauptsächlich von einem Genort $W$ beeinflusst wird. Das vorteilhafte Allel $W_1$ kommt mit einer Häufigkeit von $p = 0.045$ vor. Die Differenz zwischen den homozygoten Genotypen $W_1W_1$ und $W_2W_2$ im Merkmal Wollfaserdurchmesser beträgt $100$ Mikrometer ($\mu m$). Der genotypische Wert der Heterozygoten $W_1W_2$ beträgt 15. Berechnen Sie die Inzuchtdepression am Genort $W$ unter der Annahme, dass der Inzuchtkoeffizient den Grenzwert aus Aufgabe 1b von 0.1 erreicht hat.}
+\points{6}
+\end{enumerate}
+
+\vspace{3ex}
+\solstart
+
+\clearpage
+\pagebreak
+
+\begin{enumerate}
+\item[d)] Inbreeding has an influence on the genetic additive variance, as it is split into a between line and a within line component. Please, fill out the following table with the different genetic variance components for the locus $W$ from Problem 5c. We assume a value of  $0.1$ for the inbreeding coefficient $F$. 
+
+\textit{Inzucht hat einen Einfluss auf die additive genetische Varianz, da diese Varianz durch die Inzucht in eine Komponente innerhalb Linie und eine Komponente zwischen Linien aufgeteilt wird. Bitte füllen Sie die folgende Tabelle mit den unterschiedlichen Varianzkomponenten am Genort $W$ aus Aufgabe 5c aus. Als Inzuchtkoeffizienten $F$ nehmen wir einen Wert von $0.1$ an.}
+\points{10}
+\end{enumerate}
+
+\vspace{3ex}
+
+\textbf{Solution}:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l>{\raggedright\arraybackslash}p{8cm}}
+\toprule
+Source & Variance\\
+\midrule
+\begingroup\fontsize{12}{14}\selectfont Between lines\endgroup & \begingroup\fontsize{12}{14}\selectfont \endgroup\\
+\begingroup\fontsize{12}{14}\selectfont Within lines\endgroup & \begingroup\fontsize{12}{14}\selectfont \endgroup\\
+\begingroup\fontsize{12}{14}\selectfont Total additive\endgroup & \begingroup\fontsize{12}{14}\selectfont \endgroup\\
+\begingroup\fontsize{12}{14}\selectfont Dominance\endgroup & \begingroup\fontsize{12}{14}\selectfont \endgroup\\
+\begingroup\fontsize{12}{14}\selectfont Total genetic\endgroup & \begingroup\fontsize{12}{14}\selectfont \endgroup\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{document}
