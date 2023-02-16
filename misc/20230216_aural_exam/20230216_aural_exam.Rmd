@@ -1,0 +1,68 @@
+---
+title: "Livestock Breeding and Genomics - Aural Exam"
+date: "2023-02-16"
+output: html_notebook
+---
+
+
+# Problem 1: Relationship and Inbreeding
+
+```{r}
+library(pedtools)
+ped_p1 <- halfSibPed(nch1 = 1, nch2 = 2, sex1 = 1, sex2 = 2:1) |> 
+  addDaughter(parents = 4:5) |> 
+  addDaughter(parents = 6:7)
+library(dplyr)
+tbl_ped_p1 <- tibble::as_tibble(ped_p1) %>%
+  filter(fid != "0" & mid != "0") 
+```
+
+Given is the following pedigree
+
+```{r}
+tbl_ped_p1
+```
+
+
+## Tasks
+
+* Compute the additive genetic relationship matrix
+* Compute the inbreeding coefficients for all animals
+
+
+# Problem 2: Quantitative Genetics
+
+The following dataset is given
+
+```{r}
+s_gendata_p2 <- "https://charlotte-ngs.github.io/lbgfs2022/data/lbgfs2022_aural_exam_problem2.csv"
+tbl_gendata <- readr::read_delim(s_gendata_p2, delim = ",", show_col_types = FALSE)
+tbl_gendata_p2 <- tbl_gendata %>% select(ID, y, S1, S2)
+tbl_gendata_p2
+```
+
+
+## Tasks
+
+* How can we determine whether markers have any relation to observation in column `y`
+* What is the size of the influence
+* How can we determine the size of the influence
+
+
+# Problem 3: Genomic Selection
+
+Given is a dataset with more markers for the same animals as in Problem 2
+
+```{r}
+tbl_gendata
+```
+
+
+## Tasks
+
+* What is different for this dataset when determining the relation between markers and `y`
+* Predict genomic breeding values for all animals in the dataset given above, with a Marker-Effect-Model
+* Use a breeding-value based model to predict genomic breeding values for all animals in the above dataset.
+
+
+

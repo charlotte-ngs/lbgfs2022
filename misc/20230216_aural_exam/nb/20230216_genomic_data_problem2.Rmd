@@ -1,0 +1,57 @@
+---
+title: "Genomic Data Simulation"
+output: html_notebook
+---
+
+
+Simulate genomic data
+
+```{r}
+rm(list = ls())
+set.seed(9120)
+# dimension, animals and loci
+n_nr_animal <- 7
+n_nr_loci <- 12
+# residual standard deviation
+n_res_sd <- 7.99
+# intercept
+n_intercept <- 13.7
+# marker effects
+vec_marker_effects <- runif(n = n_nr_loci, min = 1.92, max = 9.12)
+vec_marker_maf <- runif(n = n_nr_loci, min = 0.2, max = 0.42)
+mat_geno <- NULL
+for (idx in 1:n_nr_loci){
+  mat_geno <- cbind(mat_geno,
+                    matrix(c(sample(c(0,1,2), 
+                                    size = n_nr_animal, 
+                                    replace = TRUE, 
+                                    prob = c((1-vec_marker_maf[idx])^2,
+                                              2*(1-vec_marker_maf[idx])*vec_marker_maf[idx],
+                                              vec_marker_maf[idx]^2))), 
+                           ncol = 1))
+}
+# observations
+mat_obs <- n_intercept + crossprod(t(mat_geno), vec_marker_effects) + rnorm(n_nr_animal, sd = n_res_sd)
+mat_obs
+
+```
+
+Create a tibble with data to be written to input file
+
+```{r}
+tbl_data_p02 <- tibble::tibble(ID = c(1:n_nr_animal),
+                               y = round(mat_obs[,1], digits = 1))
+for (idx in 1:n_nr_loci){
+  tbl_data_p02 <- dplyr::bind_cols(tbl_data_p02,
+                                   tibble::tibble(Locus = mat_geno[,idx]))
+  colnames(tbl_data_p02)[ncol(tbl_data_p02)] <- paste0("S", idx)
+}
+tbl_data_p02
+```
+
+Write data to a file
+
+```{r}
+s_data_p02_path <- file.path(here::here(), "docs", "data", "lbgfs2022_aural_exam_problem2.csv")
+readr::write_delim(tbl_data_p02, s_data_p02_path, delim = ",")
+```
