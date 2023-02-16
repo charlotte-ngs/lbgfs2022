@@ -7,7 +7,7 @@ output: html_notebook
 
 # Problem 1: Relationship and Inbreeding
 
-```{r}
+```{r, eval=FALSE, echo=FALSE}
 library(pedtools)
 ped_p1 <- halfSibPed(nch1 = 1, nch2 = 2, sex1 = 1, sex2 = 2:1) |> 
   addDaughter(parents = 4:5) |> 
@@ -15,7 +15,14 @@ ped_p1 <- halfSibPed(nch1 = 1, nch2 = 2, sex1 = 1, sex2 = 2:1) |>
 library(dplyr)
 tbl_ped_p1 <- tibble::as_tibble(ped_p1) %>%
   filter(fid != "0" & mid != "0") 
+readr::write_delim(tbl_ped_p1, file.path(here::here(), "docs", "data", "lbgfs2022_aural_exam_problem1.csv"), delim = ",")
 ```
+
+```{r}
+s_data_p1 <- "https://charlotte-ngs.github.io/lbgfs2022/data/lbgfs2022_aural_exam_problem1.csv"
+tbl_ped_p1 <- readr::read_delim(s_data_p1, delim = ",", show_col_types = FALSE)
+```
+
 
 Given is the following pedigree
 
