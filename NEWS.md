@@ -1,3 +1,7 @@
+# lbgfs2022 0.15.0
+
+* Course notes as complete document
+
 # lbgfs2022 0.14.0
 
 * Exam datasets
