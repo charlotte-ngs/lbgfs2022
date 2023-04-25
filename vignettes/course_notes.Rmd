@@ -14,9 +14,12 @@ knitr::opts_chunk$set(
 )
 ```
 
-Chapters of course notes are linked below.
+The complete course notes as one pdf-document is available from [here](https://charlotte-ngs.github.io/lbgfs2022/cn/lbgfs2022-cn.pdf).
+
 
 # Chapters
+
+Chapters of course notes are linked below.
 
 ```{r chapter-table, echo=FALSE, message=FALSE, warning=FALSE}
 s_cn_url <- "https://charlotte-ngs.github.io/lbgfs2022/cn/"
