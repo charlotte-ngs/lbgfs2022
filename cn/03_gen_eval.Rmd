@@ -169,7 +169,7 @@ With this model, it is assumed that the repeated records on the animal are the s
 \begin{align}
 \tilde{y_i} &= {1\over n} \sum_{k=1}^n y_{ik} \notag \\
             &= {1\over n} \sum_{k=1}^n ( \mu + u_i + pe_i + te_{ik}) \notag \\
-            &= \mu + u_i + pe_i + \sum_{k=1}^n te_{ik}
+            &= \mu + u_i + pe_i + {1\over n} \sum_{k=1}^n te_{ik}
 (\#eq:meanrepeatedrecords)
 \end{align}
 
