@@ -238,9 +238,9 @@ The breeding values are computed as
 
 ```{r, echo=FALSE}
 tbl_breeding_values <- tibble::tibble(Genotype = c(0:2),
-                                      General  = c("$2q \\alpha$",
+                                      General  = c("$-2p \\alpha$",
                                                    "$(q-p) \\alpha$",
-                                                   "$-2p \\alpha$"))
+                                                   "$2q \\alpha$"))
 knitr::kable(tbl_breeding_values, booktabs = TRUE, longtable = TRUE, escape = FALSE)
 ```
 
@@ -1296,7 +1296,8 @@ knitr::kable(tbl_gen_anova_task,
 \solstart
 
 ```{r prob1d-sol, echo=FALSE}
-n_add_gen_var_base_pop <- 2 * n_maf_locus_w * (1-n_maf_locus_w) * n_homo_geno_val^2
+n_alpha <- n_homo_geno_val + (1 - 2*n_maf_locus_w) * n_het_geno_val
+n_add_gen_var_base_pop <- 2 * n_maf_locus_w * (1-n_maf_locus_w) * n_alpha^2
 n_bt_line <- 2*n_F_t_limit * n_add_gen_var_base_pop
 n_win_line <- (1-n_F_t_limit) * n_add_gen_var_base_pop
 n_add_gen_var <- (1+n_F_t_limit) * n_add_gen_var_base_pop
@@ -1304,17 +1305,28 @@ n_dom_gen_var <- (2 * n_maf_locus_w * (1-n_maf_locus_w) * n_het_geno_val)^2
 n_total_var <- (1+n_F_t_limit) * n_add_gen_var_base_pop + n_dom_gen_var
 tbl_gen_anova_sol <- tibble::tibble(Source = c("Between lines", "Within lines","Total additive", "Dominance", "Total genetic"),
                                     Variance = c("$2FV_U$", "$(1-F)V_U$", "$(1+F)V_U$", "$V_D$", "$V_G$"),
-                                    Values   = round(c(n_bt_line,
+                                    Values   = c(n_bt_line,
                                                  n_win_line,
                                                  n_add_gen_var,
                                                  n_dom_gen_var,
-                                                 n_total_var), digits = 2))
+                                                 n_total_var))
 
+
+```
+
+For the entries in the table below, the following values were used
+
+* allele substitution $\alpha = `r n_alpha`$
+* genetic additive variance in base population $V_U = `r n_add_gen_var_base_pop`$
+* inbreeding coefficient $F = `r n_F_t_limit`$
+
+```{r, echo=FALSE}
 knitr::kable(tbl_gen_anova_sol,
              booktabs = TRUE, 
              escape = FALSE,
              format = 'latex')  %>%
   kableExtra::kable_styling(position = 'center', latex_options = c("HOLD_position"))
 ```
+
 
 \solend
